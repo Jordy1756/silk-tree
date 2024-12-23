@@ -1,68 +1,81 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    --font: "Poppins", "Open Sans", sans-serif, system-ui;
+    --min-width: 1542px;
+    --min-width: 100%;
+    --neutral-50: #fbfbfc;
+    --neutral-100: #f3f3f5;
+    --neutral-200: #e8e8ea;
+    --neutral-300: #dcdce0;
+    --neutral-400: #d1d1d6;
+    --neutral-500: #b2b2ba;
+    --neutral-600: #a0a0b0;
+    --neutral-700: #565660;
+    --neutral-800: #2b2b30;
+    --neutral-900: #161618;
+    --primary-color: #9589e9;
+    --background-color-light: var(--neutral-50);
+    --background-color-dark: var(--neutral-900);
+    --font-color-light: var(--neutral-50);
+    --font-color-dark: var(--neutral-900);
+    --glass-color: rgba(255, 255, 255, 0.1);
+    --blur-effect: blur(8px);
+    interpolate-size: allow-keywords;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
 }
-a:hover {
-  color: #535bf2;
+
+html {
+    scroll-behavior: smooth;
+    scrollbar-width: thin;
 }
 
 body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+    font-family: var(--font);
+    background-color: var(--background-color-light);
+    color: var(--font-color-dark);
+}
+
+:is(h1, h2, h3, h4, h5, h6) {
+    line-height: 1.25;
+    text-wrap: balance;
 }
 
 h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+    font-size: clamp(2.027rem, 5vw + 1rem, 3.815rem);
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+h2 {
+    font-size: clamp(1.802rem, 4vw + 1rem, 3.052rem);
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+h3 {
+    font-size: clamp(1.602rem, 3vw + 1rem, 2.441rem);
+}
+
+h4 {
+    font-size: clamp(1.424rem, 2.5vw + 1rem, 1.953rem);
+}
+
+h5 {
+    font-size: clamp(1.266rem, 2vw + 1rem, 1.563rem);
+}
+
+h6 {
+    font-size: clamp(1.125rem, 1.5vw + 1rem, 1.25rem);
+}
+
+p {
+    font-size: 1rem;
+    line-height: 1.5;
+    word-spacing: 2px;
+    text-wrap: pretty;
 }
