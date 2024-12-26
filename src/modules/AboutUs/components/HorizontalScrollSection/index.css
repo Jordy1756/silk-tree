@@ -1,0 +1,30 @@
+.horizontal__scroll-section {
+    height: var(--height);
+    view-timeline-name: var(--view-timeline-name);
+    view-timeline-axis: block;
+    position: relative;
+}
+
+.horizontal__scroll-section > .pin__wrap-sticky {
+    padding-block: 1rem;
+    position: sticky;
+    top: 0;
+    left: 0;
+    height: 100dvh;
+    overflow-x: hidden;
+}
+
+.horizontal__scroll-section > .pin__wrap-sticky > .pin__wrap {
+    width: 300dvw;
+    height: 100dvh;
+    will-change: transform;
+    animation: moveToLeft linear forwards;
+    animation-timeline: var(--view-timeline-name);
+    animation-range: contain 0% contain 100%;
+}
+
+@keyframes moveToLeft {
+    to {
+        transform: translateX(-100%);
+    }
+}

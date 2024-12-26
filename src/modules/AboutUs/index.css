@@ -1,0 +1,58 @@
+#about-us > .pin__wrap-sticky > .pin__wrap {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 5rem;
+}
+
+#about-us > .pin__wrap-sticky > header {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 50ch;
+    text-align: center;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+#about-us > .pin__wrap-sticky::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 80%;
+    border: 1px dashed var(--primary-200);
+}
+
+#about-us > .pin__wrap-sticky {
+    position: sticky;
+    top: 0;
+    left: 0;
+    height: 100dvh;
+    overflow-x: hidden;
+}
+
+#about-us > .pin__wrap-sticky::after {
+    content: "";
+    position: absolute;
+    top: calc(10% - 7px);
+    left: 50%;
+    transform: translateX(-50%);
+    width: 7px;
+    height: 7px;
+    background-color: var(--primary-500);
+    border-radius: 9999px;
+    animation: moveAboutUsCircle linear forwards;
+    animation-timeline: var(--view-timeline-name);
+    animation-range: contain 0% contain 100%;
+}
+
+@keyframes moveAboutUsCircle {
+    to {
+        top: 90%;
+    }
+}
