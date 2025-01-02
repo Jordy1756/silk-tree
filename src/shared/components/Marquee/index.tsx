@@ -2,12 +2,12 @@ import "./index.css";
 
 type MarqueeProps = {
     list: string[];
-    color?: "neutral__900" | "primary__500";
+    color?: "var(--neutral-900)" | "var(--primary-500)";
 };
 
-const Marquee = ({ list, color = "neutral__900" }: MarqueeProps) => {
+const Marquee = ({ list, color = "var(--neutral-900)" }: MarqueeProps) => {
     return (
-        <section className={`marquee ${color}`}>
+        <aside className={"marquee"} style={{ "--marquee-color": color } as React.CSSProperties}>
             <ul>
                 {list.map((item, index) => (
                     <li key={index}>
@@ -24,7 +24,7 @@ const Marquee = ({ list, color = "neutral__900" }: MarqueeProps) => {
                     </li>
                 ))}
             </ul>
-        </section>
+        </aside>
     );
 };
 

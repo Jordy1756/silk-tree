@@ -12,6 +12,6 @@
 .banner__header > .spline__object {
     position: absolute;
     inset: 0;
-    transform: rotate(-30deg) scale(1.5) translateX(15%) translateY(10%);
+    transform: scale(1.5) translateX(15%) rotate(-15deg);
     z-index: -1;
 }

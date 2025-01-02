@@ -1,0 +1,28 @@
+.services {
+    position: relative;
+    min-height: 600dvh;
+    view-timeline-name: --services-pin-tl;
+    view-timeline-axis: block;
+}
+
+.services > div {
+    position: sticky;
+    inset: 0;
+    height: 100dvh;
+    overflow: hidden;
+    display: flex;
+}
+
+.services > div > .marquee {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.services > div > div {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}

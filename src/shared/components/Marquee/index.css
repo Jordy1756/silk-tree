@@ -8,14 +8,6 @@
     overflow: hidden;
 }
 
-.marquee.neutral__900 {
-    --color: var(--neutral-900);
-}
-
-.marquee.primary__500 {
-    --color: var(--primary-500);
-}
-
 .marquee > ul {
     animation: scrollLeft 30s linear infinite;
 }
@@ -26,12 +18,12 @@
     text-transform: uppercase;
     font-size: var(--text-size-mega);
     white-space: nowrap;
-    color: var(--color);
+    color: var(--marquee-color);
 }
 
 .marquee > ul > li > div {
     position: relative;
-    border: 1px solid var(--color);
+    border: 1px solid var(--marquee-color);
     width: 35px;
     height: 35px;
     border-radius: 9999px;
@@ -45,7 +37,7 @@
     left: 50%;
     width: 25px;
     height: 1px;
-    background-color: var(--color);
+    background-color: var(--marquee-color);
 }
 
 .marquee > ul > li > div::before {
