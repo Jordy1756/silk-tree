@@ -1,15 +1,16 @@
 import Actionable from "../../../../shared/components/Actionable";
+import basics from "../../../../shared/data/basics.json";
 import "./index.css";
 
 const Hero = () => {
+    const { name, summary } = basics;
     return (
         <section className="hero">
-            <h1>SilkTree</h1>
-            <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni aut ab, corporis reiciendis labore rem
-                nihil necessitatibus consectetur expedita nostrum, possimus sint nisi, a rerum sapiente suscipit sequi
-                omnis porro!
-            </p>
+            <h1>
+                {name[0]}
+                <span>{name[1]}</span>
+            </h1>
+            <p>{summary}</p>
             <Actionable type="CTA" className="primary" href="#">
                 Get Started
             </Actionable>

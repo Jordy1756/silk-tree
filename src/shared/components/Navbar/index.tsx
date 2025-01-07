@@ -5,7 +5,7 @@ import "./index.css";
 const Navbar = () => {
     return (
         <nav className="navbar">
-            <div>
+            <div className="navbar__links">
                 <a href="/#">
                     <img src={logo} alt="Logo" />
                 </a>

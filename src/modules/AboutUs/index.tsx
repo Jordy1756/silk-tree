@@ -1,8 +1,10 @@
 import HorizontalScrollSection from "./components/HorizontalScrollSection";
-import StatisticsCard from "./components/statisticsCard";
+import AboutUsCard from "./components/AboutUsCard";
+import aboutUs from "./data/aboutUs.json";
 import "./index.css";
 
 const AboutUs = () => {
+    const { title, description, cards } = aboutUs;
     return (
         <HorizontalScrollSection
             id="about-us"
@@ -10,21 +12,14 @@ const AboutUs = () => {
             viewTimelineName="--about-us-pin-tl"
             pinChildren={
                 <header>
-                    <h2>Sobre nostros</h2>
-                    <p>
-                        En SilkTree, nos dedicamos a proporcionar atención médica de la más alta calidad a nuestros
-                        pacientes. Con tecnología de vanguardia y un equipo de profesionales altamente capacitados,
-                        estamos comprometidos a mejorar la salud y el bienestar de nuestra comunidad.
-                    </p>
+                    <h2>{title}</h2>
+                    <p>{description}</p>
                 </header>
             }
         >
-            <StatisticsCard text="Clientes satisfechos" value="1000" />
-            <StatisticsCard text="Atención de emergencias" value="24/7" />
-            <StatisticsCard text="Profesionales" value="100" />
-            <StatisticsCard text="Años de experiencia" value="+10" />
-            <StatisticsCard text="Clínicas" value="+5" />
-            <StatisticsCard text="Especialidades" value="10" />
+            {cards.map(({ text, value }, index) => (
+                <AboutUsCard key={index} text={text} value={value} />
+            ))}
         </HorizontalScrollSection>
     );
 };

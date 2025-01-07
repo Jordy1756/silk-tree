@@ -1,20 +1,22 @@
 import "./index.css";
 
-const Award = () => {
+type AwardType = {
+    name: string;
+    date: string;
+    description: string;
+};
+
+const Award = ({ name, date, description }: AwardType) => {
     return (
         <article className="award__card">
             <div>
                 <span>01</span>
                 <div>
-                    <time>2024-07-10</time>
-                    <h3>Hospital #1 de Costa Rica</h3>
+                    <time>{date}</time>
+                    <h3>{name}</h3>
                 </div>
             </div>
-            <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci nihil harum magnam nulla, amet, omnis
-                deleniti unde aut, assumenda impedit odio provident repudiandae. Ipsum atque culpa labore nemo aliquam
-                sequi.
-            </p>
+            <p>{description}</p>
         </article>
     );
 };

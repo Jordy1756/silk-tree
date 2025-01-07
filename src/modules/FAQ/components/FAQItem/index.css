@@ -3,6 +3,8 @@
     border-bottom: 1px solid var(--neutral-900);
     animation: revealFAQ linear both;
     animation-timeline: view();
+    border-radius: var(--border-radius-in);
+    transition: translate 0.2s ease-in-out;
 }
 
 .faq__item > summary {

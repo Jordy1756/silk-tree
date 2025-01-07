@@ -1,4 +1,4 @@
-.statistics__card {
+.about__us-card {
     width: min(100%, 300px);
     height: 200px;
     padding: 1rem;
@@ -10,17 +10,17 @@
     border-radius: var(--border-radius-out);
 }
 
-.statistics__card:first-child,
-.statistics__card:nth-child(2),
-.statistics__card:nth-child(3) {
+.about__us-card:first-child,
+.about__us-card:nth-child(2),
+.about__us-card:nth-child(3) {
     align-self: flex-end;
 }
 
-.statistics__card:nth-child(3) {
+.about__us-card:nth-child(3) {
     margin-right: 10rem;
 }
 
-.statistics__card > span {
+.about__us-card > span {
     flex: 1;
     font-size: var(--text-size-mega);
     align-self: center;

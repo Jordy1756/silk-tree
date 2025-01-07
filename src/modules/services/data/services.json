@@ -1,0 +1,32 @@
+[
+    {
+        "name": "Cardiología",
+        "image": "../../../src/assets/images/services/serviceImg01.webp",
+        "scrollTrigger": 83.33
+    },
+    {
+        "name": "Dermatología",
+        "image": "../../../src/assets/images/services/serviceImg02.webp",
+        "scrollTrigger": 66.67
+    },
+    {
+        "name": "Endocrinología",
+        "image": "../../../src/assets/images/services/serviceImg03.webp",
+        "scrollTrigger": 50
+    },
+    {
+        "name": "Gastroenterología",
+        "image": "../../../src/assets/images/services/serviceImg04.webp",
+        "scrollTrigger": 33.33
+    },
+    {
+        "name": "Ginecología",
+        "image": "../../../src/assets/images/services/serviceImg05.webp",
+        "scrollTrigger": 16.67
+    },
+    {
+        "name": "Otorrinolaringología",
+        "image": "../../../src/assets/images/services/serviceImg06.webp",
+        "scrollTrigger": 0
+    }
+]
