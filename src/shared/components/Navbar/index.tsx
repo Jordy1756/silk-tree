@@ -17,10 +17,10 @@ const Navbar = () => {
                         <a href="/#services">Servicios</a>
                     </li>
                     <li>
-                        <a href="/#">Medicos</a>
+                        <a href="/#our-team">Medicos</a>
                     </li>
                     <li>
-                        <a href="/#">Contactanos</a>
+                        <a href="/#contact-us">Contactanos</a>
                     </li>
                 </ul>
             </div>

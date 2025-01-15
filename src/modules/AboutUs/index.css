@@ -1,8 +1,15 @@
+#about-us > .pin__wrap-sticky {
+    padding-block: 1rem;
+}
+
 #about-us > .pin__wrap-sticky > .pin__wrap {
+    padding-right: 10rem;
     height: 100%;
     display: flex;
     justify-content: center;
     gap: 5rem;
+    transform: translateX(100vw);
+    animation-range: entry 100% contain 100%;
 }
 
 #about-us > .pin__wrap-sticky > header {

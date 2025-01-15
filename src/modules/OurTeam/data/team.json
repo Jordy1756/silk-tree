@@ -1,0 +1,51 @@
+{
+    "title": "Nuestro equipo",
+    "description": "Conoce a nuestro equipo de profesionales de la salud",
+    "team": [
+        {
+            "image": "../../../../src/assets/images/doctors/doctorImg01.webp",
+            "name": "Dr. Juan Pérez",
+            "specialty": "Cardiología"
+        },
+        {
+            "image": "../../../../src/assets/images/doctors/doctorImg02.webp",
+            "name": "Dr. María Rodríguez",
+            "specialty": "Pediatría"
+        },
+        {
+            "image": "../../../../src/assets/images/doctors/doctorImg03.webp",
+            "name": "Dr. Carlos Sánchez",
+            "specialty": "Oncología"
+        },
+        {
+            "image": "../../../../src/assets/images/doctors/doctorImg04.webp",
+            "name": "Dr. Ana Gómez",
+            "specialty": "Ginecología"
+        },
+        {
+            "image": "../../../../src/assets/images/doctors/doctorImg05.webp",
+            "name": "Dr. José Martínez",
+            "specialty": "Neurología"
+        },
+        {
+            "image": "../../../../src/assets/images/doctors/doctorImg06.webp",
+            "name": "Dr. Laura Pérez",
+            "specialty": "Dermatología"
+        },
+        {
+            "image": "../../../../src/assets/images/doctors/doctorImg07.webp",
+            "name": "Dr. Juan Pérez",
+            "specialty": "Cardiología"
+        },
+        {
+            "image": "../../../../src/assets/images/doctors/doctorImg08.webp",
+            "name": "Dr. María Rodríguez",
+            "specialty": "Pediatría"
+        },
+        {
+            "image": "../../../../src/assets/images/doctors/doctorImg09.webp",
+            "name": "Dr. Carlos Sánchez",
+            "specialty": "Oncología"
+        }
+    ]
+}

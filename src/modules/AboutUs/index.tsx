@@ -1,4 +1,4 @@
-import HorizontalScrollSection from "./components/HorizontalScrollSection";
+import HorizontalScrollSection from "../../shared/components/HorizontalScrollSection";
 import AboutUsCard from "./components/AboutUsCard";
 import aboutUs from "./data/aboutUs.json";
 import "./index.css";
@@ -9,7 +9,6 @@ const AboutUs = () => {
         <HorizontalScrollSection
             id="about-us"
             height="200dvh"
-            viewTimelineName="--about-us-pin-tl"
             pinChildren={
                 <header>
                     <h2>{title}</h2>

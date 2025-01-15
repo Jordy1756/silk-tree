@@ -12,7 +12,6 @@
     gap: 1rem;
     background-color: var(--neutral-50);
     border-radius: var(--border-radius-out);
-    /* box-shadow: var(--box-shadow); */
     animation: showService linear both;
     animation-timeline: --services-pin-tl;
     animation-range: contain calc(var(--scroll-trigger) - 8.33%) contain calc(var(--scroll-trigger) + 25%);
