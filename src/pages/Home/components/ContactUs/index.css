@@ -1,0 +1,13 @@
+.contact__us {
+    padding-block: 1rem;
+    min-height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 1rem;
+
+}
+
+.contact__us > form {
+    width: min(100%, 450px);
+}

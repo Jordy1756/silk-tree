@@ -25,11 +25,8 @@ const Navbar = () => {
                 </ul>
             </div>
             <div>
-                <Actionable type="CTA" className="primary" href="#pepito">
-                    Iniciar Sesion
-                </Actionable>
-                <Actionable type="CTA" className="secondary" href="#pepito2">
-                    Registrame
+                <Actionable type="CTA" className="primary" href="/authorization">
+                    Comenzar
                 </Actionable>
             </div>
         </nav>
