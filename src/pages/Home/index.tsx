@@ -8,8 +8,21 @@ import OurTeam from "./components/OurTeam";
 import Services from "./components/Services";
 import basics from "../../shared/data/basics.json";
 import "./index.css";
+import { useLocation } from "react-router-dom";
+import { useEffect } from "react";
 
 const Home = () => {
+    const location = useLocation();
+    const sectionIdentifiers = ["#home", "#about-us", "#services", "#our-team", "#contact-us", "#FAQs"];
+
+    const scrollToSection = () =>
+        sectionIdentifiers.includes(location.hash) &&
+        document.querySelector(location.hash)?.scrollIntoView();
+
+    useEffect(() => {
+        scrollToSection();
+    }, [location]);
+
     return (
         <>
             <Banner />

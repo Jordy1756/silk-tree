@@ -1,23 +1,24 @@
 import { ReactNode } from "react";
 import "./index.css";
+import { NavLink } from "react-router-dom";
 
 type ActionableProps = {
     type: "button" | "CTA";
     className: "primary" | "secondary";
     buttonType?: "button" | "submit" | "reset";
-    href?: string;
+    to?: string;
     children: ReactNode;
 };
 
-const Actionable = ({ type, className, buttonType, href, children }: ActionableProps) => {
+const Actionable = ({ type, className, buttonType, to = "", children }: ActionableProps) => {
     return type === "button" ? (
         <button type={buttonType} className={className}>
             {children}
         </button>
     ) : (
-        <a href={href} className={className}>
+        <NavLink to={to} className={className}>
             {children}
-        </a>
+        </NavLink>
     );
 };
 

@@ -1,17 +1,18 @@
 import Actionable from "../Actionable";
 import logo from "../../../assets/images/company/logo.png";
 import "./index.css";
+import { NavLink } from "react-router-dom";
 
 const Footer = () => {
     return (
         <footer className="footer">
             <section>
                 <div>
-                    <a href="/#">
+                    <NavLink to="/#home">
                         <img src={logo} alt="Logo SilkTree" />
-                    </a>
+                    </NavLink>
                     <blockquote>Cuidando tu salud con confianza y dedicación</blockquote>
-                    <Actionable type="CTA" className="primary" href="/#">
+                    <Actionable type="CTA" className="primary" to="/#">
                         Get Started
                     </Actionable>
                 </div>
@@ -35,7 +36,7 @@ const Footer = () => {
                         </li>
                         <li>
                             <span>05</span>
-                            <a href="/#">Contactanos</a>
+                            <a href="/#contact-us">Contactanos</a>
                         </li>
                     </ul>
                 </nav>
@@ -45,10 +46,10 @@ const Footer = () => {
                 <nav>
                     <ul>
                         <li>
-                            <a href="/#">Términos y condiciones</a>
+                            <NavLink to="/#">Términos y condiciones</NavLink>
                         </li>
                         <li>
-                            <a href="/#">Política de privacidad</a>
+                            <NavLink to="/#">Política de privacidad</NavLink>
                         </li>
                     </ul>
                 </nav>

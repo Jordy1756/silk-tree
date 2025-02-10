@@ -40,6 +40,7 @@
     --box-shadow-hover: 0px 6px 12px 0px rgba(0, 0, 0, 0.25);
     --border-radius-out: 5px;
     --border-radius-in: 2.5px;
+    --max-width: 1542px;
     interpolate-size: allow-keywords;
 }
 
@@ -116,7 +117,7 @@ h6 {
     line-height: 1.5;
 }
 
-p {
+p, blockquote {
     font-weight: 400;
     font-size: var(--text-size-base);
     line-height: 1.75;

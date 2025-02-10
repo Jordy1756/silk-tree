@@ -8,7 +8,7 @@ import "./index.css";
 const Banner = () => {
     const { award } = basics;
     return (
-        <header className="banner__header">
+        <header id="home" className="banner__header">
             <Navbar />
             <Hero />
             <section className="award__section">
