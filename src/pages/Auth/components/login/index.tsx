@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import Actionable from "../../../../shared/components/Actionable";
-import InputField from "../../../../shared/components/InputField";
+import { TextField } from "../../../../shared/components/InputField";
 import Form from "../../../../shared/components/Form";
 import Separator from "../Separator";
 import GoogleIcon from "../../../../assets/icons/GoogleIcon";
@@ -33,11 +33,10 @@ const Login = ({ isToggled, handleIsToggled }: LoginProps) => {
             </header>
             <main>
                 <Form onSubmit={() => {}} handleSubmit={handleSubmit}>
-                    <InputField
-                        typeField="input"
+                    <TextField
+                        type="email"
                         name="email"
                         labelText="Correo electrónico"
-                        typeInput="text"
                         register={register}
                         validation={{
                             required: { value: true, message: "El correo electrónico es requerido" },
@@ -57,11 +56,11 @@ const Login = ({ isToggled, handleIsToggled }: LoginProps) => {
                         error={errors.email}
                     />
                     <div>
-                        <InputField
-                            typeField="input"
+                        <TextField
+                            type="password"
                             name="password"
                             labelText="Contraseña"
-                            typeInput="password"
+                            autoComplete="off"
                             register={register}
                             validation={{
                                 required: { value: true, message: "La contraseña es requerida" },

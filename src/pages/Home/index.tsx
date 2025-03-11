@@ -1,7 +1,7 @@
 import Footer from "../../shared/components/Footer";
 import Marquee from "../../shared/components/Marquee";
 import AboutUs from "./components/AboutUs";
-import Banner from "./components/Banner";
+import Hero from "./components/Hero";
 import ContactUs from "./components/ContactUs";
 import FAQ from "./components/FAQ";
 import OurTeam from "./components/OurTeam";
@@ -16,8 +16,7 @@ const Home = () => {
     const sectionIdentifiers = ["#home", "#about-us", "#services", "#our-team", "#contact-us", "#FAQs"];
 
     const scrollToSection = () =>
-        sectionIdentifiers.includes(location.hash) &&
-        document.querySelector(location.hash)?.scrollIntoView();
+        sectionIdentifiers.includes(location.hash) && document.querySelector(location.hash)?.scrollIntoView();
 
     useEffect(() => {
         scrollToSection();
@@ -25,7 +24,7 @@ const Home = () => {
 
     return (
         <>
-            <Banner />
+            <Hero />
             <main className="main__content">
                 <Marquee list={basics.marquee} />
                 <AboutUs />

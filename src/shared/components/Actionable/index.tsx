@@ -7,12 +7,13 @@ type ActionableProps = {
     className: "primary" | "secondary";
     buttonType?: "button" | "submit" | "reset";
     to?: string;
+    onClick?: () => void;
     children: ReactNode;
 };
 
-const Actionable = ({ type, className, buttonType, to = "", children }: ActionableProps) => {
+const Actionable = ({ type, className, buttonType, to = "", onClick, children }: ActionableProps) => {
     return type === "button" ? (
-        <button type={buttonType} className={className}>
+        <button type={buttonType} className={className} onClick={onClick}>
             {children}
         </button>
     ) : (

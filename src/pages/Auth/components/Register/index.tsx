@@ -1,5 +1,5 @@
 import "./index.css";
-import InputField from "../../../../shared/components/InputField";
+import { TextField } from "../../../../shared/components/InputField";
 import { useForm } from "react-hook-form";
 import Form from "../../../../shared/components/Form";
 import Actionable from "../../../../shared/components/Actionable";
@@ -37,11 +37,10 @@ const Register = ({ isToggled, handleIsToggled }: RegisterProps) => {
             <main>
                 <Form onSubmit={() => {}} handleSubmit={handleSubmit}>
                     <div className="input__box-container">
-                        <InputField
-                            typeField="input"
+                        <TextField
+                            type="text"
                             name="name"
                             labelText="Nombre"
-                            typeInput="text"
                             register={register}
                             validation={{
                                 required: { value: true, message: "El nombre es requerido" },
@@ -50,11 +49,10 @@ const Register = ({ isToggled, handleIsToggled }: RegisterProps) => {
                             }}
                             error={errors.name}
                         />
-                        <InputField
-                            typeField="input"
+                        <TextField
+                            type="text"
                             name="lastName"
                             labelText="Apellidos"
-                            typeInput="text"
                             register={register}
                             validation={{
                                 required: { value: true, message: "Los apellidos son requeridos" },
@@ -64,11 +62,10 @@ const Register = ({ isToggled, handleIsToggled }: RegisterProps) => {
                             error={errors.lastName}
                         />
                     </div>
-                    <InputField
-                        typeField="input"
+                    <TextField
+                        type="email"
                         name="email"
                         labelText="Correo electrónico"
-                        typeInput="text"
                         register={register}
                         validation={{
                             required: { value: true, message: "El correo electrónico es requerido" },
@@ -87,11 +84,11 @@ const Register = ({ isToggled, handleIsToggled }: RegisterProps) => {
                         }}
                         error={errors.email}
                     />
-                    <InputField
-                        typeField="input"
+                    <TextField
+                        type="password"
                         name="password"
                         labelText="Contraseña"
-                        typeInput="password"
+                        autoComplete="off"
                         register={register}
                         validation={{
                             required: { value: true, message: "La contraseña es requerida" },
@@ -100,11 +97,11 @@ const Register = ({ isToggled, handleIsToggled }: RegisterProps) => {
                         }}
                         error={errors.password}
                     />
-                    <InputField
-                        typeField="input"
+                    <TextField
+                        type="password"
                         name="confirmPassword"
                         labelText="Confirmar contraseña"
-                        typeInput="password"
+                        autoComplete="off"
                         register={register}
                         validation={{
                             required: { value: true, message: "La confirmación de la contraseña es requerida" },
