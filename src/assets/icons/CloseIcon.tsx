@@ -1,8 +1,4 @@
-type IconProps = {
-    width: number;
-    height: number;
-    color?: string;
-};
+import type { IconProps } from "../../shared/types/iconTypes";
 
 const CloseIcon = ({ width, height, color }: IconProps) => {
     return (

@@ -14,6 +14,7 @@ type AppointmentCalendarProps = {
     popup?: boolean;
     onSelectEvent?: any;
     onSelectSlot?: any;
+    handleCurrentView?: (view: string) => void;
 };
 
 const AppointmentCalendar = ({
@@ -29,6 +30,7 @@ const AppointmentCalendar = ({
     popup,
     onSelectEvent,
     onSelectSlot,
+    handleCurrentView,
 }: AppointmentCalendarProps) => {
     return (
         <Calendar
@@ -45,6 +47,7 @@ const AppointmentCalendar = ({
             popup={popup}
             onSelectEvent={onSelectEvent}
             onSelectSlot={onSelectSlot}
+            onView={handleCurrentView}
         />
     );
 };

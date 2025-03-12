@@ -1,32 +1,5 @@
-import { FieldError, UseFormRegister } from "react-hook-form";
-import { ReactNode } from "react";
+import type { InputBoxProps, BasicInputFieldProps, TextFieldProps, SelectFieldProps } from "../../types/inputTypes";
 import "./index.css";
-
-type ValidationTypes = {
-    required: { value: boolean; message: string };
-    maxLength?: { value: number; message: string };
-    minLength?: { value: number; message: string };
-    pattern?: { value: RegExp; message: string };
-    min?: { value: number | string; message: string };
-    max?: { value: number | string; message: string };
-};
-
-type InputBoxProps = {
-    name: string;
-    labelText: string;
-    error?: FieldError | undefined;
-    children?: ReactNode;
-};
-
-type ValidatedInputFieldProps = InputBoxProps & {
-    register: UseFormRegister<any>;
-    validation: ValidationTypes;
-};
-
-type TextFieldProps = ValidatedInputFieldProps & {
-    type: "text" | "email" | "password" | "time";
-    autoComplete?: "on" | "off";
-};
 
 const InputBox = ({ name, labelText, error, children }: InputBoxProps) => {
     return (
@@ -40,7 +13,7 @@ const InputBox = ({ name, labelText, error, children }: InputBoxProps) => {
     );
 };
 
-export const TextareaField = ({ name, labelText, register, validation, error }: ValidatedInputFieldProps) => {
+export const TextareaField = ({ name, labelText, register, validation, error }: BasicInputFieldProps) => {
     return (
         <InputBox name={name} labelText={labelText} error={error}>
             <textarea placeholder="" {...register(name, validation)} />
@@ -48,10 +21,42 @@ export const TextareaField = ({ name, labelText, register, validation, error }: 
     );
 };
 
-export const TextField = ({ name, labelText, type, autoComplete, register, validation, error }: TextFieldProps) => {
+export const TextField = ({
+    name,
+    labelText,
+    type,
+    autoComplete,
+    readonly,
+    register,
+    validation,
+    error,
+}: TextFieldProps) => {
     return (
         <InputBox name={name} labelText={labelText} error={error}>
-            <input placeholder="" type={type} {...register(name, validation)} autoComplete={autoComplete} />
+            <input
+                placeholder=""
+                type={type}
+                autoComplete={autoComplete}
+                readOnly={readonly}
+                {...register(name, validation)}
+            />
+        </InputBox>
+    );
+};
+
+export const SelectField = ({ name, labelText, options, disabled, register, validation, error }: SelectFieldProps) => {
+    return (
+        <InputBox name={name} labelText={labelText} error={error}>
+            <select {...register(name, validation)} disabled={disabled}>
+                <option value="" disabled>
+                    Selecciona una opción
+                </option>
+                {options.map(({ value, label }) => (
+                    <option key={value} value={value}>
+                        {label}
+                    </option>
+                ))}
+            </select>
         </InputBox>
     );
 };

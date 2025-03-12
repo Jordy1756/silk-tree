@@ -1,0 +1,11 @@
+.appointment__details {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.appointment__details > div {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}

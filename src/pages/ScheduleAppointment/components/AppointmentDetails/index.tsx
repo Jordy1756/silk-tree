@@ -1,35 +1,31 @@
-import type { AppointmentFormValues } from "../../types/appointmentFormTypes";
 import type { CalendarEvent } from "../../types/calendarEvent";
-import { useEffect } from "react";
-import { useForm } from "react-hook-form";
-import { TextField, SelectField } from "../../../../shared/components/InputField";
-import { useModal } from "../../../../shared/hooks/useModal";
-import Actionable from "../../../../shared/components/Actionable";
-import Form from "../../../../shared/components/Form";
 import dayjs from "dayjs";
 import "./index.css";
-import { useCalendarEvents } from "../../hooks/useCalendarEvents";
+import { useForm } from "react-hook-form";
+import { useEffect, useState } from "react";
+import { AppointmentFormValues } from "../../types/appointmentFormTypes";
+import { SelectField, TextField } from "../../../../shared/components/InputField";
+import Actionable from "../../../../shared/components/Actionable";
+import { useModal } from "../../../../shared/hooks/useModal";
+import Form from "../../../../shared/components/Form";
 
-type NewAppointmentFormProps = {
-    startDate: Date;
-    endDate: Date;
-    isEditHour?: boolean;
-};
+type AppointmentDetailsProps = CalendarEvent;
 
-const NewAppointmentForm = ({ startDate, endDate, isEditHour }: NewAppointmentFormProps) => {
+const AppointmentDetails = ({ start: startDate, end: endDate, specialty }: AppointmentDetailsProps) => {
     const { closeModal } = useModal();
+    const [isEditCalendarEvent, setIsEditCalendarEvent] = useState(true);
 
-    const { insertCalendarEvent } = useCalendarEvents();
+    const handleIsEditCalendarEvent = () => setIsEditCalendarEvent((prev) => !prev);
 
     const defaultValuesForm: AppointmentFormValues = {
         appointmentDate: dayjs(startDate).format("YYYY-MM-DD"),
         initialHour: dayjs(startDate).format("HH:mm"),
         finalHour: dayjs(endDate).format("HH:mm"),
-        specialty: "",
+        specialty: specialty,
     };
 
     const specialties = [
-        { value: "Cardiología", label: "Cardiología" },
+        { value: "1", label: "Cardiología" },
         { value: "2", label: "Dermatología" },
         { value: "3", label: "Endocrinología" },
         { value: "4", label: "Gastroenterología" },
@@ -66,22 +62,20 @@ const NewAppointmentForm = ({ startDate, endDate, isEditHour }: NewAppointmentFo
     }, [startDate, endDate, reset]);
 
     const onSubmit = ({ initialHour, finalHour, specialty }: AppointmentFormValues) => {
+        console.log(initialHour, finalHour, specialty);
         let startDateTime = startDate,
             endDateTime = endDate;
-
         if (!isEditHour) {
             startDateTime = new Date(dayjs(startDate).format("YYYY-MM-DD") + "T" + initialHour);
             endDateTime = new Date(dayjs(endDate).format("YYYY-MM-DD") + "T" + finalHour);
         }
-
         const newCalendarEvent: CalendarEvent = {
             title: `Cita de ${specialty}`,
             start: startDateTime,
             end: endDateTime,
             specialty,
         };
-
-        insertCalendarEvent(newCalendarEvent);
+        handleEvents(newCalendarEvent);
         reset();
         closeModal();
     };
@@ -92,7 +86,7 @@ const NewAppointmentForm = ({ startDate, endDate, isEditHour }: NewAppointmentFo
                 type="date"
                 name="appointmentDate"
                 labelText="Fecha"
-                readonly
+                readonly={isEditCalendarEvent}
                 register={register}
                 validation={{
                     required: { value: true, message: "La fecha es requerida" },
@@ -104,7 +98,7 @@ const NewAppointmentForm = ({ startDate, endDate, isEditHour }: NewAppointmentFo
                     type="time"
                     name="initialHour"
                     labelText="Hora de inicio"
-                    readonly={isEditHour}
+                    readonly={isEditCalendarEvent}
                     register={register}
                     validation={{
                         required: { value: true, message: "La hora de inicio es requerida" },
@@ -121,7 +115,7 @@ const NewAppointmentForm = ({ startDate, endDate, isEditHour }: NewAppointmentFo
                     type="time"
                     name="finalHour"
                     labelText="Hora de salida"
-                    readonly={isEditHour}
+                    readonly={isEditCalendarEvent}
                     register={register}
                     validation={{
                         required: { value: true, message: "La hora de salida es requerida" },
@@ -139,6 +133,7 @@ const NewAppointmentForm = ({ startDate, endDate, isEditHour }: NewAppointmentFo
                 name="specialty"
                 labelText="Especialidad"
                 options={specialties}
+                disabled={isEditCalendarEvent}
                 register={register}
                 validation={{
                     required: { value: true, message: "La especialidad es requerida" },
@@ -146,15 +141,37 @@ const NewAppointmentForm = ({ startDate, endDate, isEditHour }: NewAppointmentFo
                 error={errors.specialty}
             />
             <div className="form__actions">
-                <Actionable type="button" className="primary" buttonType="submit">
-                    Agendar
+                <Actionable
+                    type="button"
+                    className="primary"
+                    buttonType={isEditCalendarEvent ? "submit" : "button"}
+                    onClick={handleIsEditCalendarEvent}
+                >
+                    Actualizar
                 </Actionable>
                 <Actionable type="button" className="secondary" buttonType="reset" onClick={() => closeModal()}>
-                    Cancelar
+                    Eliminar
                 </Actionable>
             </div>
         </Form>
     );
 };
 
-export default NewAppointmentForm;
+export default AppointmentDetails;
+
+{
+    /* <div className="appointment__details">
+            <div>
+                <CalendarIcon width={24} height={24} color="var(--neutral-900)" />
+                <p>{dayjs(start).format("DD [de] MMMM [del] YYYY")}</p>
+            </div>
+            <div>
+                <ClockIcon width={24} height={24} color="var(--neutral-900)" />
+                <p>{`${dayjs(start).format("HH:mm")} - ${dayjs(end).format("HH:mm")}`}</p>
+            </div>
+            <div>
+                <GraduationIcon width={24} height={24} color="var(--neutral-900)" />
+                <p>{specialty}</p>
+            </div>
+        </div> */
+}

@@ -7,7 +7,8 @@
 }
 
 .input__box > div > input,
-.input__box > div > textarea {
+.input__box > div > textarea,
+.input__box > div > select {
     width: 100%;
     padding: 1.5rem 0.5rem 0;
     border: none;
@@ -32,7 +33,9 @@
 }
 
 .input__box > div > :is(input, textarea):focus + label,
-.input__box > div > :is(input, textarea):not(:placeholder-shown) + label {
+.input__box > div > :is(input, textarea):not(:placeholder-shown) + label,
+.input__box > div > select:focus + label,
+.input__box > div > select:not(:placeholder-shown) + label {
     top: 0;
     font-size: 0.9rem;
     color: var(--neutral-600);
