@@ -1,5 +1,4 @@
 import type { CalendarEvent } from "../../types/calendarEvent";
-import dayjs from "dayjs";
 import "./index.css";
 import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
@@ -8,19 +7,23 @@ import { SelectField, TextField } from "../../../../shared/components/InputField
 import Actionable from "../../../../shared/components/Actionable";
 import { useModal } from "../../../../shared/hooks/useModal";
 import Form from "../../../../shared/components/Form";
+import { getFormattedDateString } from "../../../../shared/utility/handleDates";
 
 type AppointmentDetailsProps = CalendarEvent;
 
-const AppointmentDetails = ({ start: startDate, end: endDate, specialty }: AppointmentDetailsProps) => {
+const AppointmentDetails = ({ startDate, endDate, specialty }: AppointmentDetailsProps) => {
     const { closeModal } = useModal();
     const [isEditCalendarEvent, setIsEditCalendarEvent] = useState(true);
 
     const handleIsEditCalendarEvent = () => setIsEditCalendarEvent((prev) => !prev);
 
     const defaultValuesForm: AppointmentFormValues = {
-        appointmentDate: dayjs(startDate).format("YYYY-MM-DD"),
-        initialHour: dayjs(startDate).format("HH:mm"),
-        finalHour: dayjs(endDate).format("HH:mm"),
+        startDate,
+        endDate,
+        isEditHour: true,
+        appointmentDate: getFormattedDateString(startDate, "YYYY-MM-DD"),
+        initialHour: getFormattedDateString(startDate, "HH:mm"),
+        finalHour: getFormattedDateString(endDate, "HH:mm"),
         specialty: specialty,
     };
 
@@ -62,20 +65,22 @@ const AppointmentDetails = ({ start: startDate, end: endDate, specialty }: Appoi
     }, [startDate, endDate, reset]);
 
     const onSubmit = ({ initialHour, finalHour, specialty }: AppointmentFormValues) => {
-        console.log(initialHour, finalHour, specialty);
         let startDateTime = startDate,
             endDateTime = endDate;
-        if (!isEditHour) {
-            startDateTime = new Date(dayjs(startDate).format("YYYY-MM-DD") + "T" + initialHour);
-            endDateTime = new Date(dayjs(endDate).format("YYYY-MM-DD") + "T" + finalHour);
+
+        if (!isEditCalendarEvent) {
+            startDateTime = new Date(getFormattedDateString(startDate, "YYYY-MM-DD") + "T" + initialHour);
+            endDateTime = new Date(getFormattedDateString(startDate, "YYYY-MM-DD") + "T" + finalHour);
         }
-        const newCalendarEvent: CalendarEvent = {
-            title: `Cita de ${specialty}`,
-            start: startDateTime,
-            end: endDateTime,
-            specialty,
-        };
-        handleEvents(newCalendarEvent);
+
+        // const newCalendarEvent: CalendarEvent = {
+        //     title: `Cita de ${specialty}`,
+        //     start: startDateTime,
+        //     end: endDateTime,
+        //     specialty,
+        // };
+
+        // handleEvents(newCalendarEvent);
         reset();
         closeModal();
     };
@@ -147,10 +152,10 @@ const AppointmentDetails = ({ start: startDate, end: endDate, specialty }: Appoi
                     buttonType={isEditCalendarEvent ? "submit" : "button"}
                     onClick={handleIsEditCalendarEvent}
                 >
-                    Actualizar
+                    {isEditCalendarEvent ? "Editar" : "Actualizar"}
                 </Actionable>
                 <Actionable type="button" className="secondary" buttonType="reset" onClick={() => closeModal()}>
-                    Eliminar
+                    {isEditCalendarEvent ? "Eliminar" : "Cancelar"}
                 </Actionable>
             </div>
         </Form>
@@ -158,20 +163,3 @@ const AppointmentDetails = ({ start: startDate, end: endDate, specialty }: Appoi
 };
 
 export default AppointmentDetails;
-
-{
-    /* <div className="appointment__details">
-            <div>
-                <CalendarIcon width={24} height={24} color="var(--neutral-900)" />
-                <p>{dayjs(start).format("DD [de] MMMM [del] YYYY")}</p>
-            </div>
-            <div>
-                <ClockIcon width={24} height={24} color="var(--neutral-900)" />
-                <p>{`${dayjs(start).format("HH:mm")} - ${dayjs(end).format("HH:mm")}`}</p>
-            </div>
-            <div>
-                <GraduationIcon width={24} height={24} color="var(--neutral-900)" />
-                <p>{specialty}</p>
-            </div>
-        </div> */
-}

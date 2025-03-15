@@ -1,30 +1,30 @@
 import type { AppointmentFormValues } from "../../types/appointmentFormTypes";
-import type { CalendarEvent } from "../../types/calendarEvent";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { TextField, SelectField } from "../../../../shared/components/InputField";
 import { useModal } from "../../../../shared/hooks/useModal";
 import Actionable from "../../../../shared/components/Actionable";
 import Form from "../../../../shared/components/Form";
-import dayjs from "dayjs";
+import { getFormattedDateString } from "../../../../shared/utility/handleDates";
 import "./index.css";
-import { useCalendarEvents } from "../../hooks/useCalendarEvents";
 
 type NewAppointmentFormProps = {
     startDate: Date;
     endDate: Date;
     isEditHour?: boolean;
+    handleCalendarAction: (calendarEvent: AppointmentFormValues) => void;
 };
 
-const NewAppointmentForm = ({ startDate, endDate, isEditHour }: NewAppointmentFormProps) => {
+const NewAppointmentForm = ({ startDate, endDate, isEditHour, handleCalendarAction }: NewAppointmentFormProps) => {
     const { closeModal } = useModal();
 
-    const { insertCalendarEvent } = useCalendarEvents();
-
     const defaultValuesForm: AppointmentFormValues = {
-        appointmentDate: dayjs(startDate).format("YYYY-MM-DD"),
-        initialHour: dayjs(startDate).format("HH:mm"),
-        finalHour: dayjs(endDate).format("HH:mm"),
+        startDate,
+        endDate,
+        isEditHour: isEditHour || false,
+        appointmentDate: getFormattedDateString(startDate, "YYYY-MM-DD"),
+        initialHour: getFormattedDateString(startDate, "HH:mm"),
+        finalHour: getFormattedDateString(endDate, "HH:mm"),
         specialty: "",
     };
 
@@ -65,23 +65,8 @@ const NewAppointmentForm = ({ startDate, endDate, isEditHour }: NewAppointmentFo
         reset(defaultValuesForm);
     }, [startDate, endDate, reset]);
 
-    const onSubmit = ({ initialHour, finalHour, specialty }: AppointmentFormValues) => {
-        let startDateTime = startDate,
-            endDateTime = endDate;
-
-        if (!isEditHour) {
-            startDateTime = new Date(dayjs(startDate).format("YYYY-MM-DD") + "T" + initialHour);
-            endDateTime = new Date(dayjs(endDate).format("YYYY-MM-DD") + "T" + finalHour);
-        }
-
-        const newCalendarEvent: CalendarEvent = {
-            title: `Cita de ${specialty}`,
-            start: startDateTime,
-            end: endDateTime,
-            specialty,
-        };
-
-        insertCalendarEvent(newCalendarEvent);
+    const onSubmit = ({ startDate, endDate, isEditHour, initialHour, finalHour, specialty }: AppointmentFormValues) => {
+        handleCalendarAction({ startDate, endDate, isEditHour, initialHour, finalHour, specialty });
         reset();
         closeModal();
     };

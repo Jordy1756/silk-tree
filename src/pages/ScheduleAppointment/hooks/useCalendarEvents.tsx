@@ -3,74 +3,87 @@ import { useModal } from "../../../shared/hooks/useModal";
 import NewAppointmentForm from "../components/NewAppointmentForm";
 import { CalendarEvent } from "../types/calendarEvent";
 import AppointmentDetails from "../components/AppointmentDetails";
+import { AppointmentFormValues } from "../types/appointmentFormTypes";
+import { getFormattedDateString } from "../../../shared/utility/handleDates";
 
-type HandleSelectSlot = CalendarEvent & {
-    currentView: string;
-};
-const { showModal } = useModal();
+// type CalendarEventActions = "insert" | "edit" | "update" | "delete";
 
-const handleSelectSlot = ({ start, end, currentView }: HandleSelectSlot) => {
-    showModal(
-        "Agendar cita",
-        <NewAppointmentForm
-            startDate={start}
-            endDate={currentView === "month" ? start : end}
-            isEditHour={currentView !== "month"}
-        />
+// const getDefaultFormValues = (startDate: Date, endDate: Date): AppointmentFormValues => {
+//     return {
+//         startDate,
+//         endDate,
+//         isEditHour: false,
+//         appointmentDate: getFormattedDateString(startDate, "YYYY-MM-DD"),
+//         initialHour: getFormattedDateString(startDate, "HH:mm"),
+//         finalHour: getFormattedDateString(endDate, "HH:mm"),
+//         specialty: "",
+//     };
+// };
+
+export const useCalendarEvents = (events: CalendarEvent[]) => {
+    const { showModal } = useModal();
+    const [calendarEvents, setCalendarEvents] = useState<CalendarEvent[]>(events);
+    const [currentView, setCurrentView] = useState("month");
+
+    const handleCurrentView = (view: string) => setCurrentView(view);
+
+    const insertCalendarEvent = ({
+        startDate,
+        endDate,
+        isEditHour,
+        initialHour,
+        finalHour,
+        specialty,
+    }: AppointmentFormValues) => {
+        if (!isEditHour) {
+            startDate = new Date(getFormattedDateString(startDate, "YYYY-MM-DD") + "T" + initialHour);
+            endDate = new Date(getFormattedDateString(startDate, "YYYY-MM-DD") + "T" + finalHour);
+        }
+
+        const newCalendarEvent: CalendarEvent = {
+            title: `Cita de ${specialty}`,
+            startDate,
+            endDate,
+            specialty,
+        };
+
+        setCalendarEvents((prev) => [...prev, newCalendarEvent]);
+    };
+
+    // const calendarEventActions = {
+    //     insert: {
+    //         primaryButtonText: "Agendar",
+    //         secondaryButtonText: "Cancelar",
+    //         primaryButtonAction: insertCalendarEvent,
+    //     },
+    //     edit: {
+    //         primaryButtonText: "Editar",
+    //         secondaryButtonText: "Eliminar",
+    //     },
+    //     update: {
+    //         primaryButtonText: "Actualizar",
+    //         secondaryButtonText: "Cancelar",
+    //     },
+    // };
+
+    const handleSelectSlot = ({ startDate, endDate }: CalendarEvent) => {
+        showModal(
+            "Agendar cita",
+            <NewAppointmentForm
+                startDate={startDate}
+                endDate={currentView === "month" ? startDate : endDate}
+                isEditHour={currentView !== "month"}
+                handleCalendarAction={insertCalendarEvent}
+            />
+        );
+    };
+
+    const handleSelectEvent = useCallback(
+        (calendarEvent: CalendarEvent) => {
+            showModal("Detalles de la cita", <AppointmentDetails {...calendarEvent} />);
+        },
+        [showModal]
     );
-};
 
-const handleSelectEvent = useCallback((calendarEvent: CalendarEvent) => {
-    showModal("Detalles de la cita", <AppointmentDetails {...calendarEvent} />);
-}, []);
-
-export const useCalendarEvents = () => {
-    const [events, setEvents] = useState<CalendarEvent[]>([
-        {
-            title: "Meeting1",
-            start: new Date(2025, 2, 11, 8, 0),
-            end: new Date(2025, 2, 11, 9, 0),
-            specialty: "1",
-        },
-        {
-            title: "Meeting2",
-            start: new Date(2025, 2, 11, 9, 0),
-            end: new Date(2025, 2, 11, 10, 0),
-            specialty: "2",
-        },
-        {
-            title: "Meeting3",
-            start: new Date(2025, 2, 11, 10, 0),
-            end: new Date(2025, 2, 11, 11, 0),
-            specialty: "3",
-        },
-        {
-            title: "Meeting3",
-            start: new Date(2025, 2, 11, 11, 0),
-            end: new Date(2025, 2, 11, 12, 0),
-            specialty: "4",
-        },
-        {
-            title: "Meeting3",
-            start: new Date(2025, 2, 11, 12, 0),
-            end: new Date(2025, 2, 11, 13, 0),
-            specialty: "5",
-        },
-        {
-            title: "Meeting3",
-            start: new Date(2025, 2, 11, 13, 0),
-            end: new Date(2025, 2, 11, 14, 0),
-            specialty: "6",
-        },
-        {
-            title: "Meeting10",
-            start: new Date(2025, 2, 11, 14, 0),
-            end: new Date(2025, 2, 11, 15, 0),
-            specialty: "7",
-        },
-    ]);
-
-    const insertCalendarEvent = (calendarEvent: CalendarEvent) => setEvents((prev) => [...prev, calendarEvent]);
-
-    return { events, handleSelectSlot, handleSelectEvent, insertCalendarEvent };
+    return { calendarEvents, handleSelectSlot, handleSelectEvent, currentView, handleCurrentView };
 };
