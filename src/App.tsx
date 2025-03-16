@@ -6,15 +6,20 @@ import { ModalProvider } from "./shared/context/modalContext";
 
 const App = () => {
     return (
-        <ModalProvider>
-            <BrowserRouter>
-                <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/authorization" element={<Auth />} />
-                    <Route path="/schedule-appointment" element={<ScheduleAppointment />} />
-                </Routes>
-            </BrowserRouter>
-        </ModalProvider>
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/authorization" element={<Auth />} />
+                <Route
+                    path="/schedule-appointment"
+                    element={
+                        <ModalProvider>
+                            <ScheduleAppointment />
+                        </ModalProvider>
+                    }
+                />
+            </Routes>
+        </BrowserRouter>
     );
 };
 

@@ -1,30 +1,38 @@
-import { useCallback, useState } from "react";
+import { useState } from "react";
 import { useModal } from "../../../shared/hooks/useModal";
-import NewAppointmentForm from "../components/NewAppointmentForm";
+import NewScheduleAppointment from "../components/NewScheduleAppointment";
 import { CalendarEvent } from "../types/calendarEvent";
-import AppointmentDetails from "../components/AppointmentDetails";
 import { AppointmentFormValues } from "../types/appointmentFormTypes";
 import { getFormattedDateString } from "../../../shared/utility/handleDates";
+import ScheduleAppointmentDetails from "../components/ScheduleAppointmentDetails";
 
-// type CalendarEventActions = "insert" | "edit" | "update" | "delete";
+export const useCalendarEvents = () => {
+    const { showModal, closeModal } = useModal();
+    const [calendarEvents, setCalendarEvents] = useState<CalendarEvent[]>([
+        {
+            id: "1",
+            title: "Meeting1",
+            start: new Date(2025, 2, 11, 8, 0),
+            end: new Date(2025, 2, 11, 9, 0),
+            specialty: "1",
+        },
+        {
+            id: "2",
+            title: "Meeting2",
+            start: new Date(2025, 2, 11, 9, 0),
+            end: new Date(2025, 2, 11, 10, 0),
+            specialty: "2",
+        },
+        {
+            id: "3",
+            title: "Meeting3",
+            start: new Date(2025, 2, 11, 10, 0),
+            end: new Date(2025, 2, 11, 11, 0),
+            specialty: "3",
+        },
+    ]);
 
-// const getDefaultFormValues = (startDate: Date, endDate: Date): AppointmentFormValues => {
-//     return {
-//         startDate,
-//         endDate,
-//         isEditHour: false,
-//         appointmentDate: getFormattedDateString(startDate, "YYYY-MM-DD"),
-//         initialHour: getFormattedDateString(startDate, "HH:mm"),
-//         finalHour: getFormattedDateString(endDate, "HH:mm"),
-//         specialty: "",
-//     };
-// };
-
-export const useCalendarEvents = (events: CalendarEvent[]) => {
-    const { showModal } = useModal();
-    const [calendarEvents, setCalendarEvents] = useState<CalendarEvent[]>(events);
     const [currentView, setCurrentView] = useState("month");
-
     const handleCurrentView = (view: string) => setCurrentView(view);
 
     const insertCalendarEvent = ({
@@ -41,49 +49,79 @@ export const useCalendarEvents = (events: CalendarEvent[]) => {
         }
 
         const newCalendarEvent: CalendarEvent = {
+            id: "10",
             title: `Cita de ${specialty}`,
-            startDate,
-            endDate,
+            start: startDate,
+            end: endDate,
             specialty,
         };
 
         setCalendarEvents((prev) => [...prev, newCalendarEvent]);
     };
 
-    // const calendarEventActions = {
-    //     insert: {
-    //         primaryButtonText: "Agendar",
-    //         secondaryButtonText: "Cancelar",
-    //         primaryButtonAction: insertCalendarEvent,
-    //     },
-    //     edit: {
-    //         primaryButtonText: "Editar",
-    //         secondaryButtonText: "Eliminar",
-    //     },
-    //     update: {
-    //         primaryButtonText: "Actualizar",
-    //         secondaryButtonText: "Cancelar",
-    //     },
-    // };
+    const deleteCalendarEvent = (calendarEventId: string) =>
+        setCalendarEvents((prev) => prev.filter(({ id }) => id !== calendarEventId));
 
-    const handleSelectSlot = ({ startDate, endDate }: CalendarEvent) => {
+    const updateCalendarEvent = ({
+        id,
+        startDate: newStartDate,
+        endDate: newEndDate,
+        appointmentDate,
+        isEditHour,
+        initialHour,
+        finalHour,
+        specialty: newSpecialty,
+    }: AppointmentFormValues) => {
+        const newAppointmentDate = new Date(appointmentDate);
+        
+        if (!isEditHour) {
+            newStartDate = new Date(getFormattedDateString(newAppointmentDate, "YYYY-MM-DD") + "T" + initialHour);
+            newEndDate = new Date(getFormattedDateString(newAppointmentDate, "YYYY-MM-DD") + "T" + finalHour);
+        }
+
+        setCalendarEvents((prev) =>
+            prev.map((event) => {
+                if (event.id === id) {
+                    return {
+                        ...event,
+                        title: `Cita de ${newSpecialty}`,
+                        start: newStartDate,
+                        end: newEndDate,
+                        specialty: newSpecialty,
+                    };
+                }
+                return event;
+            })
+        );
+    };
+
+    const handleSelectSlot = ({ id, start: startDate, end: endDate }: CalendarEvent) => {
         showModal(
             "Agendar cita",
-            <NewAppointmentForm
+            <NewScheduleAppointment
+                id={id}
                 startDate={startDate}
                 endDate={currentView === "month" ? startDate : endDate}
-                isEditHour={currentView !== "month"}
-                handleCalendarAction={insertCalendarEvent}
+                specialty=""
+                currentView={currentView}
+                insertCalendarEvent={insertCalendarEvent}
             />
         );
     };
 
-    const handleSelectEvent = useCallback(
-        (calendarEvent: CalendarEvent) => {
-            showModal("Detalles de la cita", <AppointmentDetails {...calendarEvent} />);
-        },
-        [showModal]
-    );
+    const handleSelectEvent = ({ id, start: startDate, end: endDate, specialty }: CalendarEvent) => {
+        showModal(
+            "Detalles de la cita",
+            <ScheduleAppointmentDetails
+                id={id}
+                startDate={startDate}
+                endDate={endDate}
+                specialty={specialty}
+                deleteCalendarEvent={deleteCalendarEvent}
+                updateCalendarEvent={updateCalendarEvent}
+            />
+        );
+    };
 
     return { calendarEvents, handleSelectSlot, handleSelectEvent, currentView, handleCurrentView };
 };
