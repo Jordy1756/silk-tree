@@ -2,7 +2,9 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Auth from "./pages/Auth";
 import Home from "./pages/Home";
 import ScheduleAppointment from "./pages/ScheduleAppointment";
-import { ModalProvider } from "./shared/context/modalContext";
+import { StandardModalProvider } from "./shared/context/standardModalContext";
+
+import { ConfirmationModalProvider } from "./shared/context/confirmationModalContext";
 
 const App = () => {
     return (
@@ -13,9 +15,11 @@ const App = () => {
                 <Route
                     path="/schedule-appointment"
                     element={
-                        <ModalProvider>
-                            <ScheduleAppointment />
-                        </ModalProvider>
+                        <ConfirmationModalProvider>
+                            <StandardModalProvider>
+                                <ScheduleAppointment />
+                            </StandardModalProvider>
+                        </ConfirmationModalProvider>
                     }
                 />
             </Routes>

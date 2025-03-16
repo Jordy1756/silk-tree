@@ -1,17 +1,10 @@
-import { ReactNode, RefObject } from "react";
+import type { StandardModalProps } from "../../types/modalTypes";
 import CloseIcon from "../../../assets/icons/CloseIcon";
 import "./index.css";
 
-type ModalProps = {
-    dialogRef: RefObject<HTMLDialogElement>;
-    title: string;
-    children: ReactNode;
-    closeModal: () => void;
-};
-
-const Modal = ({ dialogRef, title, children, closeModal }: ModalProps) => {
+const StandardModal = ({ dialogRef, title, children, closeModal }: StandardModalProps) => {
     return (
-        <dialog ref={dialogRef} className="modal">
+        <dialog ref={dialogRef} className="standard__modal">
             <header>
                 <h5>{title}</h5>
                 <button onClick={() => closeModal()}>
@@ -23,4 +16,4 @@ const Modal = ({ dialogRef, title, children, closeModal }: ModalProps) => {
     );
 };
 
-export default Modal;
+export default StandardModal;

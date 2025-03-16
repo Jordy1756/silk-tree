@@ -1,13 +1,13 @@
 import { useState } from "react";
-import { useModal } from "../../../shared/hooks/useModal";
+import { useStandardModal } from "../../../shared/hooks/useStandardModal";
 import NewScheduleAppointment from "../components/NewScheduleAppointment";
 import { CalendarEvent } from "../types/calendarEvent";
 import { AppointmentFormValues } from "../types/appointmentFormTypes";
-import { getFormattedDateString } from "../../../shared/utility/handleDates";
+import { convertStringToDate, getFormattedDateString } from "../../../shared/utility/handleDates";
 import ScheduleAppointmentDetails from "../components/ScheduleAppointmentDetails";
 
 export const useCalendarEvents = () => {
-    const { showModal, closeModal } = useModal();
+    const { showModal, closeModal } = useStandardModal();
     const [calendarEvents, setCalendarEvents] = useState<CalendarEvent[]>([
         {
             id: "1",
@@ -57,6 +57,7 @@ export const useCalendarEvents = () => {
         };
 
         setCalendarEvents((prev) => [...prev, newCalendarEvent]);
+        closeModal();
     };
 
     const deleteCalendarEvent = (calendarEventId: string) =>
@@ -72,8 +73,8 @@ export const useCalendarEvents = () => {
         finalHour,
         specialty: newSpecialty,
     }: AppointmentFormValues) => {
-        const newAppointmentDate = new Date(appointmentDate);
-        
+        const newAppointmentDate = convertStringToDate(appointmentDate);
+
         if (!isEditHour) {
             newStartDate = new Date(getFormattedDateString(newAppointmentDate, "YYYY-MM-DD") + "T" + initialHour);
             newEndDate = new Date(getFormattedDateString(newAppointmentDate, "YYYY-MM-DD") + "T" + finalHour);
@@ -93,6 +94,8 @@ export const useCalendarEvents = () => {
                 return event;
             })
         );
+
+        closeModal();
     };
 
     const handleSelectSlot = ({ id, start: startDate, end: endDate }: CalendarEvent) => {

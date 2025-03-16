@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import Actionable from "../../../../shared/components/Actionable";
 import ScheduleAppointmentForm from "../SchuduleAppointmentForm";
-import { useModal } from "../../../../shared/hooks/useModal";
+import { useStandardModal } from "../../../../shared/hooks/useStandardModal";
 import { useForm } from "react-hook-form";
 import { AppointmentFormValues } from "../../types/appointmentFormTypes";
 import { getDefaultFormValues } from "../../utility/handleFormValues";
 import "./index.css";
+import { useConfirmationModal } from "../../../../shared/hooks/useConfirmartionModal";
 
 type ScheduleAppointmentDetailsProps = {
     id: string;
@@ -25,7 +26,7 @@ const ScheduleAppointmentDetails = ({
     deleteCalendarEvent,
 }: ScheduleAppointmentDetailsProps) => {
     const [isEditMode, setIsEditMode] = useState(true);
-    const { closeModal } = useModal();
+    const { showModal } = useConfirmationModal();
     const {
         register,
         handleSubmit,
@@ -35,6 +36,8 @@ const ScheduleAppointmentDetails = ({
         mode: "onBlur",
         defaultValues: getDefaultFormValues(id, startDate, endDate, specialty),
     });
+
+    const handleIsEditMode = () => setIsEditMode((prev) => !prev);
 
     useEffect(() => {
         reset(getDefaultFormValues(id, startDate, endDate, specialty));
@@ -56,7 +59,7 @@ const ScheduleAppointmentDetails = ({
                 type="button"
                 className="primary"
                 buttonType={!isEditMode ? "button" : "submit"}
-                onClick={() => setIsEditMode(!isEditMode)}
+                onClick={() => handleIsEditMode()}
             >
                 {isEditMode ? "Editar" : "Actualizar"}
             </Actionable>
@@ -64,7 +67,11 @@ const ScheduleAppointmentDetails = ({
                 type="button"
                 className="secondary"
                 buttonType="button"
-                onClick={() => (isEditMode ? deleteCalendarEvent(id) : closeModal())}
+                onClick={() =>
+                    isEditMode
+                        ? showModal("Estas seguro?", "Si, eliminar", () => deleteCalendarEvent(id))
+                        : handleIsEditMode()
+                }
             >
                 {isEditMode ? "Eliminar" : "Cancelar"}
             </Actionable>

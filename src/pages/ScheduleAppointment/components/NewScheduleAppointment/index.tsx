@@ -4,7 +4,7 @@ import "./index.css";
 import Actionable from "../../../../shared/components/Actionable";
 import ScheduleAppointmentForm from "../SchuduleAppointmentForm";
 import { getDefaultFormValues } from "../../utility/handleFormValues";
-import { useModal } from "../../../../shared/hooks/useModal";
+import { useStandardModal } from "../../../../shared/hooks/useStandardModal";
 import { useEffect } from "react";
 
 type NewScheduleAppointmentProps = {
@@ -24,7 +24,7 @@ const NewScheduleAppointment = ({
     currentView,
     insertCalendarEvent,
 }: NewScheduleAppointmentProps) => {
-    const { closeModal } = useModal();
+    const { closeModal } = useStandardModal();
     const {
         register,
         handleSubmit,

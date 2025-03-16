@@ -1,4 +1,4 @@
-.modal {
+.standard__modal {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -11,11 +11,11 @@
     width: min(90%, 500px);
 }
 
-.modal[open] {
+.standard__modal[open] {
     scale: 1;
 }
 
-.modal > header {
+.standard__modal > header {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -25,18 +25,18 @@
     color: var(--neutral-50);
 }
 
-.modal > header > button {
+.standard__modal > header > button {
     border: none;
     padding: 0.25rem;
     background-color: transparent;
 }
 
-.modal > main {
+.standard__modal > main {
     padding: 1rem;
 }
 
 @starting-style {
-    .modal[open] {
+    .standard__modal[open] {
         scale: 0;
     }
 }
