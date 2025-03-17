@@ -1,14 +1,13 @@
 import { useEffect, useState } from "react";
-import Actionable from "../../../../shared/components/Actionable";
 import ScheduleAppointmentForm from "../SchuduleAppointmentForm";
-import { useStandardModal } from "../../../../shared/hooks/useStandardModal";
 import { useForm } from "react-hook-form";
 import { AppointmentFormValues } from "../../types/appointmentFormTypes";
 import { getDefaultFormValues } from "../../utility/handleFormValues";
-import "./index.css";
 import { useConfirmationModal } from "../../../../shared/hooks/useConfirmartionModal";
+import Button from "../../../../shared/components/Button";
+import "./index.css";
 
-type ScheduleAppointmentDetailsProps = {
+type Props = {
     id: string;
     startDate: Date;
     endDate: Date;
@@ -24,7 +23,7 @@ const ScheduleAppointmentDetails = ({
     specialty,
     updateCalendarEvent,
     deleteCalendarEvent,
-}: ScheduleAppointmentDetailsProps) => {
+}: Props) => {
     const [isEditMode, setIsEditMode] = useState(true);
     const { showModal } = useConfirmationModal();
     const {
@@ -55,18 +54,12 @@ const ScheduleAppointmentDetails = ({
             errors={errors}
             onSubmit={updateCalendarEvent}
         >
-            <Actionable
-                type="button"
-                className="primary"
-                buttonType={!isEditMode ? "button" : "submit"}
-                onClick={() => handleIsEditMode()}
-            >
+            <Button type={!isEditMode ? "button" : "submit"} className="primary" onClick={() => handleIsEditMode()}>
                 {isEditMode ? "Editar" : "Actualizar"}
-            </Actionable>
-            <Actionable
+            </Button>
+            <Button
                 type="button"
                 className="secondary"
-                buttonType="button"
                 onClick={() =>
                     isEditMode
                         ? showModal("Estas seguro?", "Si, eliminar", () => deleteCalendarEvent(id))
@@ -74,7 +67,7 @@ const ScheduleAppointmentDetails = ({
                 }
             >
                 {isEditMode ? "Eliminar" : "Cancelar"}
-            </Actionable>
+            </Button>
         </ScheduleAppointmentForm>
     );
 };

@@ -1,12 +1,12 @@
 import "./awardCard.css";
 
-type AwardType = {
+type Props = {
     name: string;
     date: string;
     description: string;
 };
 
-const AwardCard = ({ name, date, description }: AwardType) => {
+const AwardCard = ({ name, date, description }: Props) => {
     return (
         <article className="award__card">
             <div>

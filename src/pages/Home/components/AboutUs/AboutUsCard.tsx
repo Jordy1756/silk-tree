@@ -1,11 +1,11 @@
 import "./aboutUsCard.css";
 
-type AboutUsCardProps = {
+type Props = {
     text: string;
     value: string;
 };
 
-const AboutUsCard = ({ text, value }: AboutUsCardProps) => {
+const AboutUsCard = ({ text, value }: Props) => {
     return (
         <article className="about__us-card">
             <p>{text}</p>

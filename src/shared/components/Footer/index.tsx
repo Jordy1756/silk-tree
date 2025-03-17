@@ -1,7 +1,7 @@
-import Actionable from "../Actionable";
 import logo from "../../../assets/images/company/logo.png";
-import "./index.css";
 import { NavLink } from "react-router-dom";
+import NavigationLink from "../Link";
+import "./index.css";
 
 const Footer = () => {
     return (
@@ -12,9 +12,9 @@ const Footer = () => {
                         <img src={logo} alt="Logo SilkTree" />
                     </NavLink>
                     <blockquote>Cuidando tu salud con confianza y dedicación</blockquote>
-                    <Actionable type="CTA" className="primary" to="/#">
+                    <NavigationLink className="primary" to="/#">
                         Get Started
-                    </Actionable>
+                    </NavigationLink>
                 </div>
                 <nav>
                     <ul>

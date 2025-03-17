@@ -1,8 +1,15 @@
-import type { StandardModalProps } from "../../types/modalTypes";
+import { ReactNode, RefObject } from "react";
 import CloseIcon from "../../../assets/icons/CloseIcon";
 import "./index.css";
 
-const StandardModal = ({ dialogRef, title, children, closeModal }: StandardModalProps) => {
+type Props = {
+    dialogRef: RefObject<HTMLDialogElement>;
+    title: string;
+    children: ReactNode;
+    closeModal: () => void;
+};
+
+const StandardModal = ({ dialogRef, title, children, closeModal }: Props) => {
     return (
         <dialog ref={dialogRef} className="standard__modal">
             <header>

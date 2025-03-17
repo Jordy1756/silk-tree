@@ -1,6 +1,12 @@
 import { createContext, ReactNode, useRef, useState } from "react";
-import { StandardModalContextType } from "../types/modalTypes";
 import StandardModal from "../components/StandarModal";
+
+export type StandardModalContextType = {
+    title: string;
+    content: ReactNode;
+    showModal: (title: string, content: ReactNode) => void;
+    closeModal: () => void;
+};
 
 export const StandardModalContext = createContext<StandardModalContextType | undefined>(undefined);
 

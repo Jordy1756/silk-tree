@@ -1,26 +1,33 @@
-import type { ConfirmModalProps } from "../../types/modalTypes";
-import Actionable from "../Actionable";
+import { RefObject } from "react";
+import Button from "../Button";
 import "./index.css";
 
-const ConfirmationModal = ({ dialogRef, message, primaryButtonText, onConfirm, closeModal }: ConfirmModalProps) => {
+type Props = {
+    dialogRef: RefObject<HTMLDialogElement>;
+    message: string;
+    primaryButtonText: string;
+    onConfirm: (id: string | number) => void;
+    closeModal: () => void;
+};
+
+const ConfirmationModal = ({ dialogRef, message, primaryButtonText, onConfirm, closeModal }: Props) => {
     return (
         <dialog ref={dialogRef} className="confirmation__modal">
             <h5>{message}</h5>
             <div>
-                <Actionable
+                <Button
                     type="button"
                     className="primary"
-                    buttonType="button"
                     onClick={() => {
                         onConfirm("");
                         closeModal();
                     }}
                 >
                     {primaryButtonText}
-                </Actionable>
-                <Actionable type="button" className="secondary" buttonType="button" onClick={closeModal}>
+                </Button>
+                <Button type="button" className="secondary" onClick={closeModal}>
                     Cancelar
-                </Actionable>
+                </Button>
             </div>
         </dialog>
     );

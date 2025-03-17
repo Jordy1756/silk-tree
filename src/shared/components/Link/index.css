@@ -1,0 +1,24 @@
+a {
+    border-radius: var(--border-radius-out);
+    text-align: center;
+}
+
+:is(a.primary) {
+    background-color: var(--primary-500);
+    color: var(--neutral-50);
+    padding: 0.76025rem 1.5625rem;
+    border: none;
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+:is(a.primary:hover) {
+    opacity: 0.9;
+    scale: 1.01;
+}
+
+:is(a.secondary) {
+    border: 1px solid var(--neutral-900);
+    background-color: transparent;
+    color: var(--neutral-900);
+    padding: 0.75rem 1.5rem;
+}

@@ -1,6 +1,6 @@
 import "./index.css";
 import Register from "./components/Register";
-import Login from "./components/login";
+import Login from "./components/Login";
 import { NavLink } from "react-router-dom";
 import logo from "../../assets/images/company/logo.png";
 import TogglePanel from "./components/TogglePanel";

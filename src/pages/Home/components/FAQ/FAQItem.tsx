@@ -1,11 +1,11 @@
 import "./faqItem.css";
 
-type FAQItemProps = {
+type Props = {
     question: string;
     answer: string;
 };
 
-const FAQItem = ({ question, answer }: FAQItemProps) => {
+const FAQItem = ({ question, answer }: Props) => {
     return (
         <details name="faqs" className="faq__item">
             <summary>

@@ -1,13 +1,13 @@
 import "./ourTeamCard.css";
 
-type OurTeamCardProps = {
+type Props = {
     index: number;
     image: string;
     name: string;
     specialty: string;
 };
 
-const OurTeamCard = ({ index, image, name, specialty }: OurTeamCardProps) => {
+const OurTeamCard = ({ index, image, name, specialty }: Props) => {
     return (
         <article className="our__team-card" style={{ "--grid-area": `doctor${index + 1}` } as React.CSSProperties}>
             <figure>

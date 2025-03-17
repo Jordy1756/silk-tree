@@ -1,34 +1,34 @@
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import logo from "../../../assets/images/company/logo.png";
-import Actionable from "../Actionable";
+import NavigationLink from "../Link";
 import "./index.css";
 
 const Navbar = () => {
     return (
         <nav className="navbar">
             <div className="navbar__links">
-                <NavLink to="/#home">
+                <Link to="/#home">
                     <img src={logo} alt="Logo" />
-                </NavLink>
+                </Link>
                 <ul>
                     <li>
-                        <NavLink to="/#about-us">Sobre nosotros</NavLink>
+                        <Link to="/#about-us">Sobre nosotros</Link>
                     </li>
                     <li>
-                        <NavLink to="/#services">Servicios</NavLink>
+                        <Link to="/#services">Servicios</Link>
                     </li>
                     <li>
-                        <NavLink to="/#our-team">Medicos</NavLink>
+                        <Link to="/#our-team">Medicos</Link>
                     </li>
                     <li>
-                        <NavLink to="/#contact-us">Contactanos</NavLink>
+                        <Link to="/#contact-us">Contactanos</Link>
                     </li>
                 </ul>
             </div>
             <div>
-                <Actionable type="CTA" className="primary" to="/authorization">
+                <NavigationLink className="primary" to="/authorization">
                     Comenzar
-                </Actionable>
+                </NavigationLink>
             </div>
         </nav>
     );

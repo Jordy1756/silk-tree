@@ -1,10 +1,9 @@
-button,
-a {
+button {
     border-radius: var(--border-radius-out);
     text-align: center;
 }
 
-:is(button.primary, a.primary) {
+:is(button.primary) {
     background-color: var(--primary-500);
     color: var(--neutral-50);
     padding: 0.76025rem 1.5625rem;
@@ -12,12 +11,12 @@ a {
     transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
 }
 
-:is(button.primary:hover, a.primary:hover) {
+:is(button.primary:hover) {
     opacity: 0.9;
     scale: 1.01;
 }
 
-:is(button.secondary, a.secondary) {
+:is(button.secondary) {
     border: 1px solid var(--neutral-900);
     background-color: transparent;
     color: var(--neutral-900);

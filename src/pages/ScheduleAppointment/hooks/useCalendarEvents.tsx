@@ -60,8 +60,10 @@ export const useCalendarEvents = () => {
         closeModal();
     };
 
-    const deleteCalendarEvent = (calendarEventId: string) =>
+    const deleteCalendarEvent = (calendarEventId: string) => {
         setCalendarEvents((prev) => prev.filter(({ id }) => id !== calendarEventId));
+        closeModal();
+    };
 
     const updateCalendarEvent = ({
         id,

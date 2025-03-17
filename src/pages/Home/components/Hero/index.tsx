@@ -1,9 +1,9 @@
 import Navbar from "../../../../shared/components/Navbar";
 import AwardCard from "./AwardCard";
-import Actionable from "../../../../shared/components/Actionable";
 import Spline from "@splinetool/react-spline";
 import basics from "../../../../shared/data/basics.json";
 import "./index.css";
+import NavigationLink from "../../../../shared/components/Link";
 
 const Hero = () => {
     const { name, summary, award } = basics;
@@ -17,9 +17,9 @@ const Hero = () => {
                     <span>{secondName}</span>
                 </h1>
                 <p>{summary}</p>
-                <Actionable type="CTA" className="primary" to="/schedule-appointment">
+                <NavigationLink className="primary" to="/schedule-appointment">
                     Agendar cita
-                </Actionable>
+                </NavigationLink>
             </section>
             <section className="award__section">
                 <AwardCard {...award} />

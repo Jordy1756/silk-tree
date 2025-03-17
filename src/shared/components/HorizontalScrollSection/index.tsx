@@ -1,14 +1,14 @@
 import { ReactNode } from "react";
 import "./index.css";
 
-type HorizontalScrollSectionProps = {
+type Props = {
     id?: string;
     height: string;
     pinChildren?: ReactNode;
     children: ReactNode;
 };
 
-const HorizontalScrollSection = ({ id, height, pinChildren, children }: HorizontalScrollSectionProps) => {
+const HorizontalScrollSection = ({ id, height, pinChildren, children }: Props) => {
     return (
         <section id={id} className="horizontal__scroll-section" style={{ "--height": height } as React.CSSProperties}>
             <div className="pin__wrap-sticky">

@@ -1,6 +1,12 @@
 import { createContext, ReactNode, useRef, useState } from "react";
-import { ConfirmationModalContextType } from "../types/modalTypes";
 import ConfirmationModal from "../components/ConfirmationModal";
+
+export type ConfirmationModalContextType = {
+    message: string;
+    primaryButtonText: string;
+    showModal: (message: string, primaryButtonText: string, onConfirm: (id: string | number) => void) => void;
+    closeModal: () => void;
+};
 
 export const ConfirmationModalContext = createContext<ConfirmationModalContextType | undefined>(undefined);
 

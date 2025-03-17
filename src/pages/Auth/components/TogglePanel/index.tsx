@@ -4,11 +4,11 @@ import ArrowLeftIcon from "../../../../assets/icons/ArrowLeft";
 import ArrowRightIcon from "../../../../assets/icons/ArrowRight";
 import useTestimonies from "../../hooks/useTestimonies";
 
-type TogglePanelProps = {
+type Props = {
     isToggled: boolean;
 };
 
-const TogglePanel = ({ isToggled }: TogglePanelProps) => {
+const TogglePanel = ({ isToggled }: Props) => {
     const { testimonies, activeTestimonyId, handleNextTestimony, handlePrevTestimony } = useTestimonies();
 
     return (
