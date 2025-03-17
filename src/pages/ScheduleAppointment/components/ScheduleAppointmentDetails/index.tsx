@@ -3,7 +3,6 @@ import ScheduleAppointmentForm from "../SchuduleAppointmentForm";
 import { AppointmentFormValues } from "../../types/appointmentFormTypes";
 import { useConfirmationModal } from "../../../../shared/hooks/useConfirmartionModal";
 import Button from "../../../../shared/components/Button";
-import { useScheduleAppointmentForm } from "../../hooks/useScheduleAppointmentForm";
 import "./index.css";
 
 type Props = {
@@ -25,7 +24,6 @@ const ScheduleAppointmentDetails = ({
 }: Props) => {
     const [isEditMode, setIsEditMode] = useState(true);
     const { showModal } = useConfirmationModal();
-    const { register, handleSubmit, errors } = useScheduleAppointmentForm(id, startDate, endDate, specialty);
     const handleIsEditMode = () => setIsEditMode((prev) => !prev);
 
     return (
@@ -35,9 +33,10 @@ const ScheduleAppointmentDetails = ({
                 isHourNonEditable: isEditMode,
                 isSpecialtyNonEditable: isEditMode,
             }}
-            register={register}
-            handleSubmit={handleSubmit}
-            errors={errors}
+            id={id}
+            startDate={startDate}
+            endDate={endDate}
+            specialty={specialty}
             onSubmit={updateCalendarEvent}
         >
             <Button type={!isEditMode ? "button" : "submit"} className="primary" onClick={() => handleIsEditMode()}>

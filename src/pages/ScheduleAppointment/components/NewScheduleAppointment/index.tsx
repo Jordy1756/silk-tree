@@ -3,7 +3,6 @@ import { useStandardModal } from "../../../../shared/hooks/useStandardModal";
 import ScheduleAppointmentForm from "../SchuduleAppointmentForm";
 import Button from "../../../../shared/components/Button";
 import "./index.css";
-import { useScheduleAppointmentForm } from "../../hooks/useScheduleAppointmentForm";
 
 type Props = {
     id: string;
@@ -16,7 +15,6 @@ type Props = {
 
 const NewScheduleAppointment = ({ id, startDate, endDate, specialty, currentView, insertCalendarEvent }: Props) => {
     const { closeModal } = useStandardModal();
-    const { register, handleSubmit, errors } = useScheduleAppointmentForm(id, startDate, endDate, specialty);
 
     return (
         <ScheduleAppointmentForm
@@ -25,9 +23,10 @@ const NewScheduleAppointment = ({ id, startDate, endDate, specialty, currentView
                 isHourNonEditable: currentView !== "month",
                 isSpecialtyNonEditable: false,
             }}
-            register={register}
-            handleSubmit={handleSubmit}
-            errors={errors}
+            id={id}
+            startDate={startDate}
+            endDate={endDate}
+            specialty={specialty}
             onSubmit={insertCalendarEvent}
         >
             <Button type="submit" className="primary">
