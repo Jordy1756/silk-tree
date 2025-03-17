@@ -1,46 +1,32 @@
 import Form from "../../../../shared/components/Form";
-import { FieldErrors, UseFormHandleSubmit, UseFormRegister } from "react-hook-form";
 import { AppointmentFormValues } from "../../types/appointmentFormTypes";
 import { ReactNode } from "react";
 import { useSpecialties } from "../../hooks/useSpecialties";
 import { useFormValidations } from "../../hooks/useFormValidations";
+import { useScheduleAppointmentForm } from "../../hooks/useScheduleAppointmentForm";
 import InputBox from "../../../../shared/components/InputBox";
 import "./index.css";
-import { useScheduleAppointmentForm } from "../../hooks/useScheduleAppointmentForm";
 
 type Props = {
     children: ReactNode;
-    id: string;
     startDate: Date;
     endDate: Date;
     specialty: string;
-    isEditable: {
-        isDateNonEditable: boolean;
-        isHourNonEditable: boolean;
-        isSpecialtyNonEditable: boolean;
-    };
+    isNonEditable?: boolean;
     onSubmit: (calendarEvent: AppointmentFormValues) => void;
 };
 
-const ScheduleAppointmentForm = ({
-    children,
-    id,
-    startDate,
-    endDate,
-    specialty,
-    isEditable: { isDateNonEditable, isHourNonEditable, isSpecialtyNonEditable },
-    onSubmit,
-}: Props) => {
+const ScheduleAppointmentForm = ({ children, startDate, endDate, specialty, isNonEditable, onSubmit }: Props) => {
     const { specialties } = useSpecialties();
     const { getFormValidation } = useFormValidations();
-    const { register, handleSubmit, errors } = useScheduleAppointmentForm(id, startDate, endDate, specialty);
+    const { register, handleSubmit, errors } = useScheduleAppointmentForm(startDate, endDate, specialty);
 
     return (
         <Form handleSubmit={handleSubmit} onSubmit={onSubmit}>
             <InputBox name="appointmentDate" labelText="Fecha" error={errors.appointmentDate}>
                 <input
                     type="date"
-                    readOnly={isDateNonEditable}
+                    readOnly={isNonEditable}
                     {...register("appointmentDate", getFormValidation("appointmentDate"))}
                 />
             </InputBox>
@@ -48,20 +34,20 @@ const ScheduleAppointmentForm = ({
                 <InputBox name="initialHour" labelText="Hora de inicio" error={errors.initialHour}>
                     <input
                         type="time"
-                        readOnly={isHourNonEditable}
+                        readOnly={isNonEditable}
                         {...register("initialHour", getFormValidation("initialHour"))}
                     />
                 </InputBox>
                 <InputBox name="finalHour" labelText="Hora de salida" error={errors.finalHour}>
                     <input
                         type="time"
-                        readOnly={isHourNonEditable}
+                        readOnly={isNonEditable}
                         {...register("finalHour", getFormValidation("finalHour"))}
                     />
                 </InputBox>
             </div>
             <InputBox name="specialty" labelText="Especialidad" error={errors.specialty}>
-                <select {...register("specialty", getFormValidation("specialty"))} disabled={isSpecialtyNonEditable}>
+                <select {...register("specialty", getFormValidation("specialty"))} disabled={isNonEditable}>
                     <option value="" disabled>
                         Selecciona una opción
                     </option>

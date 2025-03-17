@@ -1,6 +1,18 @@
+import { converDateToString, transformToDate } from "../../../shared/utility/handleDates";
+
+const validateAppointmentDate = (date: Date) => {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    return (
+        transformToDate(date) >= transformToDate(today) ||
+        `La fecha debe ser mayor o igual a ${converDateToString(today)}`
+    );
+};
+
 const formValidations = {
     appointmentDate: {
         required: { value: true, message: "La fecha es requerida" },
+        validate: { isAfterToday: (date: Date) => validateAppointmentDate(date) },
     },
     initialHour: {
         required: { value: true, message: "La hora de inicio es requerida" },

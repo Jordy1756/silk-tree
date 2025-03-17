@@ -1,10 +1,10 @@
-import { createContext, ReactNode, useRef, useState } from "react";
+import { createContext, ReactNode, useCallback, useRef, useState } from "react";
 import ConfirmationModal from "../components/ConfirmationModal";
 
 export type ConfirmationModalContextType = {
     message: string;
     primaryButtonText: string;
-    showModal: (message: string, primaryButtonText: string, onConfirm: (id: string | number) => void) => void;
+    showModal: (message: string, primaryButtonText: string, onConfirm: () => void) => void;
     closeModal: () => void;
 };
 
@@ -14,16 +14,25 @@ export const ConfirmationModalProvider = ({ children }: { children: ReactNode })
     const confirmationModalRef = useRef<HTMLDialogElement>(null);
     const [message, setMessage] = useState("");
     const [primaryButtonText, setPrimaryButtonText] = useState("");
-    const [onConfirm, setOnConfirm] = useState<(id: string | number) => void>(() => {});
+    const [onConfirm, setOnConfirm] = useState<() => void>(() => {});
 
-    const showModal = (message: string, primaryButtonText: string, onConfirm: (id: string | number) => void) => {
+    const showModal = useCallback((message: string, primaryButtonText: string, onConfirm: () => void) => {
         setMessage(message);
         setPrimaryButtonText(primaryButtonText);
         setOnConfirm(() => onConfirm);
         confirmationModalRef.current?.showModal();
-    };
+    }, []);
 
-    const closeModal = () => confirmationModalRef.current?.close();
+    const closeModal = useCallback(() => confirmationModalRef.current?.close(), []);
+
+    // const contextValues = useMemo(() => {
+    //     return {
+    //         message,
+    //         primaryButtonText,
+    //         showModal,
+    //         closeModal,
+    //     };
+    // }, [message, primaryButtonText, showModal, closeModal]);
 
     return (
         <ConfirmationModalContext.Provider value={{ message, primaryButtonText, showModal, closeModal }}>

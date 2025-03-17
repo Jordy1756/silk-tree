@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useRef, useState } from "react";
+import { createContext, ReactNode, useCallback, useRef, useState } from "react";
 import StandardModal from "../components/StandarModal";
 
 export type StandardModalContextType = {
@@ -21,7 +21,16 @@ export const StandardModalProvider = ({ children }: { children: ReactNode }) => 
         standardModalRef.current?.showModal();
     };
 
-    const closeModal = () => standardModalRef.current?.close();
+    const closeModal = useCallback(() => standardModalRef.current?.close(), []);
+
+    // const contectValues = useMemo(() => {
+    //     return {
+    //         title,
+    //         content,
+    //         showModal,
+    //         closeModal,
+    //     };
+    // }, [title, content, showModal, closeModal]);
 
     return (
         <StandardModalContext.Provider value={{ title, content, showModal, closeModal }}>

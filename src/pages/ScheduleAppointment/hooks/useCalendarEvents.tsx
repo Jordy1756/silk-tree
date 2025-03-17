@@ -6,55 +6,60 @@ import { AppointmentFormValues } from "../types/appointmentFormTypes";
 import { convertStringToDate, getFormattedDateString } from "../../../shared/utility/handleDates";
 import ScheduleAppointmentDetails from "../components/ScheduleAppointmentDetails";
 
+const getDates = (appointmentDate: string, initialHour: string, finalHour: string) => {
+    const newAppointmentDate = convertStringToDate(appointmentDate);
+    return {
+        startDate: new Date(getFormattedDateString(newAppointmentDate, "YYYY-MM-DD") + "T" + initialHour),
+        endDate: new Date(getFormattedDateString(newAppointmentDate, "YYYY-MM-DD") + "T" + finalHour),
+    };
+};
+
+const getNewCalendarEvent = ({ id, title, start, end, specialty }: CalendarEvent) => ({
+    id,
+    title: `Cita de ${specialty}`,
+    start,
+    end,
+    specialty,
+});
+
 export const useCalendarEvents = () => {
     const { showModal, closeModal } = useStandardModal();
     const [calendarEvents, setCalendarEvents] = useState<CalendarEvent[]>([
         {
             id: "1",
             title: "Meeting1",
-            start: new Date(2025, 2, 11, 8, 0),
-            end: new Date(2025, 2, 11, 9, 0),
+            start: new Date(2025, 2, 18, 8, 0),
+            end: new Date(2025, 2, 18, 9, 0),
             specialty: "1",
         },
         {
             id: "2",
             title: "Meeting2",
-            start: new Date(2025, 2, 11, 9, 0),
-            end: new Date(2025, 2, 11, 10, 0),
+            start: new Date(2025, 2, 18, 9, 0),
+            end: new Date(2025, 2, 18, 10, 0),
             specialty: "2",
         },
         {
             id: "3",
             title: "Meeting3",
-            start: new Date(2025, 2, 11, 10, 0),
-            end: new Date(2025, 2, 11, 11, 0),
+            start: new Date(2025, 2, 18, 10, 0),
+            end: new Date(2025, 2, 18, 11, 0),
             specialty: "3",
         },
     ]);
-
     const [currentView, setCurrentView] = useState("month");
     const handleCurrentView = (view: string) => setCurrentView(view);
 
-    const insertCalendarEvent = ({
-        startDate,
-        endDate,
-        isEditHour,
-        initialHour,
-        finalHour,
-        specialty,
-    }: AppointmentFormValues) => {
-        if (!isEditHour) {
-            startDate = new Date(getFormattedDateString(startDate, "YYYY-MM-DD") + "T" + initialHour);
-            endDate = new Date(getFormattedDateString(startDate, "YYYY-MM-DD") + "T" + finalHour);
-        }
+    const insertCalendarEvent = ({ appointmentDate, initialHour, finalHour, specialty }: AppointmentFormValues) => {
+        const { startDate, endDate } = getDates(appointmentDate, initialHour, finalHour);
 
-        const newCalendarEvent: CalendarEvent = {
-            id: "10",
-            title: `Cita de ${specialty}`,
+        const newCalendarEvent = getNewCalendarEvent({
+            id: "",
+            title: "",
             start: startDate,
             end: endDate,
             specialty,
-        };
+        });
 
         setCalendarEvents((prev) => [...prev, newCalendarEvent]);
         closeModal();
@@ -65,33 +70,22 @@ export const useCalendarEvents = () => {
         closeModal();
     };
 
-    const updateCalendarEvent = ({
-        id,
-        startDate: newStartDate,
-        endDate: newEndDate,
-        appointmentDate,
-        isEditHour,
-        initialHour,
-        finalHour,
-        specialty: newSpecialty,
-    }: AppointmentFormValues) => {
-        const newAppointmentDate = convertStringToDate(appointmentDate);
-
-        if (!isEditHour) {
-            newStartDate = new Date(getFormattedDateString(newAppointmentDate, "YYYY-MM-DD") + "T" + initialHour);
-            newEndDate = new Date(getFormattedDateString(newAppointmentDate, "YYYY-MM-DD") + "T" + finalHour);
-        }
+    const updateCalendarEvent = (
+        calendarEventId: string,
+        { appointmentDate, initialHour, finalHour, specialty }: AppointmentFormValues
+    ) => {
+        const { startDate, endDate } = getDates(appointmentDate, initialHour, finalHour);
 
         setCalendarEvents((prev) =>
             prev.map((event) => {
-                if (event.id === id) {
-                    return {
-                        ...event,
-                        title: `Cita de ${newSpecialty}`,
-                        start: newStartDate,
-                        end: newEndDate,
-                        specialty: newSpecialty,
-                    };
+                if (event.id === calendarEventId) {
+                    return getNewCalendarEvent({
+                        id: calendarEventId,
+                        title: "",
+                        start: startDate,
+                        end: endDate,
+                        specialty,
+                    });
                 }
                 return event;
             })
@@ -100,15 +94,13 @@ export const useCalendarEvents = () => {
         closeModal();
     };
 
-    const handleSelectSlot = ({ id, start: startDate, end: endDate }: CalendarEvent) => {
+    const handleSelectSlot = ({ start: startDate, end: endDate }: CalendarEvent) => {
         showModal(
             "Agendar cita",
             <NewScheduleAppointment
-                id={id}
                 startDate={startDate}
                 endDate={currentView === "month" ? startDate : endDate}
                 specialty=""
-                currentView={currentView}
                 insertCalendarEvent={insertCalendarEvent}
             />
         );
@@ -118,12 +110,11 @@ export const useCalendarEvents = () => {
         showModal(
             "Detalles de la cita",
             <ScheduleAppointmentDetails
-                id={id}
                 startDate={startDate}
                 endDate={endDate}
                 specialty={specialty}
-                deleteCalendarEvent={deleteCalendarEvent}
-                updateCalendarEvent={updateCalendarEvent}
+                deleteCalendarEvent={() => deleteCalendarEvent(id)}
+                updateCalendarEvent={(formValues: AppointmentFormValues) => updateCalendarEvent(id, formValues)}
             />
         );
     };

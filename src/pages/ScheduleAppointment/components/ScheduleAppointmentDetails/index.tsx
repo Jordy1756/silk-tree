@@ -6,16 +6,14 @@ import Button from "../../../../shared/components/Button";
 import "./index.css";
 
 type Props = {
-    id: string;
     startDate: Date;
     endDate: Date;
     specialty: string;
     updateCalendarEvent: (calendarEvent: AppointmentFormValues) => void;
-    deleteCalendarEvent: (calendarEventId: string) => void;
+    deleteCalendarEvent: () => void;
 };
 
 const ScheduleAppointmentDetails = ({
-    id,
     startDate,
     endDate,
     specialty,
@@ -28,12 +26,7 @@ const ScheduleAppointmentDetails = ({
 
     return (
         <ScheduleAppointmentForm
-            isEditable={{
-                isDateNonEditable: isEditMode,
-                isHourNonEditable: isEditMode,
-                isSpecialtyNonEditable: isEditMode,
-            }}
-            id={id}
+            isNonEditable={isEditMode}
             startDate={startDate}
             endDate={endDate}
             specialty={specialty}
@@ -46,9 +39,7 @@ const ScheduleAppointmentDetails = ({
                 type="button"
                 className="secondary"
                 onClick={() =>
-                    isEditMode
-                        ? showModal("Estas seguro?", "Si, eliminar", () => deleteCalendarEvent(id))
-                        : handleIsEditMode()
+                    isEditMode ? showModal("Estas seguro?", "Si, eliminar", deleteCalendarEvent) : handleIsEditMode()
                 }
             >
                 {isEditMode ? "Eliminar" : "Cancelar"}

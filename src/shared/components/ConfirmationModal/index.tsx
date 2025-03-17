@@ -6,7 +6,7 @@ type Props = {
     dialogRef: RefObject<HTMLDialogElement>;
     message: string;
     primaryButtonText: string;
-    onConfirm: (id: string | number) => void;
+    onConfirm: () => void;
     closeModal: () => void;
 };
 
@@ -19,7 +19,7 @@ const ConfirmationModal = ({ dialogRef, message, primaryButtonText, onConfirm, c
                     type="button"
                     className="primary"
                     onClick={() => {
-                        onConfirm("");
+                        onConfirm();
                         closeModal();
                     }}
                 >

@@ -1,38 +1,23 @@
-import { useCalendar } from "./hooks/useCalendar";
-import { useCalendarEvents } from "./hooks/useCalendarEvents";
 import Footer from "../../shared/components/Footer";
 import Navbar from "../../shared/components/Navbar";
-import AppointmentCalendar from "./components/Calendar";
+import AppointmentCalendar from "./components/AppointmentCalendar";
+import { ConfirmationModalProvider } from "../../shared/context/confirmationModalContext";
+import { StandardModalProvider } from "../../shared/context/standardModalContext";
 import "./index.css";
 
 const ScheduleAppointment = () => {
-    const { localizer, startAccessor, endAccessor, views, min, max, messages } = useCalendar();
-    const { calendarEvents, handleCurrentView, handleSelectEvent, handleSelectSlot } = useCalendarEvents();
-
     return (
-        <>
-            <header className="schedule__appointment-header">
-                <Navbar />
-            </header>
-            <main className="schedule__appointment-main">
-                <AppointmentCalendar
-                    localizer={localizer}
-                    startAccessor={startAccessor}
-                    endAccessor={endAccessor}
-                    views={views}
-                    min={min}
-                    max={max}
-                    messages={messages}
-                    events={calendarEvents}
-                    selectable={true}
-                    popup={true}
-                    onSelectEvent={handleSelectEvent}
-                    onSelectSlot={handleSelectSlot}
-                    handleCurrentView={handleCurrentView}
-                />
-            </main>
-            <Footer />
-        </>
+        <ConfirmationModalProvider>
+            <StandardModalProvider>
+                <header className="schedule__appointment-header">
+                    <Navbar />
+                </header>
+                <main className="schedule__appointment-main">
+                    <AppointmentCalendar />
+                </main>
+                <Footer />
+            </StandardModalProvider>
+        </ConfirmationModalProvider>
     );
 };
 
