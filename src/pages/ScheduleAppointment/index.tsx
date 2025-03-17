@@ -1,9 +1,9 @@
 import { useCalendar } from "./hooks/useCalendar";
+import { useCalendarEvents } from "./hooks/useCalendarEvents";
 import Footer from "../../shared/components/Footer";
 import Navbar from "../../shared/components/Navbar";
 import AppointmentCalendar from "./components/Calendar";
 import "./index.css";
-import { useCalendarEvents } from "./hooks/useCalendarEvents";
 
 const ScheduleAppointment = () => {
     const { localizer, startAccessor, endAccessor, views, min, max, messages } = useCalendar();

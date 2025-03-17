@@ -14,7 +14,7 @@ export const ConfirmationModalProvider = ({ children }: { children: ReactNode })
     const confirmationModalRef = useRef<HTMLDialogElement>(null);
     const [message, setMessage] = useState("");
     const [primaryButtonText, setPrimaryButtonText] = useState("");
-    const [onConfirm, setOnConfirm] = useState<(id: string | number) => void>(() => () => {});
+    const [onConfirm, setOnConfirm] = useState<(id: string | number) => void>(() => {});
 
     const showModal = (message: string, primaryButtonText: string, onConfirm: (id: string | number) => void) => {
         setMessage(message);

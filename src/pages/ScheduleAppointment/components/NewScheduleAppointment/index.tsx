@@ -1,11 +1,9 @@
 import type { AppointmentFormValues } from "../../types/appointmentFormTypes";
-import { useForm } from "react-hook-form";
-import ScheduleAppointmentForm from "../SchuduleAppointmentForm";
-import { getDefaultFormValues } from "../../utility/handleFormValues";
 import { useStandardModal } from "../../../../shared/hooks/useStandardModal";
-import { useEffect } from "react";
-import "./index.css";
+import ScheduleAppointmentForm from "../SchuduleAppointmentForm";
 import Button from "../../../../shared/components/Button";
+import "./index.css";
+import { useScheduleAppointmentForm } from "../../hooks/useScheduleAppointmentForm";
 
 type Props = {
     id: string;
@@ -18,19 +16,7 @@ type Props = {
 
 const NewScheduleAppointment = ({ id, startDate, endDate, specialty, currentView, insertCalendarEvent }: Props) => {
     const { closeModal } = useStandardModal();
-    const {
-        register,
-        handleSubmit,
-        formState: { errors },
-        reset,
-    } = useForm<AppointmentFormValues>({
-        mode: "onBlur",
-        defaultValues: getDefaultFormValues(id, startDate, endDate, specialty),
-    });
-
-    useEffect(() => {
-        reset(getDefaultFormValues(id, startDate, endDate, specialty));
-    }, [id, startDate, endDate, specialty, reset]);
+    const { register, handleSubmit, errors } = useScheduleAppointmentForm(id, startDate, endDate, specialty);
 
     return (
         <ScheduleAppointmentForm

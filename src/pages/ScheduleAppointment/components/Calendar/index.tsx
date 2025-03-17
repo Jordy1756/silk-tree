@@ -1,7 +1,7 @@
 import { Calendar } from "react-big-calendar";
 import "./index.css";
 
-type AppointmentCalendarProps = {
+type Props = {
     localizer: any;
     startAccessor?: string;
     endAccessor?: string;
@@ -31,7 +31,7 @@ const AppointmentCalendar = ({
     onSelectEvent,
     onSelectSlot,
     handleCurrentView,
-}: AppointmentCalendarProps) => {
+}: Props) => {
     return (
         <Calendar
             localizer={localizer}

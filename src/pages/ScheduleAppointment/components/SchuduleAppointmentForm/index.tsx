@@ -1,10 +1,11 @@
-import "./index.css";
 import Form from "../../../../shared/components/Form";
 import { FieldErrors, UseFormHandleSubmit, UseFormRegister } from "react-hook-form";
 import { AppointmentFormValues } from "../../types/appointmentFormTypes";
 import { ReactNode } from "react";
 import { useSpecialties } from "../../hooks/useSpecialties";
+import { useFormValidations } from "../../hooks/useFormValidations";
 import InputBox from "../../../../shared/components/InputBox";
+import "./index.css";
 
 type Props = {
     children: ReactNode;
@@ -28,6 +29,7 @@ const ScheduleAppointmentForm = ({
     onSubmit,
 }: Props) => {
     const { specialties } = useSpecialties();
+    const { getFormValidation } = useFormValidations();
 
     return (
         <Form handleSubmit={handleSubmit} onSubmit={onSubmit}>
@@ -35,9 +37,7 @@ const ScheduleAppointmentForm = ({
                 <input
                     type="date"
                     readOnly={isDateNonEditable}
-                    {...register("appointmentDate", {
-                        required: { value: true, message: "La fecha es requerida" },
-                    })}
+                    {...register("appointmentDate", getFormValidation("appointmentDate"))}
                 />
             </InputBox>
             <div className="input__box-container">
@@ -45,40 +45,19 @@ const ScheduleAppointmentForm = ({
                     <input
                         type="time"
                         readOnly={isHourNonEditable}
-                        {...register("initialHour", {
-                            required: { value: true, message: "La hora de inicio es requerida" },
-                            min: { value: "08:00", message: "La hora de inicio no puede ser antes de las 8:00" },
-                            max: { value: "19:00", message: "La hora de inicio no puede ser después de las 19:00" },
-                            pattern: {
-                                value: /^([0-9]|0[0-9]|1[0-9]|2[0-3]):(00|30)$/,
-                                message: "La hora debe ser en intervalos de 30 minutos (XX:00 o XX:30)",
-                            },
-                        })}
+                        {...register("initialHour", getFormValidation("initialHour"))}
                     />
                 </InputBox>
                 <InputBox name="finalHour" labelText="Hora de salida" error={finalHour}>
                     <input
                         type="time"
                         readOnly={isHourNonEditable}
-                        {...register("finalHour", {
-                            required: { value: true, message: "La hora de inicio es requerida" },
-                            min: { value: "08:00", message: "La hora de inicio no puede ser antes de las 8:00" },
-                            max: { value: "19:00", message: "La hora de inicio no puede ser después de las 19:00" },
-                            pattern: {
-                                value: /^([0-9]|0[0-9]|1[0-9]|2[0-3]):(00|30)$/,
-                                message: "La hora debe ser en intervalos de 30 minutos (XX:00 o XX:30)",
-                            },
-                        })}
+                        {...register("finalHour", getFormValidation("finalHour"))}
                     />
                 </InputBox>
             </div>
             <InputBox name="specialty" labelText="Especialidad" error={specialty}>
-                <select
-                    {...register("specialty", {
-                        required: { value: true, message: "La especialidad es requerida" },
-                    })}
-                    disabled={isSpecialtyNonEditable}
-                >
+                <select {...register("specialty", getFormValidation("specialty"))} disabled={isSpecialtyNonEditable}>
                     <option value="" disabled>
                         Selecciona una opción
                     </option>
