@@ -1,7 +1,7 @@
 import { Calendar } from "react-big-calendar";
 import { useCalendar } from "../../hooks/useCalendar";
 import "./index.css";
-import { useCalendarEvent } from "../../hooks/useCalendarEvent";
+import { useCalendarEvents } from "../../hooks/useCalendarEvents";
 
 const AppointmentCalendar = () => {
     const {
@@ -16,7 +16,7 @@ const AppointmentCalendar = () => {
         handleSelectEvent,
         handleSelectSlot,
     } = useCalendar();
-    const { calendarEvents: calendarEvents } = useCalendarEvent();
+    const { calendarEvents: calendarEvents } = useCalendarEvents();
 
     return (
         <Calendar

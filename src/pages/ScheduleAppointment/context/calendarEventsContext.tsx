@@ -1,7 +1,7 @@
 import { createContext, ReactNode, useState } from "react";
 import { CalendarEvent } from "../types/calendarEvent";
 
-type CalendarEventContextType = {
+type CalendarEventsContextType = {
     currentCalendarEvent: CalendarEvent;
     calendarEvents: CalendarEvent[];
     handleCurrentCalendarEvent: (calendarEvent: CalendarEvent) => void;
@@ -10,9 +10,9 @@ type CalendarEventContextType = {
     removeCalendarEvent: (id: string) => void;
 };
 
-export const CalendarEventContext = createContext<CalendarEventContextType | undefined>(undefined);
+export const CalendarEventsContext = createContext<CalendarEventsContextType | undefined>(undefined);
 
-export const CalendarEventProvider = ({ children }: { children: ReactNode }) => {
+export const CalendarEventsProvider = ({ children }: { children: ReactNode }) => {
     const [currentCalendarEvent, setCurrentCalendarEvent] = useState<CalendarEvent>({
         id: "",
         title: "",
@@ -55,7 +55,7 @@ export const CalendarEventProvider = ({ children }: { children: ReactNode }) => 
     const removeCalendarEvent = (id: string) => setCalendarEvents((prev) => prev.filter((event) => event.id !== id));
 
     return (
-        <CalendarEventContext.Provider
+        <CalendarEventsContext.Provider
             value={{
                 currentCalendarEvent,
                 calendarEvents,
@@ -66,6 +66,6 @@ export const CalendarEventProvider = ({ children }: { children: ReactNode }) => 
             }}
         >
             {children}
-        </CalendarEventContext.Provider>
+        </CalendarEventsContext.Provider>
     );
 };

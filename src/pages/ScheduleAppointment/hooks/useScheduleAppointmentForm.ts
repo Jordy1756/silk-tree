@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import { AppointmentFormValues } from "../types/appointmentFormTypes";
 import { useEffect } from "react";
 import { getFormattedDateString } from "../../../shared/utility/handleDates";
-import { useCalendarEvent } from "./useCalendarEvent";
+import { useCalendarEvents } from "./useCalendarEvents";
 import { CalendarEvent } from "../types/calendarEvent";
 
 const getDefaultFormValues = ({ start: startDate, end: endDate, specialty }: CalendarEvent): AppointmentFormValues => ({
@@ -13,7 +13,7 @@ const getDefaultFormValues = ({ start: startDate, end: endDate, specialty }: Cal
 });
 
 export const useScheduleAppointmentForm = () => {
-    const { currentCalendarEvent: calendarEvent } = useCalendarEvent();
+    const { currentCalendarEvent: calendarEvent } = useCalendarEvents();
     const {
         register,
         handleSubmit,

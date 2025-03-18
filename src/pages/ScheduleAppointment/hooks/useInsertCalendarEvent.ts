@@ -2,11 +2,11 @@ import { useStandardModal } from "../../../shared/hooks/useStandardModal";
 import { AppointmentFormValues } from "../types/appointmentFormTypes";
 import { CalendarEvent } from "../types/calendarEvent";
 import { getDates } from "../utility/handleCalendarEvent";
-import { useCalendarEvent } from "./useCalendarEvent";
+import { useCalendarEvents } from "./useCalendarEvents";
 
 export const useInsertCalendarEvent = () => {
     const { closeModal } = useStandardModal();
-    const { addCalendarEvent } = useCalendarEvent();
+    const { addCalendarEvent } = useCalendarEvents();
 
     const insertCalendarEvent = ({ appointmentDate, initialHour, finalHour, specialty }: AppointmentFormValues) => {
         const { startDate, endDate } = getDates(appointmentDate, initialHour, finalHour);

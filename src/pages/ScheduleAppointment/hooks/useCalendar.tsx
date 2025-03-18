@@ -1,7 +1,7 @@
 import { dayjsLocalizer } from "react-big-calendar";
 import { CalendarEvent } from "../types/calendarEvent";
 import { useStandardModal } from "../../../shared/hooks/useStandardModal";
-import { useCalendarEvent } from "./useCalendarEvent";
+import { useCalendarEvents } from "./useCalendarEvents";
 import { useState } from "react";
 import NewScheduleAppointment from "../components/NewScheduleAppointment";
 import ScheduleAppointmentDetails from "../components/ScheduleAppointmentDetails";
@@ -12,7 +12,7 @@ export const useCalendar = () => {
     dayjs.locale("es");
 
     const { showModal } = useStandardModal();
-    const { handleCurrentCalendarEvent: handleCalendarEvent } = useCalendarEvent();
+    const { handleCurrentCalendarEvent: handleCalendarEvent } = useCalendarEvents();
     const [currentView, setCurrentView] = useState("month");
 
     const localizer = dayjsLocalizer(dayjs);

@@ -4,12 +4,12 @@ import AppointmentCalendar from "./components/AppointmentCalendar";
 import { ConfirmationModalProvider } from "../../shared/context/confirmationModalContext";
 import { StandardModalProvider } from "../../shared/context/standardModalContext";
 import "./index.css";
-import { CalendarEventProvider } from "./context/calendarEventContext";
+import { CalendarEventsProvider } from "./context/calendarEventsContext";
 
 const ScheduleAppointment = () => {
     return (
         <ConfirmationModalProvider>
-            <CalendarEventProvider>
+            <CalendarEventsProvider>
                 <StandardModalProvider>
                     <header className="schedule__appointment-header">
                         <Navbar />
@@ -19,7 +19,7 @@ const ScheduleAppointment = () => {
                     </main>
                     <Footer />
                 </StandardModalProvider>
-            </CalendarEventProvider>
+            </CalendarEventsProvider>
         </ConfirmationModalProvider>
     );
 };

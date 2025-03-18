@@ -1,9 +1,9 @@
 import { useStandardModal } from "../../../shared/hooks/useStandardModal";
-import { useCalendarEvent } from "./useCalendarEvent";
+import { useCalendarEvents } from "./useCalendarEvents";
 
 export const useDeleteCalendarEvent = () => {
     const { closeModal } = useStandardModal();
-    const { currentCalendarEvent, removeCalendarEvent } = useCalendarEvent();
+    const { currentCalendarEvent, removeCalendarEvent } = useCalendarEvents();
 
     const deleteCalendarEvent = () => {
         removeCalendarEvent(currentCalendarEvent.id);
