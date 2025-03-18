@@ -1,37 +1,21 @@
 import { useState } from "react";
-import ScheduleAppointmentForm from "../SchuduleAppointmentForm";
-import { AppointmentFormValues } from "../../types/appointmentFormTypes";
 import { useConfirmationModal } from "../../../../shared/hooks/useConfirmartionModal";
+import { useUpdateCalendarEvent } from "../../hooks/useUpdateCalendarEvent";
+import { useDeleteCalendarEvent } from "../../hooks/useDeleteCalendarEvent";
+import ScheduleAppointmentForm from "../SchuduleAppointmentForm";
 import Button from "../../../../shared/components/Button";
 import "./index.css";
 
-type Props = {
-    startDate: Date;
-    endDate: Date;
-    specialty: string;
-    updateCalendarEvent: (calendarEvent: AppointmentFormValues) => void;
-    deleteCalendarEvent: () => void;
-};
-
-const ScheduleAppointmentDetails = ({
-    startDate,
-    endDate,
-    specialty,
-    updateCalendarEvent,
-    deleteCalendarEvent,
-}: Props) => {
+const ScheduleAppointmentDetails = () => {
     const [isEditMode, setIsEditMode] = useState(true);
-    const { showModal } = useConfirmationModal();
     const handleIsEditMode = () => setIsEditMode((prev) => !prev);
 
+    const { showModal } = useConfirmationModal();
+    const { updateCalendarEvent } = useUpdateCalendarEvent();
+    const { deleteCalendarEvent } = useDeleteCalendarEvent();
+
     return (
-        <ScheduleAppointmentForm
-            isNonEditable={isEditMode}
-            startDate={startDate}
-            endDate={endDate}
-            specialty={specialty}
-            onSubmit={updateCalendarEvent}
-        >
+        <ScheduleAppointmentForm isNonEditable={isEditMode} onSubmit={updateCalendarEvent}>
             <Button type={!isEditMode ? "button" : "submit"} className="primary" onClick={() => handleIsEditMode()}>
                 {isEditMode ? "Editar" : "Actualizar"}
             </Button>

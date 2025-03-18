@@ -2,15 +2,18 @@ import { useForm } from "react-hook-form";
 import { AppointmentFormValues } from "../types/appointmentFormTypes";
 import { useEffect } from "react";
 import { getFormattedDateString } from "../../../shared/utility/handleDates";
+import { useCalendarEvent } from "./useCalendarEvent";
+import { CalendarEvent } from "../types/calendarEvent";
 
-const getDefaultFormValues = (startDate: Date, endDate: Date, specialty: string): AppointmentFormValues => ({
+const getDefaultFormValues = ({ start: startDate, end: endDate, specialty }: CalendarEvent): AppointmentFormValues => ({
     appointmentDate: getFormattedDateString(startDate, "YYYY-MM-DD"),
     initialHour: getFormattedDateString(startDate, "HH:mm"),
     finalHour: getFormattedDateString(endDate, "HH:mm"),
     specialty,
 });
 
-export const useScheduleAppointmentForm = (startDate: Date, endDate: Date, specialty: string) => {
+export const useScheduleAppointmentForm = () => {
+    const { currentCalendarEvent: calendarEvent } = useCalendarEvent();
     const {
         register,
         handleSubmit,
@@ -18,12 +21,12 @@ export const useScheduleAppointmentForm = (startDate: Date, endDate: Date, speci
         reset,
     } = useForm<AppointmentFormValues>({
         mode: "onBlur",
-        defaultValues: getDefaultFormValues(startDate, endDate, specialty),
+        defaultValues: getDefaultFormValues(calendarEvent),
     });
 
     useEffect(() => {
-        reset(getDefaultFormValues(startDate, endDate, specialty));
-    }, [startDate, endDate, specialty, reset]);
+        reset(getDefaultFormValues(calendarEvent));
+    }, [calendarEvent.start, calendarEvent.end, calendarEvent.specialty, reset]);
 
     return { register, handleSubmit, errors };
 };

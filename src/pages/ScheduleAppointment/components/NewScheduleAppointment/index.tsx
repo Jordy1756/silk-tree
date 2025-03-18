@@ -1,26 +1,15 @@
-import type { AppointmentFormValues } from "../../types/appointmentFormTypes";
 import { useStandardModal } from "../../../../shared/hooks/useStandardModal";
 import ScheduleAppointmentForm from "../SchuduleAppointmentForm";
 import Button from "../../../../shared/components/Button";
 import "./index.css";
+import { useInsertCalendarEvent } from "../../hooks/useInsertCalendarEvent";
 
-type Props = {
-    startDate: Date;
-    endDate: Date;
-    specialty: string;
-    insertCalendarEvent: (calendarEvent: AppointmentFormValues) => void;
-};
-
-const NewScheduleAppointment = ({ startDate, endDate, specialty, insertCalendarEvent }: Props) => {
+const NewScheduleAppointment = () => {
     const { closeModal } = useStandardModal();
+    const { insertCalendarEvent } = useInsertCalendarEvent();
 
     return (
-        <ScheduleAppointmentForm
-            startDate={startDate}
-            endDate={endDate}
-            specialty={specialty}
-            onSubmit={insertCalendarEvent}
-        >
+        <ScheduleAppointmentForm onSubmit={insertCalendarEvent}>
             <Button type="submit" className="primary">
                 Agendar
             </Button>

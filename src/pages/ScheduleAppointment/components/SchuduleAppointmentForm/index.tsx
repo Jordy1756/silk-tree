@@ -9,17 +9,14 @@ import "./index.css";
 
 type Props = {
     children: ReactNode;
-    startDate: Date;
-    endDate: Date;
-    specialty: string;
     isNonEditable?: boolean;
     onSubmit: (calendarEvent: AppointmentFormValues) => void;
 };
 
-const ScheduleAppointmentForm = ({ children, startDate, endDate, specialty, isNonEditable, onSubmit }: Props) => {
+const ScheduleAppointmentForm = ({ children, isNonEditable, onSubmit }: Props) => {
     const { specialties } = useSpecialties();
     const { getFormValidation } = useFormValidations();
-    const { register, handleSubmit, errors } = useScheduleAppointmentForm(startDate, endDate, specialty);
+    const { register, handleSubmit, errors } = useScheduleAppointmentForm();
 
     return (
         <Form handleSubmit={handleSubmit} onSubmit={onSubmit}>

@@ -1,11 +1,22 @@
 import { Calendar } from "react-big-calendar";
 import { useCalendar } from "../../hooks/useCalendar";
-import { useCalendarEvents } from "../../hooks/useCalendarEvents";
 import "./index.css";
+import { useCalendarEvent } from "../../hooks/useCalendarEvent";
 
 const AppointmentCalendar = () => {
-    const { localizer, startAccessor, endAccessor, views, min, max, messages } = useCalendar();
-    const { calendarEvents, handleCurrentView, handleSelectEvent, handleSelectSlot } = useCalendarEvents();
+    const {
+        localizer,
+        startAccessor,
+        endAccessor,
+        views,
+        min,
+        max,
+        messages,
+        handleCurrentView,
+        handleSelectEvent,
+        handleSelectSlot,
+    } = useCalendar();
+    const { calendarEvents: calendarEvents } = useCalendarEvent();
 
     return (
         <Calendar
