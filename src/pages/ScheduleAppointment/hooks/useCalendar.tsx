@@ -12,7 +12,7 @@ export const useCalendar = () => {
     dayjs.locale("es");
 
     const { showModal } = useStandardModal();
-    const { handleCurrentCalendarEvent: handleCalendarEvent } = useCalendarEvents();
+    const { handleCurrentCalendarEvent } = useCalendarEvents();
     const [currentView, setCurrentView] = useState("month");
 
     const localizer = dayjsLocalizer(dayjs);
@@ -42,14 +42,33 @@ export const useCalendar = () => {
     const handleCurrentView = (view: string) => setCurrentView(view);
 
     const handleSelectSlot = ({ id, start, end }: CalendarEvent) => {
-        handleCalendarEvent({ id, title: "", start, end: currentView === "month" ? start : end, specialty: "" });
+        handleCurrentCalendarEvent({ id, title: "", start, end: currentView === "month" ? start : end, specialty: "" });
         showModal("Agendar cita", <NewScheduleAppointment />);
     };
 
     const handleSelectEvent = (calendarEvent: CalendarEvent) => {
-        handleCalendarEvent(calendarEvent);
+        handleCurrentCalendarEvent(calendarEvent);
         showModal("Detalles de la cita", <ScheduleAppointmentDetails />);
     };
+
+    // const moveEvent = useCallback(
+    //     ({ event, start, end, isAllDay: droppedOnAllDaySlot = false }) => {
+    //         const { allDay } = event;
+    //         if (!allDay && droppedOnAllDaySlot) {
+    //             event.allDay = true;
+    //         }
+    //         if (allDay && !droppedOnAllDaySlot) {
+    //             event.allDay = false;
+    //         }
+
+    //         setMyEvents((prev) => {
+    //             const existing = prev.find((ev) => ev.id === event.id) ?? {};
+    //             const filtered = prev.filter((ev) => ev.id !== event.id);
+    //             return [...filtered, { ...existing, start, end, allDay: event.allDay }];
+    //         });
+    //     },
+    //     [setMyEvents]
+    // );
 
     return {
         localizer,

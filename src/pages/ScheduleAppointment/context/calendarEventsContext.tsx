@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useState } from "react";
+import { createContext, ReactNode, useCallback, useState } from "react";
 import { CalendarEvent } from "../types/calendarEvent";
 
 type CalendarEventsContextType = {
@@ -8,6 +8,7 @@ type CalendarEventsContextType = {
     addCalendarEvent: (newEvent: CalendarEvent) => void;
     modifyCalendarEvent: (updatedEvent: CalendarEvent) => void;
     removeCalendarEvent: (id: string) => void;
+    resizeEvent: (calendarEvent: CalendarEvent) => void;
 };
 
 export const CalendarEventsContext = createContext<CalendarEventsContextType | undefined>(undefined);
@@ -54,6 +55,19 @@ export const CalendarEventsProvider = ({ children }: { children: ReactNode }) =>
 
     const removeCalendarEvent = (id: string) => setCalendarEvents((prev) => prev.filter((event) => event.id !== id));
 
+    const resizeEvent = useCallback(
+        ({ id, start, end }: CalendarEvent) => {
+            console.log({ id, start, end, currentCalendarEventId: currentCalendarEvent.id });
+            setCalendarEvents((prev) => {
+                const existing = prev.find((ev) => ev.id === id);
+                if (!existing) return prev; 
+                const filtered = prev.filter((ev) => ev.id !== id);
+                return [...filtered, { ...existing, start, end }];
+            });
+        },
+        [setCalendarEvents]
+    );
+
     return (
         <CalendarEventsContext.Provider
             value={{
@@ -63,6 +77,7 @@ export const CalendarEventsProvider = ({ children }: { children: ReactNode }) =>
                 addCalendarEvent,
                 modifyCalendarEvent,
                 removeCalendarEvent,
+                resizeEvent,
             }}
         >
             {children}
