@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { useStandardModal } from "../../../shared/hooks/useStandardModal";
-import NewScheduleAppointment from "../components/NewScheduleAppointment";
 import { CalendarEvent } from "../types/calendarEvent";
 import { AppointmentFormValues } from "../types/appointmentFormTypes";
-import { convertStringToDate, getFormattedDateString } from "../../../shared/utility/handleDates";
+import { convertToDate, getFormattedDateString } from "../../../shared/utility/handleDates";
+import NewScheduleAppointment from "../components/NewScheduleAppointment";
 import ScheduleAppointmentDetails from "../components/ScheduleAppointmentDetails";
 
 const getDates = (appointmentDate: string, initialHour: string, finalHour: string) => {
-    const newAppointmentDate = convertStringToDate(appointmentDate);
+    const newAppointmentDate = convertToDate(appointmentDate);
     return {
         startDate: new Date(getFormattedDateString(newAppointmentDate, "YYYY-MM-DD") + "T" + initialHour),
         endDate: new Date(getFormattedDateString(newAppointmentDate, "YYYY-MM-DD") + "T" + finalHour),

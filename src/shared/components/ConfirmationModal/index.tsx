@@ -12,7 +12,7 @@ type Props = {
 
 const ConfirmationModal = ({ dialogRef, message, primaryButtonText, onConfirm, closeModal }: Props) => {
     return (
-        <dialog ref={dialogRef} className="confirmation__modal">
+        <dialog ref={dialogRef} className="confirmation__modal" closedBy="any">
             <h5>{message}</h5>
             <div>
                 <Button

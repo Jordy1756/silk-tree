@@ -1,18 +1,21 @@
-import { converDateToString, transformToDate } from "../../../shared/utility/handleDates";
+import { converDateToString, convertToDate } from "../../../shared/utility/handleDates";
 
-const validateAppointmentDate = (date: Date) => {
+type ValidationName = "appointmentDate" | "initialHour" | "finalHour" | "specialty";
+
+const validateAppointmentDate = (date: string) => {
     const today = new Date();
     today.setHours(0, 0, 0, 0);
     return (
-        transformToDate(date) >= transformToDate(today) ||
-        `La fecha debe ser mayor o igual a ${converDateToString(today)}`
+        convertToDate(date) >= convertToDate(today) || `La fecha debe ser mayor o igual a ${converDateToString(today)}`
     );
 };
 
 const formValidations = {
     appointmentDate: {
         required: { value: true, message: "La fecha es requerida" },
-        validate: { isAfterToday: (date: Date) => validateAppointmentDate(date) },
+        validate: {
+            isAfterToday: (date: string) => validateAppointmentDate(date),
+        },
     },
     initialHour: {
         required: { value: true, message: "La hora de inicio es requerida" },
@@ -38,8 +41,7 @@ const formValidations = {
 };
 
 export const useFormValidations = () => {
-    const getFormValidation = (validationName: "appointmentDate" | "initialHour" | "finalHour" | "specialty") =>
-        formValidations[validationName];
+    const getFormValidation = (validationName: ValidationName) => formValidations[validationName];
 
     return { getFormValidation };
 };
