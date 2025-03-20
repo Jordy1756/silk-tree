@@ -20,7 +20,7 @@ export const ToastProvider = ({ children }: { children: ReactNode }) => {
             type: toast.type,
         };
         setToasts((prevToasts) => [...prevToasts, newToast]);
-        setTimeout(() => removeToast(newToast.id), 3000);
+        setTimeout(() => removeToast(newToast.id), 7800);
     };
 
     const removeToast = (id: string) => {
@@ -31,7 +31,7 @@ export const ToastProvider = ({ children }: { children: ReactNode }) => {
     return (
         <ToastContext.Provider value={{ toasts, addToast, removeToast }}>
             {children}
-            <div className="toasts__container">
+            <div className={`toasts__container ${toasts.length > 0 ? "active" : ""}`}>
                 {toasts.map(({ id, title, message, type, removing }) => (
                     <Toast key={id} id={id} title={title} message={message} type={type} removing={removing} />
                 ))}

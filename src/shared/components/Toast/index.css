@@ -1,5 +1,4 @@
 .toasts__container {
-    padding: 1rem;
     position: fixed;
     bottom: 0;
     right: 0;
@@ -9,11 +8,15 @@
     z-index: 999;
 }
 
+.toasts__container.active {
+    padding: 1rem;
+    width: min(382px, 100%);
+}
+
 .toast {
     padding: 0.5rem;
     display: flex;
     gap: 0.5rem;
-    width: min(350px, 100%);
     border-radius: var(--border-radius-out);
     background-color: var(--neutral-50);
     box-shadow: var(--box-shadow);
@@ -62,7 +65,7 @@
     left: 0;
     height: 4px;
     background-color: var(--success-500);
-    animation: shrink 3s linear forwards;
+    animation: shrink 7.5s linear forwards;
 }
 
 .toast__success .progress__bar {

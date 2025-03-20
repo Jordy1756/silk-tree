@@ -1,3 +1,4 @@
+import { ToastProps } from "../../../shared/types/toastTypes";
 import { convertToDate, getFormattedDateString, DATE_FORMAT } from "../../../shared/utility/handleDates";
 
 export const getDates = (appointmentDate: string, initialHour: string, finalHour: string) => {
@@ -7,3 +8,10 @@ export const getDates = (appointmentDate: string, initialHour: string, finalHour
         endDate: new Date(getFormattedDateString(newAppointmentDate, DATE_FORMAT) + "T" + finalHour),
     };
 };
+
+export const getOverlapToastData = (): ToastProps => ({
+    id: "",
+    title: "Horario no disponible",
+    message: "Ya existe una cita programada en este horario. Por favor, seleccione otro horario.",
+    type: "error",
+});

@@ -3,12 +3,11 @@ import { useToast } from "../../../shared/hooks/useToast";
 import { getToastData } from "../../../shared/utility/handleToast";
 import { AppointmentFormValues } from "../types/appointmentFormTypes";
 import { CalendarEvent } from "../types/calendarEvent";
-import { getDates } from "../utility/handleCalendarEvent";
+import { getDates, getOverlapToastData } from "../utility/handleCalendarEvent";
 import { useCalendarEvents } from "./useCalendarEvents";
 
 export const useInsertCalendarEvent = () => {
     const { addToast } = useToast();
-
     const { closeModal } = useStandardModal();
     const { addCalendarEvent, checkEventOverlap } = useCalendarEvents();
 
@@ -22,11 +21,16 @@ export const useInsertCalendarEvent = () => {
             specialty,
         };
 
-        if (checkEventOverlap(newCalendarEvent))
-            return addToast(getToastData("Mensaje no enviado", "El mensaje no fue enviado al destinatario", "error"));
+        if (checkEventOverlap(newCalendarEvent)) return addToast(getOverlapToastData());
 
         addCalendarEvent(newCalendarEvent);
-        addToast(getToastData("Mensaje enviado", "El mensaje fue enviado al destinatario", "success"));
+        addToast(
+            getToastData(
+                "Cita agendada exitosamente",
+                `Su cita de ${specialty} ha sido programada correctamente`,
+                "success"
+            )
+        );
         closeModal();
     };
 

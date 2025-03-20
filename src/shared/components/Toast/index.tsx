@@ -20,7 +20,7 @@ const Toast = ({ id, title, type, message, removing }: ToastProps) => {
     };
 
     return (
-        <div className={`toast ${removing ? "removing" : "active"} toast__${type}`}>
+        <div className={`toast ${removing ? "removing" : ""} toast__${type}`}>
             <aside>{icons[type]}</aside>
             <div className="main__content">
                 <header>
