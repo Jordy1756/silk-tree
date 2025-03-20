@@ -30,6 +30,10 @@
     --primary-800: #2d1d9c;
     --primary-900: #1e1368;
     --secondary-500: transparent;
+    --error-500: red;
+    --success-500: green;
+    --warning-500: yellow;
+    --info-500: blue;
     --background-color-light: var(--neutral-50);
     --background-color-dark: var(--neutral-900);
     --font-color-light: var(--neutral-50);

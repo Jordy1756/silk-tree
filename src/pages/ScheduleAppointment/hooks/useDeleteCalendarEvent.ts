@@ -3,10 +3,10 @@ import { useCalendarEvents } from "./useCalendarEvents";
 
 export const useDeleteCalendarEvent = () => {
     const { closeModal } = useStandardModal();
-    const { currentCalendarEvent, removeCalendarEvent } = useCalendarEvents();
+    const { removeCalendarEvent } = useCalendarEvents();
 
     const deleteCalendarEvent = () => {
-        removeCalendarEvent(currentCalendarEvent.id);
+        removeCalendarEvent();
         closeModal();
     };
 

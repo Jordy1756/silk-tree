@@ -7,8 +7,8 @@ type CalendarEventsContextType = {
     handleCurrentCalendarEvent: (calendarEvent: CalendarEvent) => void;
     addCalendarEvent: (newEvent: CalendarEvent) => void;
     modifyCalendarEvent: (updatedEvent: CalendarEvent) => void;
-    removeCalendarEvent: (id: string) => void;
-    resizeEvent: (calendarEvent: CalendarEvent) => void;
+    removeCalendarEvent: () => void;
+    checkEventOverlap: (newEvent: CalendarEvent) => boolean;
 };
 
 export const CalendarEventsContext = createContext<CalendarEventsContextType | undefined>(undefined);
@@ -26,47 +26,49 @@ export const CalendarEventsProvider = ({ children }: { children: ReactNode }) =>
         {
             id: "1",
             title: "Meeting1",
-            start: new Date(2025, 2, 18, 8, 0),
-            end: new Date(2025, 2, 18, 9, 0),
+            start: new Date(2025, 2, 23, 8, 0),
+            end: new Date(2025, 2, 23, 9, 0),
             specialty: "1",
         },
         {
             id: "2",
             title: "Meeting2",
-            start: new Date(2025, 2, 18, 9, 0),
-            end: new Date(2025, 2, 18, 10, 0),
+            start: new Date(2025, 2, 24, 9, 0),
+            end: new Date(2025, 2, 24, 10, 0),
             specialty: "2",
         },
         {
             id: "3",
             title: "Meeting3",
-            start: new Date(2025, 2, 18, 10, 0),
-            end: new Date(2025, 2, 18, 11, 0),
+            start: new Date(2025, 2, 25, 10, 0),
+            end: new Date(2025, 2, 25, 11, 0),
             specialty: "3",
         },
     ]);
 
-    const handleCurrentCalendarEvent = (calendarEvent: CalendarEvent) => setCurrentCalendarEvent(calendarEvent);
+    const handleCurrentCalendarEvent = useCallback(
+        (calendarEvent: CalendarEvent) => setCurrentCalendarEvent(calendarEvent),
+        []
+    );
 
-    const addCalendarEvent = (newEvent: CalendarEvent) => setCalendarEvents((prev) => [...prev, newEvent]);
-
-    const modifyCalendarEvent = (updatedEvent: CalendarEvent) =>
-        setCalendarEvents((prev) => prev.map((event) => (event.id === updatedEvent.id ? updatedEvent : event)));
-
-    const removeCalendarEvent = (id: string) => setCalendarEvents((prev) => prev.filter((event) => event.id !== id));
-
-    const resizeEvent = useCallback(
-        ({ id, start, end }: CalendarEvent) => {
-            console.log({ id, start, end, currentCalendarEventId: currentCalendarEvent.id });
-            setCalendarEvents((prev) => {
-                const existing = prev.find((ev) => ev.id === id);
-                if (!existing) return prev; 
-                const filtered = prev.filter((ev) => ev.id !== id);
-                return [...filtered, { ...existing, start, end }];
-            });
-        },
+    const addCalendarEvent = useCallback(
+        (newEvent: CalendarEvent) => setCalendarEvents((prev) => [...prev, newEvent]),
         [setCalendarEvents]
     );
+
+    const modifyCalendarEvent = useCallback(
+        (updatedEvent: CalendarEvent) =>
+            setCalendarEvents((prev) => prev.map((event) => (event.id === updatedEvent.id ? updatedEvent : event))),
+        [setCalendarEvents]
+    );
+
+    const removeCalendarEvent = useCallback(
+        () => setCalendarEvents((prev) => prev.filter((event) => event.id !== currentCalendarEvent.id)),
+        [setCalendarEvents, currentCalendarEvent]
+    );
+
+    const checkEventOverlap = (newEvent: CalendarEvent) =>
+        calendarEvents.some(({ start, end }) => newEvent.start < end && newEvent.end > start);
 
     return (
         <CalendarEventsContext.Provider
@@ -77,7 +79,7 @@ export const CalendarEventsProvider = ({ children }: { children: ReactNode }) =>
                 addCalendarEvent,
                 modifyCalendarEvent,
                 removeCalendarEvent,
-                resizeEvent,
+                checkEventOverlap,
             }}
         >
             {children}

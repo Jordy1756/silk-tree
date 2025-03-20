@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 import "./index.css";
 
 type Props = {
-    className: "primary" | "secondary";
+    className: "primary" | "secondary" | "icon";
     type: "button" | "submit" | "reset";
     onClick?: () => void;
     children: ReactNode;

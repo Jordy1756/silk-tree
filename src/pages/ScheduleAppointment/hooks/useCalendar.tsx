@@ -1,8 +1,8 @@
-import { dayjsLocalizer } from "react-big-calendar";
-import { CalendarEvent } from "../types/calendarEvent";
+import { dayjsLocalizer, Views } from "react-big-calendar";
+import { CalendarEvent, DragAndDropCalendar } from "../types/calendarEvent";
 import { useStandardModal } from "../../../shared/hooks/useStandardModal";
 import { useCalendarEvents } from "./useCalendarEvents";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import NewScheduleAppointment from "../components/NewScheduleAppointment";
 import ScheduleAppointmentDetails from "../components/ScheduleAppointmentDetails";
 import dayjs from "dayjs";
@@ -11,16 +11,18 @@ import "dayjs/locale/es";
 export const useCalendar = () => {
     dayjs.locale("es");
 
+    const { WEEK, MONTH } = Views;
+
     const { showModal } = useStandardModal();
-    const { handleCurrentCalendarEvent } = useCalendarEvents();
-    const [currentView, setCurrentView] = useState("month");
+    const { handleCurrentCalendarEvent, modifyCalendarEvent } = useCalendarEvents();
+    const [currentView, setCurrentView] = useState<typeof Views[keyof typeof Views]>(MONTH);
 
     const localizer = dayjsLocalizer(dayjs);
 
     const startAccessor = "start";
     const endAccessor = "end";
 
-    const views = ["month", "week"];
+    const views = [MONTH, WEEK];
 
     const min = dayjs("2025-03-10T08:00:00").toDate();
     const max = dayjs("2025-03-11T20:00:00").toDate();
@@ -39,10 +41,10 @@ export const useCalendar = () => {
         event: "Evento",
     };
 
-    const handleCurrentView = (view: string) => setCurrentView(view);
+    const handleCurrentView = useCallback((view: typeof Views[keyof typeof Views]) => setCurrentView(view), []);
 
     const handleSelectSlot = ({ id, start, end }: CalendarEvent) => {
-        handleCurrentCalendarEvent({ id, title: "", start, end: currentView === "month" ? start : end, specialty: "" });
+        handleCurrentCalendarEvent({ id, title: "", start, end: currentView === MONTH ? start : end, specialty: "" });
         showModal("Agendar cita", <NewScheduleAppointment />);
     };
 
@@ -51,24 +53,17 @@ export const useCalendar = () => {
         showModal("Detalles de la cita", <ScheduleAppointmentDetails />);
     };
 
-    // const moveEvent = useCallback(
-    //     ({ event, start, end, isAllDay: droppedOnAllDaySlot = false }) => {
-    //         const { allDay } = event;
-    //         if (!allDay && droppedOnAllDaySlot) {
-    //             event.allDay = true;
-    //         }
-    //         if (allDay && !droppedOnAllDaySlot) {
-    //             event.allDay = false;
-    //         }
+    const handleResizeEvent = ({ start, end, event }: DragAndDropCalendar) => {
+        event.start = start;
+        event.end = end;
+        modifyCalendarEvent(event);
+    };
 
-    //         setMyEvents((prev) => {
-    //             const existing = prev.find((ev) => ev.id === event.id) ?? {};
-    //             const filtered = prev.filter((ev) => ev.id !== event.id);
-    //             return [...filtered, { ...existing, start, end, allDay: event.allDay }];
-    //         });
-    //     },
-    //     [setMyEvents]
-    // );
+    const handleMoveEvent = ({ start, end, event }: DragAndDropCalendar) => {
+        event.start = start;
+        event.end = end;
+        modifyCalendarEvent(event);
+    };
 
     return {
         localizer,
@@ -78,8 +73,11 @@ export const useCalendar = () => {
         min,
         max,
         messages,
+        currentView,
         handleCurrentView,
         handleSelectSlot,
         handleSelectEvent,
+        handleResizeEvent,
+        handleMoveEvent,
     };
 };

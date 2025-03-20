@@ -1,4 +1,4 @@
-import { Calendar } from "react-big-calendar";
+import { Calendar, Views } from "react-big-calendar";
 import { useCalendar } from "../../hooks/useCalendar";
 import { useCalendarEvents } from "../../hooks/useCalendarEvents";
 import withDragAndDrop from "react-big-calendar/lib/addons/dragAndDrop/withDragAndDrop.js";
@@ -7,6 +7,7 @@ import "./index.css";
 const DragAndDropCalendar = withDragAndDrop(Calendar);
 
 const AppointmentCalendar = () => {
+    const { MONTH } = Views;
     const {
         localizer,
         startAccessor,
@@ -15,14 +16,18 @@ const AppointmentCalendar = () => {
         min,
         max,
         messages,
+        currentView,
         handleCurrentView,
         handleSelectEvent,
         handleSelectSlot,
+        handleResizeEvent,
+        handleMoveEvent,
     } = useCalendar();
-    const { calendarEvents, resizeEvent } = useCalendarEvents();
+    const { calendarEvents } = useCalendarEvents();
 
     return (
         <DragAndDropCalendar
+            className="appointment__calendar"
             localizer={localizer}
             startAccessor={startAccessor}
             endAccessor={endAccessor}
@@ -38,7 +43,8 @@ const AppointmentCalendar = () => {
             onSelectEvent={handleSelectEvent}
             onSelectSlot={handleSelectSlot}
             onView={handleCurrentView}
-            onEventResize={resizeEvent}
+            onEventResize={currentView !== MONTH && handleResizeEvent}
+            onEventDrop={handleMoveEvent}
         />
     );
 };

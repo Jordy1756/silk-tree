@@ -1,5 +1,6 @@
 import { ReactNode, RefObject } from "react";
 import CloseIcon from "../../../assets/icons/CloseIcon";
+import Button from "../Button";
 import "./index.css";
 
 type Props = {
@@ -14,9 +15,9 @@ const StandardModal = ({ dialogRef, title, children, closeModal }: Props) => {
         <dialog ref={dialogRef} className="standard__modal" closedBy="any">
             <header>
                 <h5>{title}</h5>
-                <button onClick={() => closeModal()}>
+                <Button type="button" className="icon" onClick={() => closeModal()}>
                     <CloseIcon width={24} height={24} color="var(--neutral-50)" />
-                </button>
+                </Button>
             </header>
             <main>{children}</main>
         </dialog>

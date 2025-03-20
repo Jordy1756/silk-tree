@@ -5,3 +5,10 @@ export type CalendarEvent = {
     end: Date;
     specialty: string;
 };
+
+export type DragAndDropCalendar = {
+    resourceId: unknown;
+    start: Date;
+    end: Date;
+    event: CalendarEvent;
+};

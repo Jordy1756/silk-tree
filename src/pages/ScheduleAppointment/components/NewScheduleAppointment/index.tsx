@@ -1,8 +1,8 @@
 import { useStandardModal } from "../../../../shared/hooks/useStandardModal";
+import { useInsertCalendarEvent } from "../../hooks/useInsertCalendarEvent";
 import ScheduleAppointmentForm from "../SchuduleAppointmentForm";
 import Button from "../../../../shared/components/Button";
 import "./index.css";
-import { useInsertCalendarEvent } from "../../hooks/useInsertCalendarEvent";
 
 const NewScheduleAppointment = () => {
     const { closeModal } = useStandardModal();

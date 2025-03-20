@@ -1,4 +1,4 @@
-import { converDateToString, convertToDate } from "../../../shared/utility/handleDates";
+import { convertToDate, getFormattedDateString, FULL_DATE_FORMAT } from "../../../shared/utility/handleDates";
 
 type ValidationName = "appointmentDate" | "initialHour" | "finalHour" | "specialty";
 
@@ -6,7 +6,8 @@ const validateAppointmentDate = (date: string) => {
     const today = new Date();
     today.setHours(0, 0, 0, 0);
     return (
-        convertToDate(date) >= convertToDate(today) || `La fecha debe ser mayor o igual a ${converDateToString(today)}`
+        convertToDate(date) >= convertToDate(today) ||
+        `La fecha debe ser mayor o igual a ${getFormattedDateString(today, FULL_DATE_FORMAT)}`
     );
 };
 
