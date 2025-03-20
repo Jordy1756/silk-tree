@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useEffect, useState } from "react";
+import { createContext, ReactNode, useState } from "react";
 import { ToastProps } from "../types/toastTypes";
 import Toast from "../components/Toast";
 
@@ -20,22 +20,20 @@ export const ToastProvider = ({ children }: { children: ReactNode }) => {
             type: toast.type,
         };
         setToasts((prevToasts) => [...prevToasts, newToast]);
+        setTimeout(() => removeToast(newToast.id), 3000);
     };
 
-    const removeToast = (id: string) => setToasts((prevToasts) => prevToasts.filter((toast) => toast.id !== id));
-
-    useEffect(() => {
-        const timers = toasts.map(({ id }) => setTimeout(() => removeToast(id), 3000));
-
-        return () => timers.forEach((timer) => clearTimeout(timer));
-    }, [toasts]);
+    const removeToast = (id: string) => {
+        setToasts((prevToasts) => prevToasts.map((toast) => (toast.id === id ? { ...toast, removing: true } : toast)));
+        setTimeout(() => setToasts((prevToasts) => prevToasts.filter((toast) => toast.id !== id)), 300);
+    };
 
     return (
         <ToastContext.Provider value={{ toasts, addToast, removeToast }}>
             {children}
             <div className="toasts__container">
-                {toasts.map(({ id, title, message, type }) => (
-                    <Toast key={id} id={id} title={title} message={message} type={type} />
+                {toasts.map(({ id, title, message, type, removing }) => (
+                    <Toast key={id} id={id} title={title} message={message} type={type} removing={removing} />
                 ))}
             </div>
         </ToastContext.Provider>

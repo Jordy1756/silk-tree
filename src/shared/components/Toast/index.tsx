@@ -9,7 +9,7 @@ import WarningIcon from "../../../assets/icons/WarningIcon";
 import InfoIcon from "../../../assets/icons/InfoIcon";
 import "./index.css";
 
-const Toast = ({ id, title, type, message }: ToastProps) => {
+const Toast = ({ id, title, type, message, removing }: ToastProps) => {
     const { removeToast } = useToast();
 
     const icons = {
@@ -20,7 +20,7 @@ const Toast = ({ id, title, type, message }: ToastProps) => {
     };
 
     return (
-        <div className={`toast active toast__${type}`}>
+        <div className={`toast ${removing ? "removing" : "active"} toast__${type}`}>
             <aside>{icons[type]}</aside>
             <div className="main__content">
                 <header>
