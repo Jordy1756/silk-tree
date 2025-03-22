@@ -18,7 +18,7 @@ export const useCalendar = () => {
     const views = [MONTH, WEEK];
 
     const min = dayjs("2025-03-10T08:00:00").toDate();
-    const max = dayjs("2025-03-11T20:00:00").toDate();
+    const max = dayjs("2025-03-11T19:00:00").toDate();
 
     const messages = {
         allDay: "Todo el día",

@@ -7,7 +7,11 @@ import { useCalendarEvents } from "./useCalendarEvents";
 export const useUpdateCalendarEvent = () => {
     const { addToast } = useToast();
     const { closeModal } = useStandardModal();
-    const { currentCalendarEvent, modifyCalendarEvent, checkEventOverlap } = useCalendarEvents();
+    const {
+        currentCalendarEvent,
+        modifyCalendarEvent,
+        checkCalendarEventOverlap: checkEventOverlap,
+    } = useCalendarEvents();
 
     const updateCalendarEvent = ({ appointmentDate, initialHour, finalHour, specialty }: AppointmentFormValues) => {
         const { startDate, endDate } = getDates(appointmentDate, initialHour, finalHour);

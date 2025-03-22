@@ -1,9 +1,9 @@
-import Form from "../../../../shared/components/Form";
 import { AppointmentFormValues } from "../../types/appointmentFormTypes";
 import { ReactNode } from "react";
 import { useSpecialties } from "../../hooks/useSpecialties";
-import { useFormValidations } from "../../hooks/useFormValidations";
 import { useScheduleAppointmentForm } from "../../hooks/useScheduleAppointmentForm";
+import { getFormValidation } from "../../utility/handleFormValues";
+import Form from "../../../../shared/components/Form";
 import InputBox from "../../../../shared/components/InputBox";
 import "./index.css";
 
@@ -15,7 +15,6 @@ type Props = {
 
 const ScheduleAppointmentForm = ({ children, isNonEditable, onSubmit }: Props) => {
     const { specialties } = useSpecialties();
-    const { getFormValidation } = useFormValidations();
     const { register, handleSubmit, errors } = useScheduleAppointmentForm();
 
     return (

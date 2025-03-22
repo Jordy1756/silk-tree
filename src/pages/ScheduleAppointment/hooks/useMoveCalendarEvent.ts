@@ -6,15 +6,20 @@ import { useCalendarEvents } from "./useCalendarEvents";
 
 export const useMoveCalendarEvent = () => {
     const { addToast } = useToast();
-    const { modifyCalendarEvent, checkEventOverlap } = useCalendarEvents();
+    const { checkCalendarEventOverlap } = useCalendarEvents();
 
     const moveCalendarEvent = ({ start, end, event }: DragAndDropCalendar) => {
-        if (checkEventOverlap(event)) return addToast(getOverlapToastData());
+        const startDate = event.start;
+        const endDate = event.end;
 
         event.start = start;
         event.end = end;
 
-        modifyCalendarEvent(event);
+        if (checkCalendarEventOverlap(event)) {
+            event.start = startDate;
+            event.end = endDate;
+            return addToast(getOverlapToastData());
+        }
 
         addToast(
             getToastData(

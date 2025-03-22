@@ -9,19 +9,19 @@ import { useCalendarEvents } from "./useCalendarEvents";
 export const useInsertCalendarEvent = () => {
     const { addToast } = useToast();
     const { closeModal } = useStandardModal();
-    const { addCalendarEvent, checkEventOverlap } = useCalendarEvents();
+    const { addCalendarEvent, checkCalendarEventOverlap } = useCalendarEvents();
 
     const insertCalendarEvent = ({ appointmentDate, initialHour, finalHour, specialty }: AppointmentFormValues) => {
         const { startDate, endDate } = getDates(appointmentDate, initialHour, finalHour);
         const newCalendarEvent: CalendarEvent = {
-            id: "",
+            id: crypto.randomUUID(),
             title: `Cita de ${specialty}`,
             start: startDate,
             end: endDate,
             specialty,
         };
 
-        if (checkEventOverlap(newCalendarEvent)) return addToast(getOverlapToastData());
+        if (checkCalendarEventOverlap(newCalendarEvent)) return addToast(getOverlapToastData());
 
         addCalendarEvent(newCalendarEvent);
         addToast(

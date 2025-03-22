@@ -1,4 +1,12 @@
-import { convertToDate, getFormattedDateString, FULL_DATE_FORMAT } from "../../../shared/utility/handleDates";
+import {
+    convertToDate,
+    DATE_FORMAT,
+    FULL_DATE_FORMAT,
+    getFormattedDateString,
+    TIME_24_FORMAT,
+} from "../../../shared/utility/handleDates";
+import { AppointmentFormValues } from "../types/appointmentFormTypes";
+import { CalendarEvent } from "../types/calendarEvent";
 
 type ValidationName = "appointmentDate" | "initialHour" | "finalHour" | "specialty";
 
@@ -14,9 +22,7 @@ const validateAppointmentDate = (date: string) => {
 const formValidations = {
     appointmentDate: {
         required: { value: true, message: "La fecha es requerida" },
-        validate: {
-            isAfterToday: (date: string) => validateAppointmentDate(date),
-        },
+        validate: { isAfterToday: (date: string) => validateAppointmentDate(date) },
     },
     initialHour: {
         required: { value: true, message: "La hora de inicio es requerida" },
@@ -41,8 +47,15 @@ const formValidations = {
     },
 };
 
-export const useFormValidations = () => {
-    const getFormValidation = (validationName: ValidationName) => formValidations[validationName];
+export const getFormValidation = (validationName: ValidationName) => formValidations[validationName];
 
-    return { getFormValidation };
-};
+export const getDefaultFormValues = ({
+    start: startDate,
+    end: endDate,
+    specialty,
+}: CalendarEvent): AppointmentFormValues => ({
+    appointmentDate: getFormattedDateString(startDate, DATE_FORMAT),
+    initialHour: getFormattedDateString(startDate, TIME_24_FORMAT),
+    finalHour: getFormattedDateString(endDate, TIME_24_FORMAT),
+    specialty,
+});

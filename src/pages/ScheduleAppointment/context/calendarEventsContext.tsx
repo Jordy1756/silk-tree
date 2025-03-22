@@ -8,7 +8,7 @@ type CalendarEventsContextType = {
     addCalendarEvent: (newEvent: CalendarEvent) => void;
     modifyCalendarEvent: (updatedEvent: CalendarEvent) => void;
     removeCalendarEvent: () => void;
-    checkEventOverlap: (newEvent: CalendarEvent) => boolean;
+    checkCalendarEventOverlap: (newEvent: CalendarEvent) => boolean;
 };
 
 export const CalendarEventsContext = createContext<CalendarEventsContextType | undefined>(undefined);
@@ -24,51 +24,54 @@ export const CalendarEventsProvider = ({ children }: { children: ReactNode }) =>
 
     const [calendarEvents, setCalendarEvents] = useState<CalendarEvent[]>([
         {
-            id: "1",
+            id: crypto.randomUUID(),
             title: "Meeting1",
             start: new Date(2025, 2, 23, 8, 0),
             end: new Date(2025, 2, 23, 9, 0),
             specialty: "1",
         },
         {
-            id: "2",
+            id: crypto.randomUUID(),
             title: "Meeting2",
-            start: new Date(2025, 2, 24, 9, 0),
-            end: new Date(2025, 2, 24, 10, 0),
+            start: new Date(2025, 2, 23, 9, 0),
+            end: new Date(2025, 2, 23, 10, 0),
             specialty: "2",
         },
         {
-            id: "3",
+            id: crypto.randomUUID(),
             title: "Meeting3",
-            start: new Date(2025, 2, 25, 10, 0),
-            end: new Date(2025, 2, 25, 11, 0),
+            start: new Date(2025, 2, 23, 10, 0),
+            end: new Date(2025, 2, 23, 11, 0),
             specialty: "3",
         },
     ]);
 
     const handleCurrentCalendarEvent = useCallback(
         (calendarEvent: CalendarEvent) => setCurrentCalendarEvent(calendarEvent),
-        []
+        [setCurrentCalendarEvent]
     );
 
     const addCalendarEvent = useCallback(
-        (newEvent: CalendarEvent) => setCalendarEvents((prev) => [...prev, newEvent]),
+        (newCalendarEvent: CalendarEvent) => setCalendarEvents((prev) => [...prev, newCalendarEvent]),
         [setCalendarEvents]
     );
 
     const modifyCalendarEvent = useCallback(
-        (updatedEvent: CalendarEvent) =>
-            setCalendarEvents((prev) => prev.map((event) => (event.id === updatedEvent.id ? updatedEvent : event))),
+        (updatedCalendarEvent: CalendarEvent) => {
+            setCalendarEvents((prev) =>
+                prev.map((event) => (event.id === updatedCalendarEvent.id ? updatedCalendarEvent : event))
+            );
+        },
         [setCalendarEvents]
     );
 
     const removeCalendarEvent = useCallback(
         () => setCalendarEvents((prev) => prev.filter((event) => event.id !== currentCalendarEvent.id)),
-        [setCalendarEvents, currentCalendarEvent]
+        [setCalendarEvents, currentCalendarEvent.id]
     );
 
-    const checkEventOverlap = (newEvent: CalendarEvent) =>
-        calendarEvents.some(({ start, end }) => newEvent.start < end && newEvent.end > start);
+    const checkCalendarEventOverlap = (newEvent: CalendarEvent) =>
+        calendarEvents.some(({ id, start, end }) => newEvent.id !== id && newEvent.start < end && newEvent.end > start);
 
     return (
         <CalendarEventsContext.Provider
@@ -79,7 +82,7 @@ export const CalendarEventsProvider = ({ children }: { children: ReactNode }) =>
                 addCalendarEvent,
                 modifyCalendarEvent,
                 removeCalendarEvent,
-                checkEventOverlap,
+                checkCalendarEventOverlap,
             }}
         >
             {children}
