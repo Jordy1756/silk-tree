@@ -47,9 +47,9 @@ const ScheduleAppointmentForm = ({ children, isNonEditable, onSubmit }: Props) =
                     <option value="" disabled>
                         Selecciona una opción
                     </option>
-                    {specialties.map(({ value, label }) => (
-                        <option key={value} value={value}>
-                            {label}
+                    {specialties.map(({ id, name }) => (
+                        <option key={id} value={id}>
+                            {name}
                         </option>
                     ))}
                 </select>

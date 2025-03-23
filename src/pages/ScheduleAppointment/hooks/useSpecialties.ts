@@ -1,27 +1,28 @@
 import { useState } from "react";
+import { ISpecialty } from "../interfaces/ISpecialty";
 
 export const useSpecialties = () => {
-    const [specialties, setSpecialties] = useState([
-        { value: "1", label: "Cardiología" },
-        { value: "2", label: "Dermatología" },
-        { value: "3", label: "Endocrinología" },
-        { value: "4", label: "Gastroenterología" },
-        { value: "5", label: "Geriatría" },
-        { value: "6", label: "Ginecología" },
-        { value: "7", label: "Hematología" },
-        { value: "8", label: "Infectología" },
-        { value: "9", label: "Medicina interna" },
-        { value: "10", label: "Nefrología" },
-        { value: "11", label: "Neumología" },
-        { value: "12", label: "Neurología" },
-        { value: "13", label: "Nutriología" },
-        { value: "14", label: "Oftalmología" },
-        { value: "15", label: "Oncología" },
-        { value: "16", label: "Pediatría" },
-        { value: "17", label: "Psiquiatría" },
-        { value: "18", label: "Reumatología" },
-        { value: "19", label: "Traumatología" },
-        { value: "20", label: "Urología" },
+    const [specialties, setSpecialties] = useState<ISpecialty[]>([
+        { id: "1", name: "Cardiología" },
+        { id: "2", name: "Dermatología" },
+        { id: "3", name: "Endocrinología" },
+        { id: "4", name: "Gastroenterología" },
+        { id: "5", name: "Geriatría" },
+        { id: "6", name: "Ginecología" },
+        { id: "7", name: "Hematología" },
+        { id: "8", name: "Infectología" },
+        { id: "9", name: "Medicina interna" },
+        { id: "10", name: "Nefrología" },
+        { id: "11", name: "Neumología" },
+        { id: "12", name: "Neurología" },
+        { id: "13", name: "Nutriología" },
+        { id: "14", name: "Oftalmología" },
+        { id: "15", name: "Oncología" },
+        { id: "16", name: "Pediatría" },
+        { id: "17", name: "Psiquiatría" },
+        { id: "18", name: "Reumatología" },
+        { id: "19", name: "Traumatología" },
+        { id: "20", name: "Urología" },
     ]);
 
     return { specialties };

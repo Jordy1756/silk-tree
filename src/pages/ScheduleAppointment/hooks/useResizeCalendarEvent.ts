@@ -1,5 +1,5 @@
 import { useToast } from "../../../shared/hooks/useToast";
-import { DragAndDropCalendar } from "../types/calendarEvent";
+import { IDragAndDropCalendar } from "../interfaces/IDragAndDropCalendar";
 import { getOverlapToastData } from "../utility/handleCalendarEvent";
 import { useCalendarEvents } from "./useCalendarEvents";
 
@@ -7,7 +7,7 @@ export const useResizeCalendarEvent = () => {
     const { addToast } = useToast();
     const { checkCalendarEventOverlap } = useCalendarEvents();
 
-    const resizeCalendarEvent = ({ start, end, event }: DragAndDropCalendar) => {
+    const resizeCalendarEvent = ({ start, end, event }: IDragAndDropCalendar) => {
         const startDate = event.start;
         const endDate = event.end;
 

@@ -1,5 +1,5 @@
 import { useToast } from "../../../shared/hooks/useToast";
-import { DragAndDropCalendar } from "../types/calendarEvent";
+import { IDragAndDropCalendar } from "../interfaces/IDragAndDropCalendar";
 import { validateAppointmentDate } from "../utility/handleAppointmentForm";
 import { getOverlapToastData } from "../utility/handleCalendarEvent";
 import { useCalendarEvents } from "./useCalendarEvents";
@@ -8,7 +8,7 @@ export const useMoveCalendarEvent = () => {
     const { addToast } = useToast();
     const { checkCalendarEventOverlap } = useCalendarEvents();
 
-    const moveCalendarEvent = ({ start, end, event }: DragAndDropCalendar) => {
+    const moveCalendarEvent = ({ start, end, event }: IDragAndDropCalendar) => {
         const message = validateAppointmentDate(start.toDateString());
 
         if (typeof message === "string") return addToast({ title: "Fecha no válida", message, type: "error" });

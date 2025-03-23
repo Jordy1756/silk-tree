@@ -1,7 +1,7 @@
 import { useStandardModal } from "../../../shared/hooks/useStandardModal";
 import { useToast } from "../../../shared/hooks/useToast";
+import { ICalendarEvent } from "../interfaces/ICalendarEvent";
 import { AppointmentFormValues } from "../types/appointmentFormTypes";
-import { CalendarEvent } from "../types/calendarEvent";
 import { getDates, getOverlapToastData } from "../utility/handleCalendarEvent";
 import { useCalendarEvents } from "./useCalendarEvents";
 
@@ -13,7 +13,7 @@ export const useInsertCalendarEvent = () => {
     const insertCalendarEvent = ({ appointmentDate, initialHour, finalHour, specialty }: AppointmentFormValues) => {
         const { startDate, endDate } = getDates(appointmentDate, initialHour, finalHour);
 
-        const newCalendarEvent: CalendarEvent = {
+        const newCalendarEvent: ICalendarEvent = {
             id: crypto.randomUUID(),
             title: `Cita de ${specialty}`,
             start: startDate,
