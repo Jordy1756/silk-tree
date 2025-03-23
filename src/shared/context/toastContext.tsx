@@ -20,7 +20,7 @@ export const ToastProvider = ({ children }: { children: ReactNode }) => {
             type: toast.type,
         };
         setToasts((prevToasts) => [...prevToasts, newToast]);
-        setTimeout(() => removeToast(newToast.id), 7800);
+        setTimeout(() => removeToast(newToast.id || ""), 7800);
     };
 
     const removeToast = (id: string) => {

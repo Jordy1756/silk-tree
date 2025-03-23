@@ -1,6 +1,5 @@
 import { useStandardModal } from "../../../shared/hooks/useStandardModal";
 import { useToast } from "../../../shared/hooks/useToast";
-import { getToastData } from "../../../shared/utility/handleToast";
 import { useCalendarEvents } from "./useCalendarEvents";
 
 export const useDeleteCalendarEvent = () => {
@@ -13,13 +12,11 @@ export const useDeleteCalendarEvent = () => {
 
     const deleteCalendarEvent = () => {
         removeCalendarEvent();
-        addToast(
-            getToastData(
-                "Cita eliminada exitosamente",
-                `Su cita de ${specialty} ha sido eliminada correctamente`,
-                "success"
-            )
-        );
+        addToast({
+            title: "Cita eliminada exitosamente",
+            message: `Su cita de ${specialty} ha sido eliminada correctamente`,
+            type: "success",
+        });
         closeModal();
     };
 

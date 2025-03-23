@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import { AppointmentFormValues } from "../types/appointmentFormTypes";
 import { useEffect } from "react";
 import { useCalendarEvents } from "./useCalendarEvents";
-import { getDefaultFormValues } from "../utility/handleFormValues";
+import { getDefaultFormValues } from "../utility/handleAppointmentForm";
 
 export const useScheduleAppointmentForm = () => {
     const { currentCalendarEvent } = useCalendarEvents();

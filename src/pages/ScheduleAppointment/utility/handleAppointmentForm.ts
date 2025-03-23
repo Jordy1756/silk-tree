@@ -10,7 +10,7 @@ import { CalendarEvent } from "../types/calendarEvent";
 
 type ValidationName = "appointmentDate" | "initialHour" | "finalHour" | "specialty";
 
-const validateAppointmentDate = (date: string) => {
+export const validateAppointmentDate = (date: string) => {
     const today = new Date();
     today.setHours(0, 0, 0, 0);
     return (

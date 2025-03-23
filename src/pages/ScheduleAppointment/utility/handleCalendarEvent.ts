@@ -10,7 +10,6 @@ export const getDates = (appointmentDate: string, initialHour: string, finalHour
 };
 
 export const getOverlapToastData = (): ToastProps => ({
-    id: "",
     title: "Horario no disponible",
     message: "Ya existe una cita programada en este horario. Por favor, seleccione otro horario.",
     type: "error",

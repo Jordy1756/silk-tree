@@ -2,7 +2,7 @@ import { AppointmentFormValues } from "../../types/appointmentFormTypes";
 import { ReactNode } from "react";
 import { useSpecialties } from "../../hooks/useSpecialties";
 import { useScheduleAppointmentForm } from "../../hooks/useScheduleAppointmentForm";
-import { getFormValidation } from "../../utility/handleFormValues";
+import { getFormValidation } from "../../utility/handleAppointmentForm";
 import Form from "../../../../shared/components/Form";
 import InputBox from "../../../../shared/components/InputBox";
 import "./index.css";
