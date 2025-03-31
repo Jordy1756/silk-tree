@@ -5,6 +5,7 @@ import Separator from "../Separator";
 import GoogleIcon from "../../../../assets/icons/GoogleIcon";
 import Button from "../../../../shared/components/Button";
 import InputBox from "../../../../shared/components/InputBox";
+import { registerUser } from "../../services/services";
 
 type Props = {
     isToggled: boolean;
@@ -16,17 +17,22 @@ const Register = ({ isToggled, handleIsToggled }: Props) => {
         register,
         handleSubmit,
         formState: { errors },
-        // reset,
+        reset,
     } = useForm({
         mode: "onBlur",
         defaultValues: {
-            name: "",
-            lastName: "",
-            email: "",
-            password: "",
-            confirmPassword: "",
+            name: "Yordi",
+            lastName: "Castro Rojas",
+            email: "pepeito@gmail.com",
+            password: "123456789",
+            confirmPassword: "123456789",
         },
     });
+
+    const onSubmit = () => {
+        registerUser();
+        reset();
+    };
 
     return (
         <section className={`register ${!isToggled ? "active" : ""}`}>
@@ -35,7 +41,7 @@ const Register = ({ isToggled, handleIsToggled }: Props) => {
                 <p>Regístrate para acceder a todas las funciones</p>
             </header>
             <main>
-                <Form onSubmit={() => {}} handleSubmit={handleSubmit}>
+                <Form onSubmit={onSubmit} handleSubmit={handleSubmit}>
                     <div className="input__box-container">
                         <InputBox name="name" labelText="Nombre" error={errors.name}>
                             <input

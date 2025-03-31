@@ -25,6 +25,9 @@ const Login = ({ isToggled, handleIsToggled }: Props) => {
         },
     });
 
+    const onSubmit = () => {
+    };
+
     return (
         <section className={`login ${isToggled ? "active" : ""}`}>
             <header>
@@ -32,7 +35,7 @@ const Login = ({ isToggled, handleIsToggled }: Props) => {
                 <p>Ingresa tus credenciales para acceder a tu cuenta</p>
             </header>
             <main>
-                <Form onSubmit={() => {}} handleSubmit={handleSubmit}>
+                <Form onSubmit={onSubmit} handleSubmit={handleSubmit}>
                     <InputBox name="email" labelText="Correo electrónico" error={errors.email}>
                         <input
                             placeholder=""
