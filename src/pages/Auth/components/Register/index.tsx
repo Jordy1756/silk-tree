@@ -1,11 +1,10 @@
 import "./index.css";
-import { useForm } from "react-hook-form";
 import Form from "../../../../shared/components/Form";
 import Separator from "../Separator";
 import GoogleIcon from "../../../../assets/icons/GoogleIcon";
 import Button from "../../../../shared/components/Button";
 import InputBox from "../../../../shared/components/InputBox";
-import { registerUser } from "../../services/services";
+import { useRegisterUser } from "../../hooks/useRegisterUser";
 
 type Props = {
     isToggled: boolean;
@@ -13,26 +12,7 @@ type Props = {
 };
 
 const Register = ({ isToggled, handleIsToggled }: Props) => {
-    const {
-        register,
-        handleSubmit,
-        formState: { errors },
-        reset,
-    } = useForm({
-        mode: "onBlur",
-        defaultValues: {
-            name: "Yordi",
-            lastName: "Castro Rojas",
-            email: "pepeito@gmail.com",
-            password: "123456789",
-            confirmPassword: "123456789",
-        },
-    });
-
-    const onSubmit = () => {
-        registerUser();
-        reset();
-    };
+    const { register, handleSubmit, errors, registerUser } = useRegisterUser();
 
     return (
         <section className={`register ${!isToggled ? "active" : ""}`}>
@@ -41,7 +21,7 @@ const Register = ({ isToggled, handleIsToggled }: Props) => {
                 <p>Regístrate para acceder a todas las funciones</p>
             </header>
             <main>
-                <Form onSubmit={onSubmit} handleSubmit={handleSubmit}>
+                <Form onSubmit={registerUser} handleSubmit={handleSubmit}>
                     <div className="input__box-container">
                         <InputBox name="name" labelText="Nombre" error={errors.name}>
                             <input

@@ -5,6 +5,7 @@ import { NavLink } from "react-router-dom";
 import logo from "../../assets/images/company/logo.png";
 import TogglePanel from "./components/TogglePanel";
 import { useState } from "react";
+import { ToastProvider } from "../../shared/context/toastContext";
 
 const Auth = () => {
     const [isToggled, setIsToggled] = useState(false);
@@ -12,19 +13,21 @@ const Auth = () => {
 
     return (
         <main className="auth">
-            <header>
-                <NavLink to="/#home">
-                    <img src={logo} alt="SilkTree logo" loading="lazy" decoding="async" />
-                </NavLink>
-                <NavLink to="/#home">
-                    <img src={logo} alt="SilkTree logo" loading="lazy" decoding="async" />
-                </NavLink>
-            </header>
-            <main>
-                <Login isToggled={isToggled} handleIsToggled={handleIsToggled} />
-                <Register isToggled={isToggled} handleIsToggled={handleIsToggled} />
-            </main>
-            <TogglePanel isToggled={isToggled} />
+            <ToastProvider>
+                <header>
+                    <NavLink to="/#home">
+                        <img src={logo} alt="SilkTree logo" loading="lazy" decoding="async" />
+                    </NavLink>
+                    <NavLink to="/#home">
+                        <img src={logo} alt="SilkTree logo" loading="lazy" decoding="async" />
+                    </NavLink>
+                </header>
+                <main>
+                    <Login isToggled={isToggled} handleIsToggled={handleIsToggled} />
+                    <Register isToggled={isToggled} handleIsToggled={handleIsToggled} />
+                </main>
+                <TogglePanel isToggled={isToggled} />
+            </ToastProvider>
         </main>
     );
 };

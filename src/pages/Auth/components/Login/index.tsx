@@ -1,10 +1,10 @@
-import { useForm } from "react-hook-form";
 import Form from "../../../../shared/components/Form";
 import Separator from "../Separator";
 import GoogleIcon from "../../../../assets/icons/GoogleIcon";
-import "./index.css";
 import Button from "../../../../shared/components/Button";
 import InputBox from "../../../../shared/components/InputBox";
+import "./index.css";
+import { useLoginUser } from "../../hooks/useLoginUser";
 
 type Props = {
     isToggled: boolean;
@@ -12,22 +12,7 @@ type Props = {
 };
 
 const Login = ({ isToggled, handleIsToggled }: Props) => {
-    const {
-        register,
-        handleSubmit,
-        formState: { errors },
-        // reset,
-    } = useForm({
-        mode: "onBlur",
-        defaultValues: {
-            email: "",
-            password: "",
-        },
-    });
-
-    const onSubmit = () => {
-    };
-
+    const { register, handleSubmit, errors, loginUser } = useLoginUser();
     return (
         <section className={`login ${isToggled ? "active" : ""}`}>
             <header>
@@ -35,7 +20,7 @@ const Login = ({ isToggled, handleIsToggled }: Props) => {
                 <p>Ingresa tus credenciales para acceder a tu cuenta</p>
             </header>
             <main>
-                <Form onSubmit={onSubmit} handleSubmit={handleSubmit}>
+                <Form onSubmit={loginUser} handleSubmit={handleSubmit}>
                     <InputBox name="email" labelText="Correo electrónico" error={errors.email}>
                         <input
                             placeholder=""
