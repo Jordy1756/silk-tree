@@ -1,10 +1,9 @@
-import Footer from "../../shared/components/Footer";
-import Navbar from "../../shared/components/Navbar";
 import AppointmentCalendar from "./components/AppointmentCalendar";
 import { ConfirmationModalProvider } from "../../shared/context/confirmationModalContext";
 import { StandardModalProvider } from "../../shared/context/standardModalContext";
 import { CalendarEventsProvider } from "./context/calendarEventsContext";
 import { ToastProvider } from "../../shared/context/toastContext";
+import Layout from "../../shared/layouts/Layout";
 import "./index.css";
 
 const ScheduleAppointment = () => {
@@ -13,13 +12,9 @@ const ScheduleAppointment = () => {
             <ConfirmationModalProvider>
                 <CalendarEventsProvider>
                     <StandardModalProvider>
-                        <header className="schedule__appointment-header">
-                            <Navbar />
-                        </header>
-                        <main className="schedule__appointment-main">
+                        <Layout>
                             <AppointmentCalendar />
-                        </main>
-                        <Footer />
+                        </Layout>
                     </StandardModalProvider>
                 </CalendarEventsProvider>
             </ConfirmationModalProvider>

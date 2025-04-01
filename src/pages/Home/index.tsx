@@ -1,4 +1,4 @@
-import Footer from "../../shared/components/Footer";
+import Layout from "../../shared/layouts/Layout";
 import Marquee from "../../shared/components/Marquee";
 import AboutUs from "./components/AboutUs";
 import Hero from "./components/Hero";
@@ -7,9 +7,9 @@ import FAQ from "./components/FAQ";
 import OurTeam from "./components/OurTeam";
 import Services from "./components/Services";
 import basics from "../../shared/data/basics.json";
-import "./index.css";
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
+import "./index.css";
 
 const Home = () => {
     const location = useLocation();
@@ -23,18 +23,15 @@ const Home = () => {
     }, [location]);
 
     return (
-        <>
+        <Layout>
             <Hero />
-            <main className="main__content">
-                <Marquee list={basics.marquee} />
-                <AboutUs />
-                <Services />
-                <OurTeam />
-                <FAQ />
-                <ContactUs />
-            </main>
-            <Footer />
-        </>
+            <Marquee list={basics.marquee} />
+            <AboutUs />
+            <Services />
+            <OurTeam />
+            <FAQ />
+            <ContactUs />
+        </Layout>
     );
 };
 

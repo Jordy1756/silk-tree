@@ -68,13 +68,6 @@ body {
     color: var(--font-color-dark);
 }
 
-.root,
-.root > .main__content {
-    display: flex;
-    flex-direction: column;
-    gap: 3rem;
-}
-
 .root {
     position: relative;
 }

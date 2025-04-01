@@ -1,4 +1,3 @@
-import Navbar from "../../../../shared/components/Navbar";
 import AwardCard from "./AwardCard";
 import Spline from "@splinetool/react-spline";
 import basics from "../../../../shared/data/basics.json";
@@ -9,9 +8,8 @@ const Hero = () => {
     const { name, summary, award } = basics;
     const [fisrtName, secondName] = name;
     return (
-        <header id="home" className="hero__container">
-            <Navbar />
-            <section className="hero__main-content">
+        <section id="home" className="hero__container">
+            <div>
                 <h1>
                     {fisrtName}
                     <span>{secondName}</span>
@@ -20,7 +18,7 @@ const Hero = () => {
                 <NavigationLink className="primary" to="/schedule-appointment">
                     Agendar cita
                 </NavigationLink>
-            </section>
+            </div>
             <section className="award__section">
                 <AwardCard {...award} />
             </section>
@@ -28,7 +26,7 @@ const Hero = () => {
                 className="spline__animation"
                 scene="https://prod.spline.design/RBrvcAZcumTOcqwc/scene.splinecode"
             />
-        </header>
+        </section>
     );
 };
 

@@ -1,0 +1,21 @@
+.root {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.root > header {
+    position: fixed;
+    top: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 2rem);
+    z-index: 10;
+}
+
+.root > main {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    padding-inline: 1rem;
+}

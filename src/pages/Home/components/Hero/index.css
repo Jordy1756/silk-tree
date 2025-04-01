@@ -1,5 +1,4 @@
 .hero__container {
-    padding: 1rem;
     min-height: 100dvh;
     display: flex;
     flex-direction: column;
@@ -9,23 +8,26 @@
     overflow: hidden;
 }
 
-.hero__container > .hero__main-content {
+.hero__container > div {
+    margin-top: calc(40px + 5rem);
     display: flex;
     flex-direction: column;
     align-items: start;
+    justify-content: center;
     gap: 1rem;
+    flex: 1;
 }
 
-.hero__container > .hero__main-content > h1 {
+.hero__container > div > h1 {
     text-transform: uppercase;
     line-height: 0.75;
 }
 
-.hero__container > .hero__main-content > h1 > span {
+.hero__container > div > h1 > span {
     color: var(--primary-500);
 }
 
-.hero__container > .hero__main-content > p {
+.hero__container > div > p {
     max-width: 50ch;
 }
 
