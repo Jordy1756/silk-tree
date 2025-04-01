@@ -3,7 +3,7 @@ import { useToast } from "../../../shared/hooks/useToast";
 import { User } from "../entities/User";
 import { registerUserService } from "../services/registerUserService";
 
-export const useRegisterUser = () => {
+export const useRegisterUser = (handleIsToggled: () => void) => {
     const { addToast } = useToast();
     const {
         register,
@@ -37,6 +37,7 @@ export const useRegisterUser = () => {
                 type: "success",
             });
             reset();
+            handleIsToggled();
         } catch (error: any) {
             console.error(error);
             addToast({
