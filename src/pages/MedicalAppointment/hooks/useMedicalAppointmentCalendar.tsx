@@ -3,7 +3,7 @@ import { useCallback, useState } from "react";
 import dayjs from "dayjs";
 import "dayjs/locale/es";
 
-export const useCalendar = () => {
+export const useMedicalAppointmentCalendar = () => {
     dayjs.locale("es");
 
     const { WEEK, MONTH } = Views;

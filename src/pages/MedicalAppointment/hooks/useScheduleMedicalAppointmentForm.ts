@@ -1,11 +1,11 @@
 import { useForm } from "react-hook-form";
 import { AppointmentFormValues } from "../types/appointmentFormTypes";
 import { useEffect } from "react";
-import { useCalendarEvents } from "./useCalendarEvents";
+import { useMedicalAppointments } from "./useMedicalAppointments";
 import { getDefaultFormValues } from "../utility/handleAppointmentForm";
 
 export const useScheduleMedicalAppointmentForm = () => {
-    const { currentCalendarEvent } = useCalendarEvents();
+    const { currentMedicalAppointment } = useMedicalAppointments();
     const {
         register,
         handleSubmit,
@@ -13,12 +13,12 @@ export const useScheduleMedicalAppointmentForm = () => {
         reset,
     } = useForm<AppointmentFormValues>({
         mode: "onBlur",
-        defaultValues: getDefaultFormValues(currentCalendarEvent),
+        defaultValues: getDefaultFormValues(currentMedicalAppointment),
     });
 
     useEffect(() => {
-        reset(getDefaultFormValues(currentCalendarEvent));
-    }, [currentCalendarEvent.start, currentCalendarEvent.end, currentCalendarEvent.specialty, reset]);
+        reset(getDefaultFormValues(currentMedicalAppointment));
+    }, [currentMedicalAppointment.start, currentMedicalAppointment.end, currentMedicalAppointment.specialty, reset]);
 
     return { register, handleSubmit, errors };
 };

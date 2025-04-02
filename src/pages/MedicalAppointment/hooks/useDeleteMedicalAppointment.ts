@@ -1,20 +1,17 @@
 import { useStandardModal } from "../../../shared/hooks/useStandardModal";
 import { useToast } from "../../../shared/hooks/useToast";
-import { useCalendarEvents } from "./useCalendarEvents";
+import { useMedicalAppointments } from "./useMedicalAppointments";
 
 export const useDeleteMedicalAppointment = () => {
     const { addToast } = useToast();
     const { closeModal } = useStandardModal();
-    const {
-        currentCalendarEvent: { specialty },
-        removeCalendarEvent,
-    } = useCalendarEvents();
+    const { currentMedicalAppointment, removeMedicalAppointment } = useMedicalAppointments();
 
     const deleteMedicalAppointment = () => {
-        removeCalendarEvent();
+        removeMedicalAppointment();
         addToast({
             title: "Cita eliminada exitosamente",
-            message: `Su cita de ${specialty} ha sido eliminada correctamente`,
+            message: `Su cita de ${currentMedicalAppointment.specialty.name} ha sido eliminada correctamente`,
             type: "success",
         });
         closeModal();

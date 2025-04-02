@@ -1,6 +1,6 @@
 import { Calendar, Views } from "react-big-calendar";
-import { useMedicalAppointmentCalendar } from "../../hooks/useMedicalAppointmentCalendar";
-import { useMedicalAppointments } from "../../hooks/useMedicalAppointments";
+import { useMedicalAppointmentCalendar } from "../../hooks/useCalendar";
+import { useCalendarEvents } from "../../hooks/useCalendarEvents";
 import { useMoveMedicalAppointment } from "../../hooks/useMoveMedicalAppointment";
 import { useSelectMedicalAppointment } from "../../hooks/useSelectMedicalAppointment";
 import { useSelectMedicalAppointmentSlot } from "../../hooks/useSelectMedicalAppointmentSlot";
@@ -10,15 +10,15 @@ import "./index.css";
 
 const DragAndDropCalendar = withDragAndDrop(Calendar);
 
-const MedicalAppointmentCalendar = () => {
+const AppointmentCalendar = () => {
     const { MONTH } = Views;
     const { localizer, startAccessor, endAccessor, views, min, max, messages, currentView, handleCurrentView } =
         useMedicalAppointmentCalendar();
-    const { medicalAppointments } = useMedicalAppointments();
-    const { selectMedicalAppointment } = useSelectMedicalAppointment();
-    const { selectMedicalAppointmentSlot } = useSelectMedicalAppointmentSlot(currentView);
-    const { resizeMedicalAppointment } = useResizeMedicalAppointment();
-    const { moveMedicalAppointment } = useMoveMedicalAppointment();
+    const { calendarEvents } = useCalendarEvents();
+    const { selectMedicalAppointment: selectCalendarEvent } = useSelectMedicalAppointment();
+    const { selectCalendarSlot } = useSelectMedicalAppointment(currentView);
+    const { resizeCalendarEvent } = useResizeMedicalAppointment();
+    const { moveCalendarEvent } = useMoveMedicalAppointment();
 
     return (
         <DragAndDropCalendar
@@ -27,7 +27,7 @@ const MedicalAppointmentCalendar = () => {
             startAccessor={startAccessor}
             endAccessor={endAccessor}
             style={{ height: "100vh" }}
-            events={medicalAppointments}
+            events={calendarEvents}
             views={views}
             min={min}
             max={max}
@@ -35,13 +35,13 @@ const MedicalAppointmentCalendar = () => {
             selectable
             resizable
             popup
-            onSelectEvent={selectMedicalAppointment}
-            onSelectSlot={selectMedicalAppointmentSlot}
+            onSelectEvent={selectCalendarEvent}
+            onSelectSlot={selectCalendarSlot}
             onView={handleCurrentView}
-            onEventResize={currentView !== MONTH && resizeMedicalAppointment}
-            onEventDrop={moveMedicalAppointment}
+            onEventResize={currentView !== MONTH && resizeCalendarEvent}
+            onEventDrop={moveCalendarEvent}
         />
     );
 };
 
-export default MedicalAppointmentCalendar;
+export default AppointmentCalendar;

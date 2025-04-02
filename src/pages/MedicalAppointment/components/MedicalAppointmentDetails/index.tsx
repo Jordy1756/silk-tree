@@ -11,11 +11,11 @@ const MedicalAppointmentDetails = () => {
     const handleIsEditMode = () => setIsEditMode((prev) => !prev);
 
     const { showModal } = useConfirmationModal();
-    const { updateMedicalAppointment: updateCalendarEvent } = useUpdateMedicalAppointment();
-    const { deleteMedicalAppointment: deleteCalendarEvent } = useDeleteMedicalAppointment();
+    const { updateMedicalAppointment } = useUpdateMedicalAppointment();
+    const { deleteMedicalAppointment } = useDeleteMedicalAppointment();
 
     return (
-        <MedicalAppointmentForm isNonEditable={isEditMode} onSubmit={updateCalendarEvent}>
+        <MedicalAppointmentForm isNonEditable={isEditMode} onSubmit={updateMedicalAppointment}>
             <Button type={!isEditMode ? "button" : "submit"} className="primary" onClick={() => handleIsEditMode()}>
                 {isEditMode ? "Editar" : "Actualizar"}
             </Button>
@@ -23,7 +23,9 @@ const MedicalAppointmentDetails = () => {
                 type="button"
                 className="secondary"
                 onClick={() =>
-                    isEditMode ? showModal("Estas seguro?", "Si, eliminar", deleteCalendarEvent) : handleIsEditMode()
+                    isEditMode
+                        ? showModal("Estas seguro?", "Si, eliminar", deleteMedicalAppointment)
+                        : handleIsEditMode()
                 }
             >
                 {isEditMode ? "Eliminar" : "Cancelar"}

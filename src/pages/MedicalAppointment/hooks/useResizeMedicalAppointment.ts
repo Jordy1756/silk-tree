@@ -1,31 +1,31 @@
 import { useToast } from "../../../shared/hooks/useToast";
 import { DragAndDropCalendar } from "../entities/DragAndDropCalendar";
 import { getOverlapToastData } from "../utility/handleCalendarEvent";
-import { useCalendarEvents } from "./useCalendarEvents";
+import { useMedicalAppointments } from "./useMedicalAppointments";
 
 export const useResizeMedicalAppointment = () => {
     const { addToast } = useToast();
-    const { checkCalendarEventOverlap } = useCalendarEvents();
+    const { checkMedicalAppointmentOverlap } = useMedicalAppointments();
 
-    const resizeCalendarEvent = ({ start, end, event }: DragAndDropCalendar) => {
-        const startDate = event.start;
-        const endDate = event.end;
+    const resizeMedicalAppointment = ({ start, end, event: medicalAppointment }: DragAndDropCalendar) => {
+        const startDate = medicalAppointment.start;
+        const endDate = medicalAppointment.end;
 
-        event.start = start;
-        event.end = end;
+        medicalAppointment.start = start;
+        medicalAppointment.end = end;
 
-        if (checkCalendarEventOverlap(event)) {
-            event.start = startDate;
-            event.end = endDate;
+        if (checkMedicalAppointmentOverlap(medicalAppointment)) {
+            medicalAppointment.start = startDate;
+            medicalAppointment.end = endDate;
             return addToast(getOverlapToastData());
         }
 
         addToast({
             title: "Horario actualizado",
-            message: `La duración de su cita de ${event.specialty} ha sido modificada correctamente`,
+            message: `La duración de su cita de ${medicalAppointment.specialty.name} ha sido modificada correctamente`,
             type: "success",
         });
     };
 
-    return { resizeCalendarEvent };
+    return { resizeMedicalAppointment };
 };

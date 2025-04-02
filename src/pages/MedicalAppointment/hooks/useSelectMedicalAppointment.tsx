@@ -1,14 +1,14 @@
 import { useStandardModal } from "../../../shared/hooks/useStandardModal";
-import { useCalendarEvents } from "./useCalendarEvents";
+import { useMedicalAppointments } from "./useMedicalAppointments";
 import MedicalAppointmentDetails from "../components/MedicalAppointmentDetails";
 import { MedicalAppointment } from "../entities/MedicalAppointment";
 
 export const useSelectMedicalAppointment = () => {
     const { showModal } = useStandardModal();
-    const { handleCurrentCalendarEvent } = useCalendarEvents();
+    const { handleCurrentMedicalAppointment } = useMedicalAppointments();
 
-    const selectMedicalAppointment = (calendarEvent: MedicalAppointment) => {
-        handleCurrentCalendarEvent(calendarEvent);
+    const selectMedicalAppointment = (medicalAppointment: MedicalAppointment) => {
+        handleCurrentMedicalAppointment(medicalAppointment);
         showModal("Detalles de la cita", <MedicalAppointmentDetails />);
     };
 

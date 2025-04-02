@@ -6,10 +6,10 @@ import "./index.css";
 
 const NewMedicalAppointment = () => {
     const { closeModal } = useStandardModal();
-    const { insertMedicalAppointment: insertCalendarEvent } = useInsertMedicalAppointment();
+    const { insertMedicalAppointment } = useInsertMedicalAppointment();
 
     return (
-        <MedicalAppointmentForm onSubmit={insertCalendarEvent}>
+        <MedicalAppointmentForm onSubmit={insertMedicalAppointment}>
             <Button type="submit" className="primary">
                 Agendar
             </Button>

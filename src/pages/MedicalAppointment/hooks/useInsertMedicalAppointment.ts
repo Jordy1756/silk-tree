@@ -3,12 +3,12 @@ import { useToast } from "../../../shared/hooks/useToast";
 import { MedicalAppointment } from "../entities/MedicalAppointment";
 import { AppointmentFormValues } from "../types/appointmentFormTypes";
 import { getDates, getOverlapToastData } from "../utility/handleCalendarEvent";
-import { useCalendarEvents } from "./useCalendarEvents";
+import { useMedicalAppointments } from "./useMedicalAppointments";
 
 export const useInsertMedicalAppointment = () => {
     const { addToast } = useToast();
     const { closeModal } = useStandardModal();
-    const { addCalendarEvent, checkCalendarEventOverlap } = useCalendarEvents();
+    const { addMedicalAppointment, checkMedicalAppointmentOverlap } = useMedicalAppointments();
 
     const insertMedicalAppointment = ({
         appointmentDate,
@@ -18,20 +18,23 @@ export const useInsertMedicalAppointment = () => {
     }: AppointmentFormValues) => {
         const { startDate, endDate } = getDates(appointmentDate, initialHour, finalHour);
 
-        const newCalendarEvent: MedicalAppointment = {
+        const newMedicalAppointment: MedicalAppointment = {
             id: crypto.randomUUID(),
             title: `Cita de ${specialty}`,
             start: startDate,
             end: endDate,
-            specialty,
+            specialty: {
+                id: 1,
+                name: "",
+            },
         };
 
-        if (checkCalendarEventOverlap(newCalendarEvent)) return addToast(getOverlapToastData());
+        if (checkMedicalAppointmentOverlap(newMedicalAppointment)) return addToast(getOverlapToastData());
 
-        addCalendarEvent(newCalendarEvent);
+        addMedicalAppointment(newMedicalAppointment);
         addToast({
             title: "Cita agendada exitosamente",
-            message: `Su cita de ${specialty} ha sido programada correctamente`,
+            message: `Su cita de ${newMedicalAppointment.specialty.name} ha sido programada correctamente`,
             type: "success",
         });
         closeModal();
