@@ -1,8 +1,8 @@
-import { AppointmentFormValues } from "../../types/appointmentFormTypes";
+import { MedicalAppointmentFormValues } from "../../types/appointmentFormTypes";
 import { ReactNode } from "react";
 import { useSpecialties } from "../../hooks/useSpecialties";
 import { useScheduleMedicalAppointmentForm } from "../../hooks/useScheduleMedicalAppointmentForm";
-import { getFormValidation } from "../../utility/handleAppointmentForm";
+import { getMedicalAppointmentFormValidation } from "../../utility/handleAppointmentForm";
 import Form from "../../../../shared/components/Form";
 import InputBox from "../../../../shared/components/InputBox";
 import "./index.css";
@@ -10,7 +10,7 @@ import "./index.css";
 type Props = {
     children: ReactNode;
     isNonEditable?: boolean;
-    onSubmit: (calendarEvent: AppointmentFormValues) => void;
+    onSubmit: (calendarEvent: MedicalAppointmentFormValues) => void;
 };
 
 const MedicalAppointmentForm = ({ children, isNonEditable, onSubmit }: Props) => {
@@ -23,7 +23,7 @@ const MedicalAppointmentForm = ({ children, isNonEditable, onSubmit }: Props) =>
                 <input
                     type="date"
                     readOnly={isNonEditable}
-                    {...register("appointmentDate", getFormValidation("appointmentDate"))}
+                    {...register("appointmentDate", getMedicalAppointmentFormValidation("appointmentDate"))}
                 />
             </InputBox>
             <div className="input__box-container">
@@ -31,24 +31,27 @@ const MedicalAppointmentForm = ({ children, isNonEditable, onSubmit }: Props) =>
                     <input
                         type="time"
                         readOnly={isNonEditable}
-                        {...register("initialHour", getFormValidation("initialHour"))}
+                        {...register("initialHour", getMedicalAppointmentFormValidation("initialHour"))}
                     />
                 </InputBox>
                 <InputBox name="finalHour" labelText="Hora de salida" error={errors.finalHour}>
                     <input
                         type="time"
                         readOnly={isNonEditable}
-                        {...register("finalHour", getFormValidation("finalHour"))}
+                        {...register("finalHour", getMedicalAppointmentFormValidation("finalHour"))}
                     />
                 </InputBox>
             </div>
             <InputBox name="specialty" labelText="Especialidad" error={errors.specialty}>
-                <select {...register("specialty", getFormValidation("specialty"))} disabled={isNonEditable}>
-                    <option value="" disabled>
+                <select
+                    {...register("specialty", getMedicalAppointmentFormValidation("specialty"))}
+                    disabled={isNonEditable}
+                >
+                    <option value='{"id":0,"name":""}' disabled>
                         Selecciona una opción
                     </option>
                     {specialties.map(({ id, name }) => (
-                        <option key={id} value={id}>
+                        <option key={id} value={JSON.stringify({ id, name })}>
                             {name}
                         </option>
                     ))}

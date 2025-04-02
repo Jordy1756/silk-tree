@@ -1,4 +1,4 @@
-export type AppointmentFormValues = {
+export type MedicalAppointmentFormValues = {
     appointmentDate: string;
     initialHour: string;
     finalHour: string;

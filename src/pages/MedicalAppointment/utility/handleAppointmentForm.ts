@@ -6,7 +6,7 @@ import {
     TIME_24_FORMAT,
 } from "../../../shared/utility/handleDates";
 import { MedicalAppointment } from "../entities/MedicalAppointment";
-import { AppointmentFormValues } from "../types/appointmentFormTypes";
+import { MedicalAppointmentFormValues } from "../types/appointmentFormTypes";
 
 type ValidationName = "appointmentDate" | "initialHour" | "finalHour" | "specialty";
 
@@ -19,7 +19,7 @@ export const validateAppointmentDate = (date: string) => {
     );
 };
 
-const formValidations = {
+const medicalAppointmentFormValidations = {
     appointmentDate: {
         required: { value: true, message: "La fecha es requerida" },
         validate: { isAfterToday: (date: string) => validateAppointmentDate(date) },
@@ -47,15 +47,16 @@ const formValidations = {
     },
 };
 
-export const getFormValidation = (validationName: ValidationName) => formValidations[validationName];
+export const getMedicalAppointmentFormValidation = (validationName: ValidationName) =>
+    medicalAppointmentFormValidations[validationName];
 
 export const getDefaultFormValues = ({
     start: startDate,
     end: endDate,
     specialty,
-}: MedicalAppointment): AppointmentFormValues => ({
+}: MedicalAppointment): MedicalAppointmentFormValues => ({
     appointmentDate: getFormattedDateString(startDate, DATE_FORMAT),
     initialHour: getFormattedDateString(startDate, TIME_24_FORMAT),
     finalHour: getFormattedDateString(endDate, TIME_24_FORMAT),
-    specialty,
+    specialty: JSON.stringify(specialty),
 });

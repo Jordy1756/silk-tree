@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { AppointmentFormValues } from "../types/appointmentFormTypes";
+import { MedicalAppointmentFormValues } from "../types/appointmentFormTypes";
 import { useEffect } from "react";
 import { useMedicalAppointments } from "./useMedicalAppointments";
 import { getDefaultFormValues } from "../utility/handleAppointmentForm";
@@ -11,7 +11,7 @@ export const useScheduleMedicalAppointmentForm = () => {
         handleSubmit,
         formState: { errors },
         reset,
-    } = useForm<AppointmentFormValues>({
+    } = useForm<MedicalAppointmentFormValues>({
         mode: "onBlur",
         defaultValues: getDefaultFormValues(currentMedicalAppointment),
     });

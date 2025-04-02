@@ -20,42 +20,30 @@ export const MedicalAppointmentsProvider = ({ children }: { children: ReactNode 
         title: "",
         start: new Date(),
         end: new Date(),
-        specialty: {
-            id: 0,
-            name: "",
-        },
+        specialty: { id: 0, name: "" },
     });
 
     const [medicalAppointments, serMedicalAppointments] = useState<MedicalAppointment[]>([
         {
             id: crypto.randomUUID(),
             title: "Meeting1",
-            start: new Date(2025, 2, 23, 8, 0),
-            end: new Date(2025, 2, 23, 9, 0),
-            specialty: {
-                id: 1,
-                name: "Cardiologia",
-            },
+            start: new Date(2025, 3, 4, 8, 0),
+            end: new Date(2025, 3, 4, 9, 0),
+            specialty: { id: 1, name: "Cardiología" },
         },
         {
             id: crypto.randomUUID(),
             title: "Meeting2",
-            start: new Date(2025, 2, 23, 9, 0),
-            end: new Date(2025, 2, 23, 10, 0),
-            specialty: {
-                id: 2,
-                name: "Reumatologia",
-            },
+            start: new Date(2025, 3, 4, 9, 0),
+            end: new Date(2025, 3, 4, 10, 0),
+            specialty: { id: 2, name: "Dermatología" },
         },
         {
             id: crypto.randomUUID(),
             title: "Meeting3",
-            start: new Date(2025, 2, 23, 10, 0),
-            end: new Date(2025, 2, 23, 11, 0),
-            specialty: {
-                id: 3,
-                name: "Neurologia",
-            },
+            start: new Date(2025, 3, 6, 10, 0),
+            end: new Date(2025, 3, 6, 11, 0),
+            specialty: { id: 3, name: "Endocrinología" },
         },
     ]);
 
@@ -71,15 +59,14 @@ export const MedicalAppointmentsProvider = ({ children }: { children: ReactNode 
     );
 
     const modifyMedicalAppointment = useCallback(
-        (updatedMedicalAppointment: MedicalAppointment) => {
+        (updatedMedicalAppointment: MedicalAppointment) =>
             serMedicalAppointments((prev) =>
                 prev.map((medicalAppointment) =>
                     medicalAppointment.id === updatedMedicalAppointment.id
                         ? updatedMedicalAppointment
                         : medicalAppointment
                 )
-            );
-        },
+            ),
         [serMedicalAppointments]
     );
 
