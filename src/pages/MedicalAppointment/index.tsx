@@ -1,5 +1,5 @@
 import Layout from "../../shared/layouts/Layout";
-import AppointmentCalendar from "./components/AppointmentCalendar";
+import MedicalAppointmentCalendar from "./components/MedicalAppointmentCalendar";
 import { ConfirmationModalProvider } from "../../shared/context/confirmationModalContext";
 import { StandardModalProvider } from "../../shared/context/standardModalContext";
 import { CalendarEventsProvider } from "./context/calendarEventsContext";
@@ -13,7 +13,7 @@ const ScheduleAppointment = () => {
                 <CalendarEventsProvider>
                     <StandardModalProvider>
                         <Layout>
-                            <AppointmentCalendar />
+                            <MedicalAppointmentCalendar />
                         </Layout>
                     </StandardModalProvider>
                 </CalendarEventsProvider>

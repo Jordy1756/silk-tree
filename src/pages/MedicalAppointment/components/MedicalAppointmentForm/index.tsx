@@ -1,7 +1,7 @@
 import { AppointmentFormValues } from "../../types/appointmentFormTypes";
 import { ReactNode } from "react";
 import { useSpecialties } from "../../hooks/useSpecialties";
-import { useScheduleAppointmentForm } from "../../hooks/useScheduleAppointmentForm";
+import { useScheduleMedicalAppointmentForm } from "../../hooks/useScheduleMedicalAppointmentForm";
 import { getFormValidation } from "../../utility/handleAppointmentForm";
 import Form from "../../../../shared/components/Form";
 import InputBox from "../../../../shared/components/InputBox";
@@ -13,9 +13,9 @@ type Props = {
     onSubmit: (calendarEvent: AppointmentFormValues) => void;
 };
 
-const ScheduleAppointmentForm = ({ children, isNonEditable, onSubmit }: Props) => {
+const MedicalAppointmentForm = ({ children, isNonEditable, onSubmit }: Props) => {
     const { specialties } = useSpecialties();
-    const { register, handleSubmit, errors } = useScheduleAppointmentForm();
+    const { register, handleSubmit, errors } = useScheduleMedicalAppointmentForm();
 
     return (
         <Form handleSubmit={handleSubmit} onSubmit={onSubmit}>
@@ -59,4 +59,4 @@ const ScheduleAppointmentForm = ({ children, isNonEditable, onSubmit }: Props) =
     );
 };
 
-export default ScheduleAppointmentForm;
+export default MedicalAppointmentForm;

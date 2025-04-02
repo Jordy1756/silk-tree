@@ -5,7 +5,7 @@ import {
     getFormattedDateString,
     TIME_24_FORMAT,
 } from "../../../shared/utility/handleDates";
-import { ICalendarEvent } from "../interfaces/ICalendarEvent";
+import { MedicalAppointment } from "../entities/MedicalAppointment";
 import { AppointmentFormValues } from "../types/appointmentFormTypes";
 
 type ValidationName = "appointmentDate" | "initialHour" | "finalHour" | "specialty";
@@ -53,7 +53,7 @@ export const getDefaultFormValues = ({
     start: startDate,
     end: endDate,
     specialty,
-}: ICalendarEvent): AppointmentFormValues => ({
+}: MedicalAppointment): AppointmentFormValues => ({
     appointmentDate: getFormattedDateString(startDate, DATE_FORMAT),
     initialHour: getFormattedDateString(startDate, TIME_24_FORMAT),
     finalHour: getFormattedDateString(endDate, TIME_24_FORMAT),

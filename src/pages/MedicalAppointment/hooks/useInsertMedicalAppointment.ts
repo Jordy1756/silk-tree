@@ -1,6 +1,6 @@
 import { useStandardModal } from "../../../shared/hooks/useStandardModal";
 import { useToast } from "../../../shared/hooks/useToast";
-import { ICalendarEvent } from "../interfaces/ICalendarEvent";
+import { MedicalAppointment } from "../entities/MedicalAppointment";
 import { AppointmentFormValues } from "../types/appointmentFormTypes";
 import { getDates, getOverlapToastData } from "../utility/handleCalendarEvent";
 import { useCalendarEvents } from "./useCalendarEvents";
@@ -10,10 +10,15 @@ export const useInsertMedicalAppointment = () => {
     const { closeModal } = useStandardModal();
     const { addCalendarEvent, checkCalendarEventOverlap } = useCalendarEvents();
 
-    const insertCalendarEvent = ({ appointmentDate, initialHour, finalHour, specialty }: AppointmentFormValues) => {
+    const insertMedicalAppointment = ({
+        appointmentDate,
+        initialHour,
+        finalHour,
+        specialty,
+    }: AppointmentFormValues) => {
         const { startDate, endDate } = getDates(appointmentDate, initialHour, finalHour);
 
-        const newCalendarEvent: ICalendarEvent = {
+        const newCalendarEvent: MedicalAppointment = {
             id: crypto.randomUUID(),
             title: `Cita de ${specialty}`,
             start: startDate,
@@ -32,5 +37,5 @@ export const useInsertMedicalAppointment = () => {
         closeModal();
     };
 
-    return { insertCalendarEvent };
+    return { insertMedicalAppointment };
 };

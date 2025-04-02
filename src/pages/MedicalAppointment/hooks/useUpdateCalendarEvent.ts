@@ -3,12 +3,18 @@ import { useToast } from "../../../shared/hooks/useToast";
 import { AppointmentFormValues } from "../types/appointmentFormTypes";
 import { getDates, getOverlapToastData } from "../utility/handleCalendarEvent";
 import { useCalendarEvents } from "./useCalendarEvents";
-export const useUpdateCalendarEvent = () => {
+
+export const useUpdateMedicalAppointment = () => {
     const { addToast } = useToast();
     const { closeModal } = useStandardModal();
     const { currentCalendarEvent, modifyCalendarEvent, checkCalendarEventOverlap } = useCalendarEvents();
 
-    const updateCalendarEvent = ({ appointmentDate, initialHour, finalHour, specialty }: AppointmentFormValues) => {
+    const updateMedicalAppointment = ({
+        appointmentDate,
+        initialHour,
+        finalHour,
+        specialty,
+    }: AppointmentFormValues) => {
         const { startDate, endDate } = getDates(appointmentDate, initialHour, finalHour);
 
         currentCalendarEvent.start = startDate;
@@ -27,5 +33,5 @@ export const useUpdateCalendarEvent = () => {
         closeModal();
     };
 
-    return { updateCalendarEvent };
+    return { updateMedicalAppointment };
 };

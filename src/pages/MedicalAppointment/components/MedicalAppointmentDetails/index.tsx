@@ -1,21 +1,21 @@
 import { useState } from "react";
 import { useConfirmationModal } from "../../../../shared/hooks/useConfirmartionModal";
-import { useUpdateCalendarEvent } from "../../hooks/useUpdateCalendarEvent";
+import { useUpdateMedicalAppointment } from "../../hooks/useUpdateCalendarEvent";
 import { useDeleteMedicalAppointment } from "../../hooks/useDeleteMedicalAppointment";
-import ScheduleAppointmentForm from "../SchuduleAppointmentForm";
+import MedicalAppointmentForm from "../MedicalAppointmentForm";
 import Button from "../../../../shared/components/Button";
 import "./index.css";
 
-const ScheduleAppointmentDetails = () => {
+const MedicalAppointmentDetails = () => {
     const [isEditMode, setIsEditMode] = useState(true);
     const handleIsEditMode = () => setIsEditMode((prev) => !prev);
 
     const { showModal } = useConfirmationModal();
-    const { updateCalendarEvent } = useUpdateCalendarEvent();
-    const { deleteCalendarEvent } = useDeleteMedicalAppointment();
+    const { updateMedicalAppointment: updateCalendarEvent } = useUpdateMedicalAppointment();
+    const { deleteMedicalAppointment: deleteCalendarEvent } = useDeleteMedicalAppointment();
 
     return (
-        <ScheduleAppointmentForm isNonEditable={isEditMode} onSubmit={updateCalendarEvent}>
+        <MedicalAppointmentForm isNonEditable={isEditMode} onSubmit={updateCalendarEvent}>
             <Button type={!isEditMode ? "button" : "submit"} className="primary" onClick={() => handleIsEditMode()}>
                 {isEditMode ? "Editar" : "Actualizar"}
             </Button>
@@ -28,8 +28,8 @@ const ScheduleAppointmentDetails = () => {
             >
                 {isEditMode ? "Eliminar" : "Cancelar"}
             </Button>
-        </ScheduleAppointmentForm>
+        </MedicalAppointmentForm>
     );
 };
 
-export default ScheduleAppointmentDetails;
+export default MedicalAppointmentDetails;

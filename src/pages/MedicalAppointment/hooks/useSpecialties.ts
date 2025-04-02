@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { ISpecialty } from "../interfaces/ISpecialty";
+import { Specialty } from "../entities/Specialty";
 
 export const useSpecialties = () => {
-    const [specialties, setSpecialties] = useState<ISpecialty[]>([
+    const [specialties, setSpecialties] = useState<Specialty[]>([
         { id: "1", name: "Cardiología" },
         { id: "2", name: "Dermatología" },
         { id: "3", name: "Endocrinología" },

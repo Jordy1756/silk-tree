@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { useCalendarEvents } from "./useCalendarEvents";
 import { getDefaultFormValues } from "../utility/handleAppointmentForm";
 
-export const useScheduleAppointmentForm = () => {
+export const useScheduleMedicalAppointmentForm = () => {
     const { currentCalendarEvent } = useCalendarEvents();
     const {
         register,

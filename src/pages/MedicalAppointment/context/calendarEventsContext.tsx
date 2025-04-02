@@ -1,20 +1,20 @@
 import { createContext, ReactNode, useCallback, useState } from "react";
-import { ICalendarEvent } from "../interfaces/ICalendarEvent";
+import { MedicalAppointment } from "../entities/MedicalAppointment";
 
 type CalendarEventsContextType = {
-    currentCalendarEvent: ICalendarEvent;
-    calendarEvents: ICalendarEvent[];
-    handleCurrentCalendarEvent: (calendarEvent: ICalendarEvent) => void;
-    addCalendarEvent: (newEvent: ICalendarEvent) => void;
-    modifyCalendarEvent: (updatedEvent: ICalendarEvent) => void;
+    currentCalendarEvent: MedicalAppointment;
+    calendarEvents: MedicalAppointment[];
+    handleCurrentCalendarEvent: (calendarEvent: MedicalAppointment) => void;
+    addCalendarEvent: (newEvent: MedicalAppointment) => void;
+    modifyCalendarEvent: (updatedEvent: MedicalAppointment) => void;
     removeCalendarEvent: () => void;
-    checkCalendarEventOverlap: (newEvent: ICalendarEvent) => boolean;
+    checkCalendarEventOverlap: (newEvent: MedicalAppointment) => boolean;
 };
 
 export const CalendarEventsContext = createContext<CalendarEventsContextType | undefined>(undefined);
 
 export const CalendarEventsProvider = ({ children }: { children: ReactNode }) => {
-    const [currentCalendarEvent, setCurrentCalendarEvent] = useState<ICalendarEvent>({
+    const [currentCalendarEvent, setCurrentCalendarEvent] = useState<MedicalAppointment>({
         id: "",
         title: "",
         start: new Date(),
@@ -22,7 +22,7 @@ export const CalendarEventsProvider = ({ children }: { children: ReactNode }) =>
         specialty: "",
     });
 
-    const [calendarEvents, setCalendarEvents] = useState<ICalendarEvent[]>([
+    const [calendarEvents, setCalendarEvents] = useState<MedicalAppointment[]>([
         {
             id: crypto.randomUUID(),
             title: "Meeting1",
@@ -47,17 +47,17 @@ export const CalendarEventsProvider = ({ children }: { children: ReactNode }) =>
     ]);
 
     const handleCurrentCalendarEvent = useCallback(
-        (calendarEvent: ICalendarEvent) => setCurrentCalendarEvent(calendarEvent),
+        (calendarEvent: MedicalAppointment) => setCurrentCalendarEvent(calendarEvent),
         [setCurrentCalendarEvent]
     );
 
     const addCalendarEvent = useCallback(
-        (newCalendarEvent: ICalendarEvent) => setCalendarEvents((prev) => [...prev, newCalendarEvent]),
+        (newCalendarEvent: MedicalAppointment) => setCalendarEvents((prev) => [...prev, newCalendarEvent]),
         [setCalendarEvents]
     );
 
     const modifyCalendarEvent = useCallback(
-        (updatedCalendarEvent: ICalendarEvent) => {
+        (updatedCalendarEvent: MedicalAppointment) => {
             setCalendarEvents((prev) =>
                 prev.map((event) => (event.id === updatedCalendarEvent.id ? updatedCalendarEvent : event))
             );
@@ -70,7 +70,7 @@ export const CalendarEventsProvider = ({ children }: { children: ReactNode }) =>
         [setCalendarEvents, currentCalendarEvent.id]
     );
 
-    const checkCalendarEventOverlap = (newEvent: ICalendarEvent) =>
+    const checkCalendarEventOverlap = (newEvent: MedicalAppointment) =>
         calendarEvents.some(({ id, start, end }) => newEvent.id !== id && newEvent.start < end && newEvent.end > start);
 
     return (

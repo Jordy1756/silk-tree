@@ -10,7 +10,7 @@ export const useDeleteMedicalAppointment = () => {
         removeCalendarEvent,
     } = useCalendarEvents();
 
-    const deleteCalendarEvent = () => {
+    const deleteMedicalAppointment = () => {
         removeCalendarEvent();
         addToast({
             title: "Cita eliminada exitosamente",
@@ -20,5 +20,5 @@ export const useDeleteMedicalAppointment = () => {
         closeModal();
     };
 
-    return { deleteCalendarEvent };
+    return { deleteMedicalAppointment };
 };
