@@ -4,7 +4,7 @@ import { validateAppointmentDate } from "../utility/handleAppointmentForm";
 import { getOverlapToastData } from "../utility/handleCalendarEvent";
 import { useCalendarEvents } from "./useCalendarEvents";
 
-export const useMoveCalendarEvent = () => {
+export const useMoveMedicalAppointment = () => {
     const { addToast } = useToast();
     const { checkCalendarEventOverlap } = useCalendarEvents();
 

@@ -3,7 +3,7 @@ import { IDragAndDropCalendar } from "../interfaces/IDragAndDropCalendar";
 import { getOverlapToastData } from "../utility/handleCalendarEvent";
 import { useCalendarEvents } from "./useCalendarEvents";
 
-export const useResizeCalendarEvent = () => {
+export const useResizeMedicalAppointment = () => {
     const { addToast } = useToast();
     const { checkCalendarEventOverlap } = useCalendarEvents();
 

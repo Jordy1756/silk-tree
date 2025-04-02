@@ -1,10 +1,10 @@
 import { Calendar, Views } from "react-big-calendar";
 import { useCalendar } from "../../hooks/useCalendar";
 import { useCalendarEvents } from "../../hooks/useCalendarEvents";
-import { useMoveCalendarEvent } from "../../hooks/useMoveCalendarEvent";
+import { useMoveMedicalAppointment } from "../../hooks/useMoveCalendarEvent";
 import { useSelectCalendarEvent } from "../../hooks/useSelectCalendarEvent";
 import { useSelectCalendarSlot } from "../../hooks/useSelectCalendarSlot";
-import { useResizeCalendarEvent } from "../../hooks/useResizeCalendarEvent";
+import { useResizeMedicalAppointment } from "../../hooks/useResizeMedicalAppointment";
 import withDragAndDrop from "react-big-calendar/lib/addons/dragAndDrop/withDragAndDrop.js";
 import "./index.css";
 
@@ -17,8 +17,8 @@ const AppointmentCalendar = () => {
     const { calendarEvents } = useCalendarEvents();
     const { selectCalendarEvent } = useSelectCalendarEvent();
     const { selectCalendarSlot } = useSelectCalendarSlot(currentView);
-    const { resizeCalendarEvent } = useResizeCalendarEvent();
-    const { moveCalendarEvent } = useMoveCalendarEvent();
+    const { resizeCalendarEvent } = useResizeMedicalAppointment();
+    const { moveCalendarEvent } = useMoveMedicalAppointment();
 
     return (
         <DragAndDropCalendar

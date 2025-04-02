@@ -5,7 +5,7 @@ import { AppointmentFormValues } from "../types/appointmentFormTypes";
 import { getDates, getOverlapToastData } from "../utility/handleCalendarEvent";
 import { useCalendarEvents } from "./useCalendarEvents";
 
-export const useInsertCalendarEvent = () => {
+export const useInsertMedicalAppointment = () => {
     const { addToast } = useToast();
     const { closeModal } = useStandardModal();
     const { addCalendarEvent, checkCalendarEventOverlap } = useCalendarEvents();

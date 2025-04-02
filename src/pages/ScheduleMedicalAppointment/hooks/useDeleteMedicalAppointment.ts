@@ -2,7 +2,7 @@ import { useStandardModal } from "../../../shared/hooks/useStandardModal";
 import { useToast } from "../../../shared/hooks/useToast";
 import { useCalendarEvents } from "./useCalendarEvents";
 
-export const useDeleteCalendarEvent = () => {
+export const useDeleteMedicalAppointment = () => {
     const { addToast } = useToast();
     const { closeModal } = useStandardModal();
     const {

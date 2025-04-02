@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Auth from "./pages/Auth";
 import Home from "./pages/Home";
-import ScheduleAppointment from "./pages/ScheduleAppointment";
+import ScheduleAppointment from "./pages/ScheduleMedicalAppointment";
 
 const App = () => {
     return (

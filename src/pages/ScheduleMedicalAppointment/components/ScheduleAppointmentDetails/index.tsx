@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useConfirmationModal } from "../../../../shared/hooks/useConfirmartionModal";
 import { useUpdateCalendarEvent } from "../../hooks/useUpdateCalendarEvent";
-import { useDeleteCalendarEvent } from "../../hooks/useDeleteCalendarEvent";
+import { useDeleteMedicalAppointment } from "../../hooks/useDeleteMedicalAppointment";
 import ScheduleAppointmentForm from "../SchuduleAppointmentForm";
 import Button from "../../../../shared/components/Button";
 import "./index.css";
@@ -12,7 +12,7 @@ const ScheduleAppointmentDetails = () => {
 
     const { showModal } = useConfirmationModal();
     const { updateCalendarEvent } = useUpdateCalendarEvent();
-    const { deleteCalendarEvent } = useDeleteCalendarEvent();
+    const { deleteCalendarEvent } = useDeleteMedicalAppointment();
 
     return (
         <ScheduleAppointmentForm isNonEditable={isEditMode} onSubmit={updateCalendarEvent}>
