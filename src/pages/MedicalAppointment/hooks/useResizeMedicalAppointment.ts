@@ -1,13 +1,14 @@
 import { useToast } from "../../../shared/hooks/useToast";
 import { DragAndDropCalendar } from "../entities/DragAndDropCalendar";
-import { getOverlapToastData } from "../utility/handleCalendarEvent";
+import { updateMedicalAppointmentService } from "../services/updateMedicalAppointmentService";
+import { getOverlapToastData } from "../utility/handleMedicalAppointment";
 import { useMedicalAppointments } from "./useMedicalAppointments";
 
 export const useResizeMedicalAppointment = () => {
     const { addToast } = useToast();
     const { checkMedicalAppointmentOverlap } = useMedicalAppointments();
 
-    const resizeMedicalAppointment = ({ start, end, event: medicalAppointment }: DragAndDropCalendar) => {
+    const resizeMedicalAppointment = async ({ start, end, event: medicalAppointment }: DragAndDropCalendar) => {
         const startDate = medicalAppointment.start;
         const endDate = medicalAppointment.end;
 
@@ -19,6 +20,8 @@ export const useResizeMedicalAppointment = () => {
             medicalAppointment.end = endDate;
             return addToast(getOverlapToastData());
         }
+
+        await updateMedicalAppointmentService(medicalAppointment);
 
         addToast({
             title: "Horario actualizado",

@@ -1,8 +1,9 @@
 import { useStandardModal } from "../../../shared/hooks/useStandardModal";
 import { useToast } from "../../../shared/hooks/useToast";
 import { Specialty } from "../entities/Specialty";
+import { updateMedicalAppointmentService } from "../services/updateMedicalAppointmentService";
 import { MedicalAppointmentFormValues } from "../types/appointmentFormTypes";
-import { getDates, getOverlapToastData } from "../utility/handleCalendarEvent";
+import { getDates, getOverlapToastData } from "../utility/handleMedicalAppointment";
 import { useMedicalAppointments } from "./useMedicalAppointments";
 
 export const useUpdateMedicalAppointment = () => {
@@ -11,7 +12,7 @@ export const useUpdateMedicalAppointment = () => {
     const { currentMedicalAppointment, modifyMedicalAppointment, checkMedicalAppointmentOverlap } =
         useMedicalAppointments();
 
-    const updateMedicalAppointment = ({
+    const updateMedicalAppointment = async ({
         appointmentDate,
         initialHour,
         finalHour,
@@ -27,6 +28,7 @@ export const useUpdateMedicalAppointment = () => {
 
         if (checkMedicalAppointmentOverlap(currentMedicalAppointment)) return addToast(getOverlapToastData());
 
+        await updateMedicalAppointmentService(currentMedicalAppointment);
         modifyMedicalAppointment(currentMedicalAppointment);
 
         addToast({

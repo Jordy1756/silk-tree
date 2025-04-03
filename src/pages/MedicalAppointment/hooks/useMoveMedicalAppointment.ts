@@ -1,14 +1,15 @@
 import { useToast } from "../../../shared/hooks/useToast";
 import { DragAndDropCalendar } from "../entities/DragAndDropCalendar";
+import { updateMedicalAppointmentService } from "../services/updateMedicalAppointmentService";
 import { validateAppointmentDate } from "../utility/handleAppointmentForm";
-import { getOverlapToastData } from "../utility/handleCalendarEvent";
+import { getOverlapToastData } from "../utility/handleMedicalAppointment";
 import { useMedicalAppointments } from "./useMedicalAppointments";
 
 export const useMoveMedicalAppointment = () => {
     const { addToast } = useToast();
     const { checkMedicalAppointmentOverlap } = useMedicalAppointments();
 
-    const moveMedicalAppointment = ({ start, end, event: medicalAppointment }: DragAndDropCalendar) => {
+    const moveMedicalAppointment = async ({ start, end, event: medicalAppointment }: DragAndDropCalendar) => {
         const message = validateAppointmentDate(start.toDateString());
 
         if (typeof message === "string") return addToast({ title: "Fecha no válida", message, type: "error" });
@@ -24,6 +25,8 @@ export const useMoveMedicalAppointment = () => {
             medicalAppointment.end = endDate;
             return addToast(getOverlapToastData());
         }
+
+        await updateMedicalAppointmentService(medicalAppointment);
 
         addToast({
             title: "Cita movida exitosamente",

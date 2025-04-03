@@ -2,8 +2,9 @@ import { useStandardModal } from "../../../shared/hooks/useStandardModal";
 import { useToast } from "../../../shared/hooks/useToast";
 import { MedicalAppointment } from "../entities/MedicalAppointment";
 import { Specialty } from "../entities/Specialty";
+import { insertMedicalAppointmentService } from "../services/insertMedicalAppointmentService";
 import { MedicalAppointmentFormValues } from "../types/appointmentFormTypes";
-import { getDates, getOverlapToastData } from "../utility/handleCalendarEvent";
+import { getDates, getOverlapToastData } from "../utility/handleMedicalAppointment";
 import { useMedicalAppointments } from "./useMedicalAppointments";
 
 export const useInsertMedicalAppointment = () => {
@@ -11,7 +12,7 @@ export const useInsertMedicalAppointment = () => {
     const { closeModal } = useStandardModal();
     const { addMedicalAppointment, checkMedicalAppointmentOverlap } = useMedicalAppointments();
 
-    const insertMedicalAppointment = ({
+    const insertMedicalAppointment = async ({
         appointmentDate,
         initialHour,
         finalHour,
@@ -21,7 +22,7 @@ export const useInsertMedicalAppointment = () => {
         const specialty: Specialty = JSON.parse(selectedSpecialty);
 
         const newMedicalAppointment: MedicalAppointment = {
-            id: crypto.randomUUID(),
+            id: "",
             title: `Cita de ${specialty.name}`,
             start: startDate,
             end: endDate,
@@ -30,6 +31,8 @@ export const useInsertMedicalAppointment = () => {
 
         if (checkMedicalAppointmentOverlap(newMedicalAppointment)) return addToast(getOverlapToastData());
 
+        const medicalAppointment = await insertMedicalAppointmentService(newMedicalAppointment);
+        newMedicalAppointment.id = medicalAppointment.id;
         addMedicalAppointment(newMedicalAppointment);
         addToast({
             title: "Cita agendada exitosamente",

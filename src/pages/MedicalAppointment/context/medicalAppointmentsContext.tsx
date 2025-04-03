@@ -1,7 +1,8 @@
-import { createContext, ReactNode, useCallback, useState } from "react";
+import { createContext, ReactNode, useCallback, useEffect, useState } from "react";
 import { MedicalAppointment } from "../entities/MedicalAppointment";
 import { useSpecialties } from "../hooks/useSpecialties";
 import { Specialty } from "../entities/Specialty";
+import { getAllMedicalAppointmentsService } from "../services/getAllMedicalAppointmentsService";
 
 type MedicalAppointmentsContextType = {
     specialties: Specialty[];
@@ -27,29 +28,19 @@ export const MedicalAppointmentsProvider = ({ children }: { children: ReactNode 
         specialty: { id: 0, name: "" },
     });
 
-    const [medicalAppointments, serMedicalAppointments] = useState<MedicalAppointment[]>([
-        {
-            id: crypto.randomUUID(),
-            title: "Meeting1",
-            start: new Date(2025, 3, 4, 8, 0),
-            end: new Date(2025, 3, 4, 9, 0),
-            specialty: { id: 1, name: "Cardiología" },
-        },
-        {
-            id: crypto.randomUUID(),
-            title: "Meeting2",
-            start: new Date(2025, 3, 4, 9, 0),
-            end: new Date(2025, 3, 4, 10, 0),
-            specialty: { id: 2, name: "Dermatología" },
-        },
-        {
-            id: crypto.randomUUID(),
-            title: "Meeting3",
-            start: new Date(2025, 3, 6, 10, 0),
-            end: new Date(2025, 3, 6, 11, 0),
-            specialty: { id: 3, name: "Endocrinología" },
-        },
-    ]);
+    const [medicalAppointments, setMedicalAppointments] = useState<MedicalAppointment[]>([]);
+
+    useEffect(() => {
+        const fetchMedicalAppointments = async () => {
+            try {
+                setMedicalAppointments(await getAllMedicalAppointmentsService());
+            } catch (err) {
+                console.log(err);
+            }
+        };
+
+        fetchMedicalAppointments();
+    }, []);
 
     const handleCurrentMedicalAppointment = useCallback(
         (medicalAppointment: MedicalAppointment) => setCurrentMedicalAppointment(medicalAppointment),
@@ -58,31 +49,34 @@ export const MedicalAppointmentsProvider = ({ children }: { children: ReactNode 
 
     const addMedicalAppointment = useCallback(
         (newMedicalAppointment: MedicalAppointment) =>
-            serMedicalAppointments((prev) => [...prev, newMedicalAppointment]),
-        [serMedicalAppointments]
+            setMedicalAppointments((prev) => [...prev, newMedicalAppointment]),
+        [setMedicalAppointments]
     );
 
     const modifyMedicalAppointment = useCallback(
         (updatedMedicalAppointment: MedicalAppointment) =>
-            serMedicalAppointments((prev) =>
+            setMedicalAppointments((prev) =>
                 prev.map((medicalAppointment) =>
                     medicalAppointment.id === updatedMedicalAppointment.id
                         ? updatedMedicalAppointment
                         : medicalAppointment
                 )
             ),
-        [serMedicalAppointments]
+        [setMedicalAppointments]
     );
 
     const removeMedicalAppointment = useCallback(() => {
-        serMedicalAppointments((prev) =>
+        setMedicalAppointments((prev) =>
             prev.filter((medicalAppointment) => medicalAppointment.id !== currentMedicalAppointment.id)
         );
-    }, [serMedicalAppointments, currentMedicalAppointment.id]);
+    }, [setMedicalAppointments, currentMedicalAppointment.id]);
 
-    const checkMedicalAppointmentOverlap = (newEvent: MedicalAppointment) =>
+    const checkMedicalAppointmentOverlap = (newMedicalAppointment: MedicalAppointment) =>
         medicalAppointments.some(
-            ({ id, start, end }) => newEvent.id !== id && newEvent.start < end && newEvent.end > start
+            ({ id, start, end }) =>
+                newMedicalAppointment.id !== id &&
+                newMedicalAppointment.start < end &&
+                newMedicalAppointment.end > start
         );
 
     return (
