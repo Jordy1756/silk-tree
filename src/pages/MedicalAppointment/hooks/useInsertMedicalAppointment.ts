@@ -28,8 +28,6 @@ export const useInsertMedicalAppointment = () => {
             specialty,
         };
 
-        console.log({ newMedicalAppointment });
-
         if (checkMedicalAppointmentOverlap(newMedicalAppointment)) return addToast(getOverlapToastData());
 
         addMedicalAppointment(newMedicalAppointment);

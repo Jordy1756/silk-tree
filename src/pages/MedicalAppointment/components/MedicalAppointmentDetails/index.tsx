@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useConfirmationModal } from "../../../../shared/hooks/useConfirmartionModal";
-import { useUpdateMedicalAppointment } from "../../hooks/useUpdateCalendarEvent";
+import { useUpdateMedicalAppointment } from "../../hooks/useUpdateMedicalAppointment";
 import { useDeleteMedicalAppointment } from "../../hooks/useDeleteMedicalAppointment";
 import MedicalAppointmentForm from "../MedicalAppointmentForm";
 import Button from "../../../../shared/components/Button";

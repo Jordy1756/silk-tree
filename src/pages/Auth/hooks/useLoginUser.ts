@@ -16,21 +16,14 @@ export const useLoginUser = () => {
     } = useForm({
         mode: "onBlur",
         defaultValues: {
-            email: "pepito@gmail.com",
-            password: "12345678",
+            email: "",
+            password: "",
         },
     });
 
     const loginUser = async (userData: User) => {
         try {
-            const response = await loginUserService(userData);
-
-            if (!response.ok) throw new Error();
-
-            const user = await response.json();
-
-            if (!user) throw new Error("Credenciales invalidas");
-
+            await loginUserService(userData);
             reset();
             navigate("/#home", { replace: true });
         } catch (error: any) {

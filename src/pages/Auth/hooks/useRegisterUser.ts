@@ -23,14 +23,8 @@ export const useRegisterUser = (handleIsToggled: () => void) => {
 
     const registerUser = async (userData: User) => {
         try {
-            const response = await registerUserService(userData);
-
-            if (!response.ok) throw new Error();
-
-            const user = await response.json();
-
-            if (!user) throw new Error("No se pudo crear el usuario");
-
+            const user = await registerUserService(userData);
+            
             addToast({
                 title: "Usuario creado",
                 message: ` El usuario ${user.email} fue creado correctamente`,

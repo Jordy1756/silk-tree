@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { useMedicalAppointments } from "./useMedicalAppointments";
 import { getDefaultFormValues } from "../utility/handleAppointmentForm";
 
-export const useScheduleMedicalAppointmentForm = () => {
+export const useMedicalAppointmentForm = () => {
     const { currentMedicalAppointment } = useMedicalAppointments();
     const {
         register,

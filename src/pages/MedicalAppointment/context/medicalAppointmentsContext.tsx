@@ -1,7 +1,10 @@
 import { createContext, ReactNode, useCallback, useState } from "react";
 import { MedicalAppointment } from "../entities/MedicalAppointment";
+import { useSpecialties } from "../hooks/useSpecialties";
+import { Specialty } from "../entities/Specialty";
 
 type MedicalAppointmentsContextType = {
+    specialties: Specialty[];
     currentMedicalAppointment: MedicalAppointment;
     medicalAppointments: MedicalAppointment[];
     handleCurrentMedicalAppointment: (medicalAppointment: MedicalAppointment) => void;
@@ -15,6 +18,7 @@ type MedicalAppointmentsContextType = {
 export const MedicalAppointmentsContext = createContext<MedicalAppointmentsContextType | undefined>(undefined);
 
 export const MedicalAppointmentsProvider = ({ children }: { children: ReactNode }) => {
+    const { specialties } = useSpecialties();
     const [currentMedicalAppointment, setCurrentMedicalAppointment] = useState<MedicalAppointment>({
         id: "",
         title: "",
@@ -84,6 +88,7 @@ export const MedicalAppointmentsProvider = ({ children }: { children: ReactNode 
     return (
         <MedicalAppointmentsContext.Provider
             value={{
+                specialties,
                 currentMedicalAppointment,
                 medicalAppointments,
                 handleCurrentMedicalAppointment,
