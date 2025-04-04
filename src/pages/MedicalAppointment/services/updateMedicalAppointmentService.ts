@@ -4,6 +4,7 @@ import { MedicalAppointment } from "../entities/MedicalAppointment";
 export const updateMedicalAppointmentService = async (medicalAppointment: MedicalAppointment) => {
     const response = await fetch(`${MEDICAL_APPOINTMENT_BASE_URL}/updateMedicalAppointment`, {
         method: "PUT",
+        credentials: "include",
         headers: {
             "Content-Type": "application/json",
         },

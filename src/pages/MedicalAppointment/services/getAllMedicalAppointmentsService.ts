@@ -3,7 +3,9 @@ import { MedicalAppointment } from "../entities/MedicalAppointment";
 import { convertToDate } from "../../../shared/utility/handleDates";
 
 export const getAllMedicalAppointmentsService = async () => {
-    const response = await fetch(`${MEDICAL_APPOINTMENT_BASE_URL}/getAllMedicalAppointments`);
+    const response = await fetch(`${MEDICAL_APPOINTMENT_BASE_URL}/getAllMedicalAppointments`, {
+        credentials: "include",
+    });
 
     if (!response.ok) throw new Error();
 

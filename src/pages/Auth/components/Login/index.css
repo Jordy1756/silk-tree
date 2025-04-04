@@ -41,8 +41,11 @@
 }
 
 .login > main > form > div > .forgot__password {
+    margin-left: auto;
+    width: fit-content;
     margin-block: 0.5rem;
-    text-align: right;
+    color: var(--neutral-600);
+    font-weight: 300;
 }
 
 .login > footer > p > button {

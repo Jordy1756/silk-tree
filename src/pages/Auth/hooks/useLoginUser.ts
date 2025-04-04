@@ -16,8 +16,8 @@ export const useLoginUser = () => {
     } = useForm({
         mode: "onBlur",
         defaultValues: {
-            email: "",
-            password: "",
+            email: "jordycastro1756@gmail.com",
+            password: "12345678",
         },
     });
 

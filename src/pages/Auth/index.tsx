@@ -1,11 +1,11 @@
-import "./index.css";
+import logo from "../../assets/images/company/logo.png";
 import Register from "./components/Register";
 import Login from "./components/Login";
-import { NavLink } from "react-router-dom";
-import logo from "../../assets/images/company/logo.png";
 import TogglePanel from "./components/TogglePanel";
+import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import { ToastProvider } from "../../shared/context/toastContext";
+import "./index.css";
 
 const Auth = () => {
     const [isToggled, setIsToggled] = useState(false);
