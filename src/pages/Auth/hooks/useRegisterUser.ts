@@ -3,6 +3,8 @@ import { useToast } from "../../../shared/hooks/useToast";
 import { User } from "../entities/User";
 import { registerUserService } from "../services/registerUserService";
 import { ApiError } from "../../../shared/utility/apiError";
+import { TokenResponse, useGoogleLogin } from "@react-oauth/google";
+import { registerUserWithGoogleService } from "../services/registerUserWithGoogleService";
 
 export const useRegisterUser = (handleIsToggled: () => void) => {
     const { addToast } = useToast();
@@ -28,7 +30,7 @@ export const useRegisterUser = (handleIsToggled: () => void) => {
 
             addToast({
                 title: "Usuario creado",
-                message: ` El usuario ${user.email} fue creado correctamente`,
+                message: `El usuario ${user.email} fue creado correctamente`,
                 type: "success",
             });
             reset();
@@ -39,5 +41,28 @@ export const useRegisterUser = (handleIsToggled: () => void) => {
         }
     };
 
-    return { register, handleSubmit, errors, registerUser };
+    const registerUserWithGoogle = useGoogleLogin({
+        onSuccess: async (tokenResponse: TokenResponse) => {
+            try {
+                const user = await registerUserWithGoogleService(tokenResponse.access_token);
+                addToast({
+                    title: "Usuario creado",
+                    message: `El usuario ${user.email} fue creado correctamente`,
+                    type: "success",
+                });
+                handleIsToggled();
+            } catch (error: any) {
+                console.log(error);
+                if (error instanceof ApiError) addToast({ title: error.name, message: error.message, type: "error" });
+            }
+        },
+        onError: () =>
+            addToast({
+                title: "Error de autenticación",
+                message: "Hubo un problema al conectar con Google. Por favor, intenta más tarde",
+                type: "error",
+            }),
+    });
+
+    return { register, handleSubmit, errors, registerUser, registerUserWithGoogle };
 };

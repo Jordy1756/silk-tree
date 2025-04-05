@@ -3,9 +3,9 @@ import Separator from "../Separator";
 import GoogleIcon from "../../../../assets/icons/GoogleIcon";
 import Button from "../../../../shared/components/Button";
 import InputBox from "../../../../shared/components/InputBox";
-import "./index.css";
 import { useLoginUser } from "../../hooks/useLoginUser";
 import { getLoginFormValidation } from "../../utils/loginFormValidations";
+import "./index.css";
 
 type Props = {
     isToggled: boolean;
@@ -13,7 +13,8 @@ type Props = {
 };
 
 const Login = ({ isToggled, handleIsToggled }: Props) => {
-    const { register, handleSubmit, errors, loginUser } = useLoginUser();
+    const { register, handleSubmit, errors, loginUser, loginUserWithGoogle } = useLoginUser();
+
     return (
         <section className={`login ${isToggled ? "active" : ""}`}>
             <header>
@@ -41,9 +42,8 @@ const Login = ({ isToggled, handleIsToggled }: Props) => {
                     </Button>
                 </Form>
                 <Separator text="O inicia sesión con" />
-                <Button className="secondary" type="button">
-                    <GoogleIcon width={24} height={24} />
-                    Iniciar Sesion con Google
+                <Button className="secondary" type="button" onClick={() => loginUserWithGoogle()}>
+                    <GoogleIcon width={24} height={24} /> Google
                 </Button>
             </main>
             <footer>

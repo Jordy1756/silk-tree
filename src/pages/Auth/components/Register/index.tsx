@@ -13,7 +13,7 @@ type Props = {
 };
 
 const Register = ({ isToggled, handleIsToggled }: Props) => {
-    const { register, handleSubmit, errors, registerUser } = useRegisterUser(handleIsToggled);
+    const { register, handleSubmit, errors, registerUser, registerUserWithGoogle } = useRegisterUser(handleIsToggled);
 
     return (
         <section className={`register ${!isToggled ? "active" : ""}`}>
@@ -63,8 +63,8 @@ const Register = ({ isToggled, handleIsToggled }: Props) => {
                     </Button>
                 </Form>
                 <Separator text="o registrate con" />
-                <Button type="button" className="secondary">
-                    <GoogleIcon width={24} height={24} /> Registrarse con Google
+                <Button type="button" className="secondary" onClick={() => registerUserWithGoogle()}>
+                    <GoogleIcon width={24} height={24} /> Google
                 </Button>
             </main>
             <footer>
