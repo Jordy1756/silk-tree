@@ -1,4 +1,3 @@
-import Layout from "../../shared/layouts/Layout";
 import Marquee from "../../shared/components/Marquee";
 import AboutUs from "./components/AboutUs";
 import Hero from "./components/Hero";
@@ -23,7 +22,7 @@ const Home = () => {
     }, [location]);
 
     return (
-        <Layout>
+        <>
             <Hero />
             <Marquee list={basics.marquee} />
             <AboutUs />
@@ -31,7 +30,7 @@ const Home = () => {
             <OurTeam />
             <FAQ />
             <ContactUs />
-        </Layout>
+        </>
     );
 };
 

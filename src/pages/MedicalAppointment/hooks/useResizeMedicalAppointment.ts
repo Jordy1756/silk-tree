@@ -1,4 +1,5 @@
 import { useToast } from "../../../shared/hooks/useToast";
+import { ApiError } from "../../../shared/utility/apiError";
 import { DragAndDropCalendar } from "../entities/DragAndDropCalendar";
 import { updateMedicalAppointmentService } from "../services/updateMedicalAppointmentService";
 import { getOverlapToastData } from "../utility/handleMedicalAppointment";
@@ -21,13 +22,18 @@ export const useResizeMedicalAppointment = () => {
             return addToast(getOverlapToastData());
         }
 
-        await updateMedicalAppointmentService(medicalAppointment);
+        try {
+            await updateMedicalAppointmentService(medicalAppointment);
 
-        addToast({
-            title: "Horario actualizado",
-            message: `La duración de su cita de ${medicalAppointment.specialty.name} ha sido modificada correctamente`,
-            type: "success",
-        });
+            addToast({
+                title: "Horario actualizado",
+                message: `La duración de su cita de ${medicalAppointment.specialty.name} ha sido modificada correctamente`,
+                type: "success",
+            });
+        } catch (error: any) {
+            console.log(error);
+            if (error instanceof ApiError) addToast({ title: error.name, message: error.message, type: "error" });
+        }
     };
 
     return { resizeMedicalAppointment };

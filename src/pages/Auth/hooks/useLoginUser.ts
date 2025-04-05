@@ -3,6 +3,7 @@ import { useToast } from "../../../shared/hooks/useToast";
 import { loginUserService } from "../services/loginUserService";
 import { User } from "../entities/User";
 import { useNavigate } from "react-router-dom";
+import { ApiError } from "../../../shared/utility/apiError";
 
 export const useLoginUser = () => {
     const navigate = useNavigate();
@@ -27,12 +28,8 @@ export const useLoginUser = () => {
             reset();
             navigate("/#home", { replace: true });
         } catch (error: any) {
-            console.error(error);
-            addToast({
-                title: "Credenciales invalidas",
-                message: `El correo o la contraseña son incorrectas`,
-                type: "error",
-            });
+            console.log(error);
+            if (error instanceof ApiError) addToast({ title: error.name, message: error.message, type: "error" });
         }
     };
 

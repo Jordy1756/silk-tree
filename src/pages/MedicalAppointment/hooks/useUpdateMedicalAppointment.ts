@@ -1,5 +1,6 @@
 import { useStandardModal } from "../../../shared/hooks/useStandardModal";
 import { useToast } from "../../../shared/hooks/useToast";
+import { ApiError } from "../../../shared/utility/apiError";
 import { Specialty } from "../entities/Specialty";
 import { updateMedicalAppointmentService } from "../services/updateMedicalAppointmentService";
 import { MedicalAppointmentFormValues } from "../types/appointmentFormTypes";
@@ -28,15 +29,20 @@ export const useUpdateMedicalAppointment = () => {
 
         if (checkMedicalAppointmentOverlap(currentMedicalAppointment)) return addToast(getOverlapToastData());
 
-        await updateMedicalAppointmentService(currentMedicalAppointment);
-        modifyMedicalAppointment(currentMedicalAppointment);
+        try {
+            await updateMedicalAppointmentService(currentMedicalAppointment);
+            modifyMedicalAppointment(currentMedicalAppointment);
 
-        addToast({
-            title: "Cita actualizada exitosamente",
-            message: `Su cita ha sido actualizada correctamente`,
-            type: "success",
-        });
-        closeModal();
+            addToast({
+                title: "Cita actualizada exitosamente",
+                message: `Su cita ha sido actualizada correctamente`,
+                type: "success",
+            });
+            closeModal();
+        } catch (error: any) {
+            console.log(error);
+            if (error instanceof ApiError) addToast({ title: error.name, message: error.message, type: "error" });
+        }
     };
 
     return { updateMedicalAppointment };

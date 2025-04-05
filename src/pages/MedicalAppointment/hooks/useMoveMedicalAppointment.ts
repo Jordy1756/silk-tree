@@ -1,4 +1,5 @@
 import { useToast } from "../../../shared/hooks/useToast";
+import { ApiError } from "../../../shared/utility/apiError";
 import { DragAndDropCalendar } from "../entities/DragAndDropCalendar";
 import { updateMedicalAppointmentService } from "../services/updateMedicalAppointmentService";
 import { validateAppointmentDate } from "../utility/handleAppointmentForm";
@@ -26,13 +27,18 @@ export const useMoveMedicalAppointment = () => {
             return addToast(getOverlapToastData());
         }
 
-        await updateMedicalAppointmentService(medicalAppointment);
+        try {
+            await updateMedicalAppointmentService(medicalAppointment);
 
-        addToast({
-            title: "Cita movida exitosamente",
-            message: `Su cita de ${medicalAppointment.specialty.name} ha sido movida correctamente`,
-            type: "success",
-        });
+            addToast({
+                title: "Cita movida exitosamente",
+                message: `Su cita de ${medicalAppointment.specialty.name} ha sido movida correctamente`,
+                type: "success",
+            });
+        } catch (error: any) {
+            console.log(error);
+            if (error instanceof ApiError) addToast({ title: error.name, message: error.message, type: "error" });
+        }
     };
 
     return { moveMedicalAppointment };

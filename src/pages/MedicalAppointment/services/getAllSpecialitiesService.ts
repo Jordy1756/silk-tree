@@ -1,15 +1,14 @@
 import { SPECIALTY_BASE_URL } from "../../../shared/constants/apiEndpoints";
+import { ApiError } from "../../../shared/utility/apiError";
 
 export const getAllSpecialitiesService = async () => {
     const response = await fetch(`${SPECIALTY_BASE_URL}/getAllSpecialties`, {
         credentials: "include",
     });
 
-    if (!response.ok) throw new Error();
-
     const data = await response.json();
 
-    if (!data) throw new Error();
+    if (!response.ok) throw new ApiError(data.name, data.message);
 
     return data;
 };

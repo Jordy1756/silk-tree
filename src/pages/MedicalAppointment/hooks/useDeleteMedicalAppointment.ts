@@ -1,5 +1,6 @@
 import { useStandardModal } from "../../../shared/hooks/useStandardModal";
 import { useToast } from "../../../shared/hooks/useToast";
+import { ApiError } from "../../../shared/utility/apiError";
 import { deleteMedicalAppointmentService } from "../services/deleteMedicalAppointmentService";
 import { useMedicalAppointments } from "./useMedicalAppointments";
 
@@ -21,11 +22,7 @@ export const useDeleteMedicalAppointment = () => {
             closeModal();
         } catch (error: any) {
             console.log(error);
-            addToast({
-                title: "Error al eliminar la cita",
-                message: `Su cita de ${currentMedicalAppointment.specialty.name} no se puede eliminar`,
-                type: "error",
-            });
+            if (error instanceof ApiError) addToast({ title: error.name, message: error.message, type: "error" });
         }
     };
 

@@ -1,5 +1,6 @@
 import { useStandardModal } from "../../../shared/hooks/useStandardModal";
 import { useToast } from "../../../shared/hooks/useToast";
+import { ApiError } from "../../../shared/utility/apiError";
 import { MedicalAppointment } from "../entities/MedicalAppointment";
 import { Specialty } from "../entities/Specialty";
 import { insertMedicalAppointmentService } from "../services/insertMedicalAppointmentService";
@@ -31,15 +32,20 @@ export const useInsertMedicalAppointment = () => {
 
         if (checkMedicalAppointmentOverlap(newMedicalAppointment)) return addToast(getOverlapToastData());
 
-        const medicalAppointment = await insertMedicalAppointmentService(newMedicalAppointment);
-        newMedicalAppointment.id = medicalAppointment.id;
-        addMedicalAppointment(newMedicalAppointment);
-        addToast({
-            title: "Cita agendada exitosamente",
-            message: `Su cita de ${specialty.name} ha sido programada correctamente`,
-            type: "success",
-        });
-        closeModal();
+        try {
+            const { id } = await insertMedicalAppointmentService(newMedicalAppointment);
+            newMedicalAppointment.id = id;
+            addMedicalAppointment(newMedicalAppointment);
+            addToast({
+                title: "Cita agendada exitosamente",
+                message: `Su cita de ${specialty.name} ha sido programada correctamente`,
+                type: "success",
+            });
+            closeModal();
+        } catch (error: any) {
+            console.log(error);
+            if (error instanceof ApiError) addToast({ title: error.name, message: error.message, type: "error" });
+        }
     };
 
     return { insertMedicalAppointment };

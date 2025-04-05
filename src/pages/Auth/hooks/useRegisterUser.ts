@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import { useToast } from "../../../shared/hooks/useToast";
 import { User } from "../entities/User";
 import { registerUserService } from "../services/registerUserService";
+import { ApiError } from "../../../shared/utility/apiError";
 
 export const useRegisterUser = (handleIsToggled: () => void) => {
     const { addToast } = useToast();
@@ -24,7 +25,7 @@ export const useRegisterUser = (handleIsToggled: () => void) => {
     const registerUser = async (userData: User) => {
         try {
             const user = await registerUserService(userData);
-            
+
             addToast({
                 title: "Usuario creado",
                 message: ` El usuario ${user.email} fue creado correctamente`,
@@ -33,12 +34,8 @@ export const useRegisterUser = (handleIsToggled: () => void) => {
             reset();
             handleIsToggled();
         } catch (error: any) {
-            console.error(error);
-            addToast({
-                title: "Usuario existente",
-                message: ` El usuario no puede ser creado`,
-                type: "error",
-            });
+            console.log(error);
+            if (error instanceof ApiError) addToast({ title: error.name, message: error.message, type: "error" });
         }
     };
 

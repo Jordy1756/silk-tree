@@ -1,4 +1,5 @@
 import { MEDICAL_APPOINTMENT_BASE_URL } from "../../../shared/constants/apiEndpoints";
+import { ApiError } from "../../../shared/utility/apiError";
 
 export const deleteMedicalAppointmentService = async (medicalAppointmentId: string) => {
     const response = await fetch(`${MEDICAL_APPOINTMENT_BASE_URL}/deleteMedicalAppointment/${medicalAppointmentId}`, {
@@ -9,11 +10,9 @@ export const deleteMedicalAppointmentService = async (medicalAppointmentId: stri
         },
     });
 
-    if (!response.ok) throw new Error("No se pudo eliminar la cita médica");
-
     const data = await response.json();
 
-    if (data === 0) throw new Error();
+    if (!response.ok) throw new ApiError(data.name, data.message);
 
     return data;
 };

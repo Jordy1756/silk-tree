@@ -1,4 +1,5 @@
 import { MEDICAL_APPOINTMENT_BASE_URL } from "../../../shared/constants/apiEndpoints";
+import { ApiError } from "../../../shared/utility/apiError";
 import { MedicalAppointment } from "../entities/MedicalAppointment";
 
 export const insertMedicalAppointmentService = async (medicalAppointment: MedicalAppointment) => {
@@ -11,11 +12,9 @@ export const insertMedicalAppointmentService = async (medicalAppointment: Medica
         body: JSON.stringify(medicalAppointment),
     });
 
-    if (!response.ok) throw new Error();
-
     const data = await response.json();
 
-    if (!data) throw new Error();
+    if (!response.ok) throw new ApiError(data.name, data.message);
 
     return data;
 };

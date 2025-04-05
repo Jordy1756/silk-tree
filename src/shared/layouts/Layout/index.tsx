@@ -1,19 +1,18 @@
-import { ReactNode } from "react";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
+import { Outlet } from "react-router-dom";
 import "./index.css";
 
-type Props = {
-    children: ReactNode;
-};
 
-const Layout = ({ children }: Props) => {
+const Layout = () => {
     return (
         <>
             <header>
                 <Navbar />
             </header>
-            <main>{children}</main>
+            <main>
+                <Outlet />
+            </main>
             <Footer />
         </>
     );

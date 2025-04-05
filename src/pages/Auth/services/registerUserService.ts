@@ -1,4 +1,5 @@
 import { USER_BASE_URL } from "../../../shared/constants/apiEndpoints";
+import { ApiError } from "../../../shared/utility/apiError";
 import { User } from "../entities/User";
 
 export const registerUserService = async (user: User) => {
@@ -10,11 +11,9 @@ export const registerUserService = async (user: User) => {
         body: JSON.stringify(user),
     });
 
-    if (!response.ok) throw new Error();
-    
     const data = await response.json();
 
-    if (!data) throw new Error("No se pudo crear el usuario");
+    if (!response.ok) throw new ApiError(data.name, data.message);
 
     return data;
 };
