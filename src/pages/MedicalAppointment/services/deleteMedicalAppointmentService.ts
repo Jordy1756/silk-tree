@@ -2,7 +2,7 @@ import { MEDICAL_APPOINTMENT_BASE_URL } from "../../../shared/constants/apiEndpo
 import { ApiError } from "../../../shared/utils/apiError";
 
 export const deleteMedicalAppointmentService = async (medicalAppointmentId: string) => {
-    const response = await fetch(`${MEDICAL_APPOINTMENT_BASE_URL}/deleteMedicalAppointment/${medicalAppointmentId}`, {
+    const response = await fetch(`${MEDICAL_APPOINTMENT_BASE_URL}/delete-medical-appointment/${medicalAppointmentId}`, {
         method: "DELETE",
         credentials: "include",
         headers: {

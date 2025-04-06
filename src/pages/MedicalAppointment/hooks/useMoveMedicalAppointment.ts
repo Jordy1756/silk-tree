@@ -36,7 +36,7 @@ export const useMoveMedicalAppointment = () => {
                 type: "success",
             });
         } catch (error: any) {
-            console.log(error);
+            console.error(error);
             if (error instanceof ApiError) addToast({ title: error.name, message: error.message, type: "error" });
         }
     };

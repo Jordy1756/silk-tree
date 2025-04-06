@@ -2,8 +2,11 @@ import { Link } from "react-router-dom";
 import logo from "../../../assets/images/company/logo.png";
 import NavigationLink from "../Link";
 import "./index.css";
+import { useAuthStatus } from "../../hooks/useAuthStatus";
 
 const Navbar = () => {
+    const { isAuthenticated } = useAuthStatus();
+
     return (
         <nav className="navbar">
             <div className="navbar__links">
@@ -26,8 +29,8 @@ const Navbar = () => {
                 </ul>
             </div>
             <div>
-                <NavigationLink className="primary" to="/authorization">
-                    Comenzar
+                <NavigationLink className="primary" to={isAuthenticated ? "/schedule-appointment" : "/authorization"}>
+                    {isAuthenticated ? "Agendar cita" : "Comenzar"}
                 </NavigationLink>
             </div>
         </nav>

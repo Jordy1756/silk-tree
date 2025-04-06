@@ -1,13 +1,15 @@
 import { createContext, ReactNode, useCallback, useRef, useState } from "react";
 import ConfirmationModal from "../components/ConfirmationModal";
 
-export type ConfirmationModalContextType = {
+type ConfirmationModalContextType = {
     message: string;
     primaryButtonText: string;
     showModal: (message: string, primaryButtonText: string, onConfirm: () => void) => void;
     closeModal: () => void;
 };
 
+
+// eslint-disable-next-line react-refresh/only-export-components
 export const ConfirmationModalContext = createContext<ConfirmationModalContextType | undefined>(undefined);
 
 export const ConfirmationModalProvider = ({ children }: { children: ReactNode }) => {

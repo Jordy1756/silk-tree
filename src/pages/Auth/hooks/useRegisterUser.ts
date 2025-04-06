@@ -36,7 +36,7 @@ export const useRegisterUser = (handleIsToggled: () => void) => {
             reset();
             handleIsToggled();
         } catch (error: any) {
-            console.log(error);
+            console.error(error);
             if (error instanceof ApiError) addToast({ title: error.name, message: error.message, type: "error" });
         }
     };
@@ -52,7 +52,7 @@ export const useRegisterUser = (handleIsToggled: () => void) => {
                 });
                 handleIsToggled();
             } catch (error: any) {
-                console.log(error);
+                console.error(error);
                 if (error instanceof ApiError) addToast({ title: error.name, message: error.message, type: "error" });
             }
         },

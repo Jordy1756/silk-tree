@@ -35,7 +35,7 @@ export const MedicalAppointmentsProvider = ({ children }: { children: ReactNode 
             try {
                 setMedicalAppointments(await getAllMedicalAppointmentsService());
             } catch (err) {
-                console.log(err);
+                console.error(err);
             }
         };
 

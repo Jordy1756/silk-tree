@@ -1,12 +1,15 @@
 import AwardCard from "./AwardCard";
 import Spline from "@splinetool/react-spline";
 import basics from "../../../../shared/data/basics.json";
-import "./index.css";
 import NavigationLink from "../../../../shared/components/Link";
+import { useAuthStatus } from "../../../../shared/hooks/useAuthStatus";
+import "./index.css";
 
 const Hero = () => {
     const { name, summary, award } = basics;
     const [fisrtName, secondName] = name;
+    const { isAuthenticated } = useAuthStatus();
+
     return (
         <section id="home" className="hero__container">
             <div>
@@ -15,8 +18,8 @@ const Hero = () => {
                     <span>{secondName}</span>
                 </h1>
                 <p>{summary}</p>
-                <NavigationLink className="primary" to="/schedule-appointment">
-                    Agendar cita
+                <NavigationLink className="primary" to={isAuthenticated ? "/schedule-appointment" : "/authorization"}>
+                    {isAuthenticated ? "Agendar cita" : "Comenzar"}
                 </NavigationLink>
             </div>
             <section className="award__section">

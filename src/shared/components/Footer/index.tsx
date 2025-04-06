@@ -1,9 +1,12 @@
 import logo from "../../../assets/images/company/logo.png";
 import { NavLink } from "react-router-dom";
 import NavigationLink from "../Link";
+import { useAuthStatus } from "../../hooks/useAuthStatus";
 import "./index.css";
 
 const Footer = () => {
+    const { isAuthenticated } = useAuthStatus();
+
     return (
         <footer className="footer">
             <section>
@@ -12,8 +15,11 @@ const Footer = () => {
                         <img src={logo} alt="Logo SilkTree" />
                     </NavLink>
                     <blockquote>Cuidando tu salud con confianza y dedicación</blockquote>
-                    <NavigationLink className="primary" to="/#">
-                        Get Started
+                    <NavigationLink
+                        className="primary"
+                        to={isAuthenticated ? "/schedule-appointment" : "/authorization"}
+                    >
+                        {isAuthenticated ? "Agendar cita" : "Comenzar"}
                     </NavigationLink>
                 </div>
                 <nav>

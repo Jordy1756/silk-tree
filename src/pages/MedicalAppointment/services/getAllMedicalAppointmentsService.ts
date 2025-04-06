@@ -4,7 +4,7 @@ import { convertToDate } from "../../../shared/utils/handleDates";
 import { ApiError } from "../../../shared/utils/apiError";
 
 export const getAllMedicalAppointmentsService = async () => {
-    const response = await fetch(`${MEDICAL_APPOINTMENT_BASE_URL}/getAllMedicalAppointments`, {
+    const response = await fetch(`${MEDICAL_APPOINTMENT_BASE_URL}/get-all-medical-appointments`, {
         credentials: "include",
     });
 

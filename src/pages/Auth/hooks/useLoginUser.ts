@@ -6,10 +6,12 @@ import { useNavigate } from "react-router-dom";
 import { ApiError } from "../../../shared/utils/apiError";
 import { TokenResponse, useGoogleLogin } from "@react-oauth/google";
 import { loginUserWithGoogleService } from "../services/loginUserWithGoogleService";
+import { useAuthStatus } from "../../../shared/hooks/useAuthStatus";
 
 export const useLoginUser = () => {
     const navigate = useNavigate();
     const { addToast } = useToast();
+    const { handleIsAuthenticated } = useAuthStatus();
 
     const {
         register,
@@ -28,9 +30,10 @@ export const useLoginUser = () => {
         try {
             await loginUserService(userData);
             reset();
+            handleIsAuthenticated(true);
             navigate("/#home", { replace: true });
         } catch (error: any) {
-            console.log(error);
+            console.error(error);
             if (error instanceof ApiError) addToast({ title: error.name, message: error.message, type: "error" });
         }
     };
@@ -39,9 +42,10 @@ export const useLoginUser = () => {
         onSuccess: async (tokenResponse: TokenResponse) => {
             try {
                 await loginUserWithGoogleService(tokenResponse.access_token);
+                handleIsAuthenticated(true);
                 navigate("/#home", { replace: true });
             } catch (error: any) {
-                console.log(error);
+                console.error(error);
                 if (error instanceof ApiError) addToast({ title: error.name, message: error.message, type: "error" });
             }
         },

@@ -3,7 +3,7 @@ import { ApiError } from "../../../shared/utils/apiError";
 import { MedicalAppointment } from "../entities/MedicalAppointment";
 
 export const insertMedicalAppointmentService = async (medicalAppointment: MedicalAppointment) => {
-    const response = await fetch(`${MEDICAL_APPOINTMENT_BASE_URL}/insertMedicalAppointment`, {
+    const response = await fetch(`${MEDICAL_APPOINTMENT_BASE_URL}/insert-medical-appointment`, {
         method: "POST",
         credentials: "include",
         headers: {
