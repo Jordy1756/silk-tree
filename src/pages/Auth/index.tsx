@@ -2,19 +2,23 @@ import logo from "../../assets/images/company/logo.png";
 import Register from "./components/Register";
 import Login from "./components/Login";
 import TogglePanel from "./components/TogglePanel";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { ToastProvider } from "../../shared/context/toastContext";
 import { GoogleOAuthProvider } from "@react-oauth/google";
+import { useAuthStatus } from "../../shared/hooks/useAuthStatus";
 import "./index.css";
 
 const Auth = () => {
     const [isToggled, setIsToggled] = useState(true);
     const handleIsToggled = () => setIsToggled(!isToggled);
+    const navigate = useNavigate();
+    const { isAuthenticated } = useAuthStatus();
+
+    if (isAuthenticated) navigate("/#home", { replace: true });
 
     return (
-        <main className="auth">
-            <ToastProvider>
+        <div className="auth">
+      
                 <header>
                     <NavLink to="/#home">
                         <img src={logo} alt="SilkTree logo" loading="lazy" decoding="async" />
@@ -30,8 +34,8 @@ const Auth = () => {
                     </GoogleOAuthProvider>
                 </main>
                 <TogglePanel isToggled={isToggled} />
-            </ToastProvider>
-        </main>
+            
+        </div>
     );
 };
 

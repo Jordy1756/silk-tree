@@ -1,7 +1,7 @@
 import AwardCard from "./AwardCard";
 import Spline from "@splinetool/react-spline";
 import basics from "../../../../shared/data/basics.json";
-import NavigationLink from "../../../../shared/components/Link";
+import NavigationLink from "../../../../shared/components/NavigationLink";
 import { useAuthStatus } from "../../../../shared/hooks/useAuthStatus";
 import "./index.css";
 

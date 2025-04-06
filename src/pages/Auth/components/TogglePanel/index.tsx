@@ -1,7 +1,7 @@
 import "./index.css";
 import imgTest from "../../../../assets/images/services/serviceImg01.webp";
-import ArrowLeftIcon from "../../../../assets/icons/ArrowLeft";
-import ArrowRightIcon from "../../../../assets/icons/ArrowRight";
+import ArrowLeftIcon from "../../../../assets/icons/ArrowLeftIcon";
+import ArrowRightIcon from "../../../../assets/icons/ArrowRightIcon";
 import useTestimonies from "../../hooks/useTestimonies";
 
 type Props = {

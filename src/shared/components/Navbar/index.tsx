@@ -1,11 +1,15 @@
 import { Link } from "react-router-dom";
 import logo from "../../../assets/images/company/logo.png";
-import NavigationLink from "../Link";
-import "./index.css";
+import NavigationLink from "../NavigationLink";
 import { useAuthStatus } from "../../hooks/useAuthStatus";
+import AvatarIcon from "../../../assets/icons/AvatarIcon";
+import "./index.css";
+import LogoutIcon from "../../../assets/icons/LogoutIcon";
+import { useLogoutUser } from "../../hooks/useLogoutUser";
 
 const Navbar = () => {
-    const { isAuthenticated } = useAuthStatus();
+    const { isAuthenticated, handleIsAuthenticated } = useAuthStatus();
+    const { logoutUser } = useLogoutUser(handleIsAuthenticated);
 
     return (
         <nav className="navbar">
@@ -32,6 +36,21 @@ const Navbar = () => {
                 <NavigationLink className="primary" to={isAuthenticated ? "/schedule-appointment" : "/authorization"}>
                     {isAuthenticated ? "Agendar cita" : "Comenzar"}
                 </NavigationLink>
+                {isAuthenticated && (
+                    <div>
+                        <picture>
+                            <AvatarIcon width={20} height={20} color="var(--neutral-600)" />
+                        </picture>
+                        <ul>
+                            <li>
+                                <button onClick={() => logoutUser()}>
+                                    <LogoutIcon width={24} height={24} color="var(--neutral-900)" />
+                                    Cerrar sesion
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                )}
             </div>
         </nav>
     );

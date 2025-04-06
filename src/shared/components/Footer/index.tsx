@@ -1,6 +1,6 @@
 import logo from "../../../assets/images/company/logo.png";
 import { NavLink } from "react-router-dom";
-import NavigationLink from "../Link";
+import NavigationLink from "../NavigationLink";
 import { useAuthStatus } from "../../hooks/useAuthStatus";
 import "./index.css";
 
