@@ -49,11 +49,11 @@
     color: var(--neutral-900);
 }
 
-.navbar > div > div {
+.navbar > .navbar__actions > div {
     position: relative;
 }
 
-.navbar > div > div > picture {
+.navbar > .navbar__actions > div > picture {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -63,7 +63,7 @@
     border: 1px solid var(--neutral-600);
 }
 
-.navbar > div > div > ul {
+.navbar > .navbar__actions > div > ul {
     content: "";
     position: absolute;
     top: calc(100% + 1rem);
@@ -81,16 +81,16 @@
     transition: max-height 0.3s ease-in-out, padding-block 0.3s ease-in-out;
 }
 
-.navbar > div > div:hover > ul {
+.navbar > .navbar__actions > div:hover > ul {
     max-height: 250px;
     padding-block: 0.5rem;
 }
 
-.navbar > div > div > ul > li:not(:last-child) {
+.navbar > .navbar__actions > div > ul > li:not(:last-child) {
     border-bottom: 1px solid var(--neutral-200);
 }
 
-.navbar > div > div > ul > li > button {
+.navbar > .navbar__actions > div > ul > li > button {
     padding: 0.5rem;
     width: 100%;
     display: flex;
@@ -101,6 +101,26 @@
     transition: background-color 0.3s ease-in-out, opacity 0.3s ease-in-out;
 }
 
-.navbar > div > div > ul > li > button:hover {
+.navbar > .navbar__actions > div > ul > li > button:hover {
     opacity: 0.7;
+}
+
+.navbar > .navbar__actions > button.icon {
+    display: none;
+}
+
+@media screen and (width <= 839px) {
+    .navbar > .navbar__links > ul,
+    .navbar > .navbar__actions > a,
+    .navbar > .navbar__actions > div {
+        display: none;
+    }
+
+    .navbar > .navbar__links::after {
+        display: none;
+    }
+
+    .navbar > .navbar__actions > button.icon {
+        display: flex;
+    }
 }

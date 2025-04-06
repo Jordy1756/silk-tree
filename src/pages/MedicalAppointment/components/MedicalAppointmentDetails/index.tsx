@@ -23,9 +23,7 @@ const MedicalAppointmentDetails = () => {
                 type="button"
                 className="secondary"
                 onClick={() =>
-                    isEditMode
-                        ? showModal("Estas seguro?", "Si, eliminar", deleteMedicalAppointment)
-                        : handleIsEditMode()
+                    isEditMode ? showModal("Estas seguro?", "Eliminar", deleteMedicalAppointment) : handleIsEditMode()
                 }
             >
                 {isEditMode ? "Eliminar" : "Cancelar"}

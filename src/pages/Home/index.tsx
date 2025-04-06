@@ -24,12 +24,12 @@ const Home = () => {
     return (
         <>
             <Hero />
-            <Marquee list={basics.marquee} />
+            {/* <Marquee list={basics.marquee} />
             <AboutUs />
             <Services />
             <OurTeam />
             <FAQ />
-            <ContactUs />
+            <ContactUs /> */}
         </>
     );
 };

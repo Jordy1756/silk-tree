@@ -1,10 +1,5 @@
 {
     "name": ["Silk", "Tree"],
     "summary": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni aut ab, corporis reiciendis labore rem nihil necessitatibus consectetur expedita nostrum, possimus sint nisi, a rerum sapiente suscipit sequi omnis porro!",
-    "award": {
-        "name": "Hospital #1 de Costa Rica",
-        "date": "2024-07-10",
-        "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci nihil harum magnam nulla, amet, omnis deleniti unde aut, assumenda impedit odio provident repudiandae. Ipsum atque culpa labore nemo aliquam sequi."
-    },
     "marquee": ["Nuestros servicios", "Equipo de profesionales", "Tecnología de punta", "Ambiente seguro"]
 }

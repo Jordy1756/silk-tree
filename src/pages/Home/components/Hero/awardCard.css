@@ -2,7 +2,8 @@
     padding: 1rem;
     display: flex;
     justify-content: space-between;
-    gap: 2rem;
+    flex-wrap: wrap;
+    gap: 1rem;
     border-radius: var(--border-radius-out) var(--border-radius-out) 0 0;
     background-color: var(--glass-color);
     backdrop-filter: var(--blur-effect);
@@ -10,6 +11,7 @@
 }
 
 .award__card > div {
+    flex: 1;
     display: flex;
     gap: 1rem;
 }
@@ -29,5 +31,5 @@
 }
 
 .award__card > p {
-    max-width: 40ch;
+    max-width: 50ch;
 }

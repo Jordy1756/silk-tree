@@ -12,14 +12,14 @@ const Footer = () => {
             <section>
                 <div>
                     <NavLink to="/#home">
-                        <img src={logo} alt="Logo SilkTree" />
+                        <img src={logo} alt="Logo de SilkTree" />
                     </NavLink>
                     <blockquote>Cuidando tu salud con confianza y dedicación</blockquote>
                     <NavigationLink
                         className="primary"
                         to={isAuthenticated ? "/schedule-appointment" : "/authorization"}
                     >
-                        {isAuthenticated ? "Agendar cita" : "Comenzar"}
+                        {isAuthenticated ? "Agendar" : "Comenzar"}
                     </NavigationLink>
                 </div>
                 <nav>
@@ -38,7 +38,7 @@ const Footer = () => {
                         </li>
                         <li>
                             <span>04</span>
-                            <a href="/#FAQs">Preguntas frecuentes</a>
+                            <a href="/#FAQs">FAQ</a>
                         </li>
                         <li>
                             <span>05</span>

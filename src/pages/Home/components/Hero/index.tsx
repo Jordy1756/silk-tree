@@ -1,12 +1,13 @@
 import AwardCard from "./AwardCard";
 import Spline from "@splinetool/react-spline";
 import basics from "../../../../shared/data/basics.json";
+import awards from "../../data/awards.json";
 import NavigationLink from "../../../../shared/components/NavigationLink";
 import { useAuthStatus } from "../../../../shared/hooks/useAuthStatus";
 import "./index.css";
 
 const Hero = () => {
-    const { name, summary, award } = basics;
+    const { name, summary } = basics;
     const [fisrtName, secondName] = name;
     const { isAuthenticated } = useAuthStatus();
 
@@ -23,7 +24,9 @@ const Hero = () => {
                 </NavigationLink>
             </div>
             <section className="award__section">
-                <AwardCard {...award} />
+                {awards.map(({ name, date, description }, index) => (
+                    <AwardCard key={index} index={index + 1 + ""} name={name} date={date} description={description} />
+                ))}
             </section>
             <Spline
                 className="spline__animation"

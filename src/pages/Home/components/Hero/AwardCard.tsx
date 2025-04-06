@@ -1,16 +1,17 @@
 import "./awardCard.css";
 
 type Props = {
+    index: string;
     name: string;
     date: string;
     description: string;
 };
 
-const AwardCard = ({ name, date, description }: Props) => {
+const AwardCard = ({ index, name, date, description }: Props) => {
     return (
         <article className="award__card">
             <div>
-                <span>01</span>
+                <span>{index.padStart(2, "0")}</span>
                 <div>
                     <time>{date}</time>
                     <h3>{name}</h3>

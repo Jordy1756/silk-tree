@@ -1,11 +1,13 @@
 import { Link } from "react-router-dom";
+import { useAuthStatus } from "../../hooks/useAuthStatus";
+import { useLogoutUser } from "../../hooks/useLogoutUser";
 import logo from "../../../assets/images/company/logo.png";
 import NavigationLink from "../NavigationLink";
-import { useAuthStatus } from "../../hooks/useAuthStatus";
 import AvatarIcon from "../../../assets/icons/AvatarIcon";
-import "./index.css";
 import LogoutIcon from "../../../assets/icons/LogoutIcon";
-import { useLogoutUser } from "../../hooks/useLogoutUser";
+import "./index.css";
+import Button from "../Button";
+import MenuIcon from "../../../assets/icons/MenuIcon";
 
 const Navbar = () => {
     const { isAuthenticated, handleIsAuthenticated } = useAuthStatus();
@@ -15,7 +17,7 @@ const Navbar = () => {
         <nav className="navbar">
             <div className="navbar__links">
                 <Link to="/#home">
-                    <img src={logo} alt="Logo" />
+                    <img src={logo} alt="Logo de SilkTree" />
                 </Link>
                 <ul>
                     <li>
@@ -32,9 +34,9 @@ const Navbar = () => {
                     </li>
                 </ul>
             </div>
-            <div>
+            <div className="navbar__actions">
                 <NavigationLink className="primary" to={isAuthenticated ? "/schedule-appointment" : "/authorization"}>
-                    {isAuthenticated ? "Agendar cita" : "Comenzar"}
+                    {isAuthenticated ? "Agendar" : "Comenzar"}
                 </NavigationLink>
                 {isAuthenticated && (
                     <div>
@@ -44,13 +46,16 @@ const Navbar = () => {
                         <ul>
                             <li>
                                 <button onClick={() => logoutUser()}>
-                                    <LogoutIcon width={24} height={24} color="var(--neutral-900)" />
+                                    <LogoutIcon width={24} height={24} color="var(--error-500)" />
                                     Cerrar sesion
                                 </button>
                             </li>
                         </ul>
                     </div>
                 )}
+                <Button type="button" className="icon">
+                    <MenuIcon width={40} height={40} color="var(--neutral-600)" />
+                </Button>
             </div>
         </nav>
     );
