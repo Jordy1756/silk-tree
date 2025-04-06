@@ -86,18 +86,21 @@
     padding-block: 0.5rem;
 }
 
-.navbar > div > div > ul > li {
-    padding: 0.5rem;
-}
-
 .navbar > div > div > ul > li:not(:last-child) {
     border-bottom: 1px solid var(--neutral-200);
 }
 
 .navbar > div > div > ul > li > button {
+    padding: 0.5rem;
+    width: 100%;
     display: flex;
     align-items: center;
     gap: 1rem;
     border: none;
     background-color: transparent;
+    transition: background-color 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+.navbar > div > div > ul > li > button:hover {
+    opacity: 0.7;
 }
