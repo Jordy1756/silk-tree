@@ -1,5 +1,5 @@
 import { USER_BASE_URL } from "../../../shared/constants/apiEndpoints";
-import { ApiError } from "../../../shared/utility/apiError";
+import { ApiError } from "../../../shared/utils/apiError";
 
 export const loginUserWithGoogleService = async (googleAccessToken: string) => {
     const response = await fetch(`${USER_BASE_URL}/loginWithGoogle`, {

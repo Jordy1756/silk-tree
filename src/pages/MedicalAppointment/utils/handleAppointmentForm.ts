@@ -4,7 +4,7 @@ import {
     FULL_DATE_FORMAT,
     getFormattedDateString,
     TIME_24_FORMAT,
-} from "../../../shared/utility/handleDates";
+} from "../../../shared/utils/handleDates";
 import { MedicalAppointment } from "../entities/MedicalAppointment";
 import { Specialty } from "../entities/Specialty";
 import { MedicalAppointmentFormValues } from "../types/appointmentFormTypes";

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Specialty } from "../entities/Specialty";
 import { getAllSpecialitiesService } from "../services/getAllSpecialitiesService";
-import { ApiError } from "../../../shared/utility/apiError";
+import { ApiError } from "../../../shared/utils/apiError";
 import { useToast } from "../../../shared/hooks/useToast";
 
 export const useSpecialties = () => {

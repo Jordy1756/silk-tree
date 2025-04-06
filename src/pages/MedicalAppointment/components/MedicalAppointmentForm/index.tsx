@@ -1,7 +1,7 @@
 import { MedicalAppointmentFormValues } from "../../types/appointmentFormTypes";
 import { ReactNode } from "react";
 import { useMedicalAppointmentForm } from "../../hooks/useMedicalAppointmentForm";
-import { getMedicalAppointmentFormValidation } from "../../utility/handleAppointmentForm";
+import { getMedicalAppointmentFormValidation } from "../../utils/handleAppointmentForm";
 import Form from "../../../../shared/components/Form";
 import InputBox from "../../../../shared/components/InputBox";
 import "./index.css";

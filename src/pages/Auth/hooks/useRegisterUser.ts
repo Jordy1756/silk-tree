@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import { useToast } from "../../../shared/hooks/useToast";
 import { User } from "../entities/User";
 import { registerUserService } from "../services/registerUserService";
-import { ApiError } from "../../../shared/utility/apiError";
+import { ApiError } from "../../../shared/utils/apiError";
 import { TokenResponse, useGoogleLogin } from "@react-oauth/google";
 import { registerUserWithGoogleService } from "../services/registerUserWithGoogleService";
 

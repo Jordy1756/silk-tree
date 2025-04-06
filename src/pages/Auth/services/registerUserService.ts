@@ -1,5 +1,5 @@
 import { USER_BASE_URL } from "../../../shared/constants/apiEndpoints";
-import { ApiError } from "../../../shared/utility/apiError";
+import { ApiError } from "../../../shared/utils/apiError";
 import { User } from "../entities/User";
 
 export const registerUserService = async (user: User) => {

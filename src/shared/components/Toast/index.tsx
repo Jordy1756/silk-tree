@@ -1,4 +1,4 @@
-import { getFormattedDateString, TIME_12_FORMAT } from "../../utility/handleDates";
+import { getFormattedDateString, TIME_12_FORMAT } from "../../utils/handleDates";
 import { useToast } from "../../hooks/useToast";
 import { ToastProps } from "../../types/toastTypes";
 import CloseIcon from "../../../assets/icons/CloseIcon";

@@ -1,5 +1,5 @@
 import { MEDICAL_APPOINTMENT_BASE_URL } from "../../../shared/constants/apiEndpoints";
-import { ApiError } from "../../../shared/utility/apiError";
+import { ApiError } from "../../../shared/utils/apiError";
 import { MedicalAppointment } from "../entities/MedicalAppointment";
 
 export const insertMedicalAppointmentService = async (medicalAppointment: MedicalAppointment) => {

@@ -1,5 +1,5 @@
 import { ToastProps } from "../../../shared/types/toastTypes";
-import { convertToDate, getFormattedDateString, DATE_FORMAT } from "../../../shared/utility/handleDates";
+import { convertToDate, getFormattedDateString, DATE_FORMAT } from "../../../shared/utils/handleDates";
 
 export const getDates = (appointmentDate: string, initialHour: string, finalHour: string) => {
     const newAppointmentDate = convertToDate(appointmentDate);

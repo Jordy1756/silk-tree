@@ -1,7 +1,7 @@
 import { MEDICAL_APPOINTMENT_BASE_URL } from "../../../shared/constants/apiEndpoints";
 import { MedicalAppointment } from "../entities/MedicalAppointment";
-import { convertToDate } from "../../../shared/utility/handleDates";
-import { ApiError } from "../../../shared/utility/apiError";
+import { convertToDate } from "../../../shared/utils/handleDates";
+import { ApiError } from "../../../shared/utils/apiError";
 
 export const getAllMedicalAppointmentsService = async () => {
     const response = await fetch(`${MEDICAL_APPOINTMENT_BASE_URL}/getAllMedicalAppointments`, {

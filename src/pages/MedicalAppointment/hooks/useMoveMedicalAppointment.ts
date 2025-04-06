@@ -1,9 +1,9 @@
 import { useToast } from "../../../shared/hooks/useToast";
-import { ApiError } from "../../../shared/utility/apiError";
+import { ApiError } from "../../../shared/utils/apiError";
 import { DragAndDropCalendar } from "../entities/DragAndDropCalendar";
 import { updateMedicalAppointmentService } from "../services/updateMedicalAppointmentService";
-import { validateAppointmentDate } from "../utility/handleAppointmentForm";
-import { getOverlapToastData } from "../utility/handleMedicalAppointment";
+import { validateAppointmentDate } from "../utils/handleAppointmentForm";
+import { getOverlapToastData } from "../utils/handleMedicalAppointment";
 import { useMedicalAppointments } from "./useMedicalAppointments";
 
 export const useMoveMedicalAppointment = () => {

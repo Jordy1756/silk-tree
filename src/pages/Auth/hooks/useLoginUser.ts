@@ -3,7 +3,7 @@ import { useToast } from "../../../shared/hooks/useToast";
 import { loginUserService } from "../services/loginUserService";
 import { User } from "../entities/User";
 import { useNavigate } from "react-router-dom";
-import { ApiError } from "../../../shared/utility/apiError";
+import { ApiError } from "../../../shared/utils/apiError";
 import { TokenResponse, useGoogleLogin } from "@react-oauth/google";
 import { loginUserWithGoogleService } from "../services/loginUserWithGoogleService";
 

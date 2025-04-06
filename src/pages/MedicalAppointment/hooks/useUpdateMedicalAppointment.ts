@@ -1,10 +1,10 @@
 import { useStandardModal } from "../../../shared/hooks/useStandardModal";
 import { useToast } from "../../../shared/hooks/useToast";
-import { ApiError } from "../../../shared/utility/apiError";
+import { ApiError } from "../../../shared/utils/apiError";
 import { Specialty } from "../entities/Specialty";
 import { updateMedicalAppointmentService } from "../services/updateMedicalAppointmentService";
 import { MedicalAppointmentFormValues } from "../types/appointmentFormTypes";
-import { getDates, getOverlapToastData } from "../utility/handleMedicalAppointment";
+import { getDates, getOverlapToastData } from "../utils/handleMedicalAppointment";
 import { useMedicalAppointments } from "./useMedicalAppointments";
 
 export const useUpdateMedicalAppointment = () => {

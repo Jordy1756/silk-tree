@@ -1,6 +1,6 @@
 import { useStandardModal } from "../../../shared/hooks/useStandardModal";
 import { useToast } from "../../../shared/hooks/useToast";
-import { ApiError } from "../../../shared/utility/apiError";
+import { ApiError } from "../../../shared/utils/apiError";
 import { deleteMedicalAppointmentService } from "../services/deleteMedicalAppointmentService";
 import { useMedicalAppointments } from "./useMedicalAppointments";
 

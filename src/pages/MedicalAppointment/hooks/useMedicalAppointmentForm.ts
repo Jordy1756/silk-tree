@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import { MedicalAppointmentFormValues } from "../types/appointmentFormTypes";
 import { useEffect } from "react";
 import { useMedicalAppointments } from "./useMedicalAppointments";
-import { getDefaultFormValues } from "../utility/handleAppointmentForm";
+import { getDefaultFormValues } from "../utils/handleAppointmentForm";
 
 export const useMedicalAppointmentForm = () => {
     const { currentMedicalAppointment } = useMedicalAppointments();
