@@ -25,6 +25,7 @@
 
 .footer > section > div > a {
     display: flex;
+    justify-content: start;
     width: fit-content;
 }
 
