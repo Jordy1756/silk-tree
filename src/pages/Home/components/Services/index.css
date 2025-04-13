@@ -1,8 +1,9 @@
 .services {
+    --total-container-height: calc(100dvh * var(--total-cards));
     padding: 1rem;
     position: relative;
-    min-height: 600dvh;
-    view-timeline-name: --services-pin-tl;
+    min-height: var(--total-container-height);
+    view-timeline-name: --services-timeline;
     view-timeline-axis: block;
 }
 

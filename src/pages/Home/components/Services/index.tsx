@@ -6,12 +6,12 @@ import "./index.css";
 
 const Services = () => {
     return (
-        <section id="services" className="services">
+        <section id="services" className="services" style={{ "--total-cards": services.length } as React.CSSProperties}>
             <div>
                 <Marquee list={basics.marquee} color="var(--primary-500)" />
                 <div>
-                    {services.map(({ name, image, scrollTrigger }, index) => (
-                        <ServiceCard key={index} name={name} image={image} scrollTrigger={scrollTrigger} />
+                    {services.map(({ name, image }, index) => (
+                        <ServiceCard key={index} index={index} name={name} image={image} />
                     ))}
                 </div>
             </div>

@@ -1,4 +1,7 @@
 .service__card {
+    --min-height: min(600px, calc(100dvh - 10rem));
+    --card-range: calc(var(--total-container-height) / var(--total-cards));
+
     position: absolute;
     top: 50%;
     left: 50%;
@@ -10,22 +13,21 @@
     width: min(500px, 100%);
     height: min(600px, calc(100dvh - 10rem));
     background-color: var(--neutral-50);
-    border-radius: var(--border-radius-out);
     animation: showService linear both;
-    animation-timeline: --services-pin-tl;
-    animation-range: contain calc(var(--scroll-trigger) - 8.33%) contain calc(var(--scroll-trigger) + 25%);
+    animation-timeline: --services-timeline;
+    animation-range: entry calc(var(--index) * var(--card-range)) exit calc((var(--index) + 1) * var(--card-range));
+    opacity: 0;
 }
 
 .service__card > figure {
     flex: 1;
-    /* background-color: aqua; */
 }
 
 .service__card > figure > img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 50px;
+    border-radius: 35px;
 }
 
 .service__card > div {
@@ -43,15 +45,21 @@
 }
 
 @keyframes showService {
-    0%,
-    100% {
+    0% {
         opacity: 0;
         transform: translate(-50%, -200%) scale(0.8) rotate(-90deg);
     }
-    10%,
+    10% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1) rotate(5deg);
+    }
     90% {
         opacity: 1;
-        transform: translate(-50%, -50%) scale(1) rotate(0deg);
+        transform: translate(-50%, -50%) scale(1) rotate(5deg);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, 200%) scale(0.8) rotate(90deg);
     }
 }
 
