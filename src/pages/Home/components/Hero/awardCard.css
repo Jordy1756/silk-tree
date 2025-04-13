@@ -5,8 +5,8 @@
     flex-wrap: wrap;
     gap: 1rem;
     border-radius: var(--border-radius-out) var(--border-radius-out) 0 0;
-    background-color: var(--glass-color);
-    backdrop-filter: var(--blur-effect);
+    background-color: var(--glass-color-light);
+    backdrop-filter: var(--blur-effect-light);
     box-shadow: var(--box-shadow);
 }
 

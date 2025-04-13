@@ -7,7 +7,7 @@ type Props = {
 
 const Marquee = ({ list, color = "var(--neutral-900)" }: Props) => {
     return (
-        <aside className={"marquee"} style={{ "--marquee-color": color } as React.CSSProperties}>
+        <aside className="marquee" style={{ "--marquee-color": color } as React.CSSProperties}>
             <ul>
                 {list.map((item, index) => (
                     <li key={index}>

@@ -69,6 +69,7 @@
 }
 
 .footer > aside {
+    align-items: center;
     flex-wrap: wrap-reverse;
 }
 

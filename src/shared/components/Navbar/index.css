@@ -2,8 +2,8 @@
     display: flex;
     justify-content: space-between;
     gap: 2rem;
-    background-color: var(--glass-color);
-    backdrop-filter: var(--blur-effect);
+    background-color: var(--glass-color-light);
+    backdrop-filter: var(--blur-effect-light);
     box-shadow: var(--box-shadow);
     border-radius: var(--border-radius-out);
 }

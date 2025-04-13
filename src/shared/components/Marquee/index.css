@@ -5,6 +5,9 @@
 }
 
 .marquee {
+    margin: 0 auto;
+    width: calc(100% - 2rem);
+    padding: 1rem 0;
     overflow: hidden;
 }
 
