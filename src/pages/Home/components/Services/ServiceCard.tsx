@@ -1,14 +1,15 @@
+import { CSSProperties } from "react";
 import "./serviceCard.css";
 
 type Props = {
+    index: number;
     name: string;
     image: string;
-    scrollTrigger: number;
 };
 
-const ServiceCard = ({ name, image, scrollTrigger }: Props) => {
+const ServiceCard = ({ index, name, image }: Props) => {
     return (
-        <article className="service__card" style={{ "--scroll-trigger": `${scrollTrigger}%` } as React.CSSProperties}>
+        <article className="service__card" style={{ "--index": index } as CSSProperties}>
             <figure>
                 <img src={image} alt={`Imagen de ${name}`} />
             </figure>

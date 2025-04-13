@@ -3,10 +3,11 @@ import ServiceCard from "./ServiceCard";
 import basics from "../../../../shared/data/basics.json";
 import services from "../../data/services.json";
 import "./index.css";
+import { CSSProperties } from "react";
 
 const Services = () => {
     return (
-        <section id="services" className="services" style={{ "--total-cards": services.length } as React.CSSProperties}>
+        <section id="services" className="services" style={{ "--total-cards": services.length } as CSSProperties}>
             <div>
                 <Marquee list={basics.marquee} color="var(--primary-500)" />
                 <div>
