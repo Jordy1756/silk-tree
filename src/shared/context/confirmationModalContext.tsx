@@ -8,7 +8,6 @@ type ConfirmationModalContextType = {
     closeModal: () => void;
 };
 
-
 // eslint-disable-next-line react-refresh/only-export-components
 export const ConfirmationModalContext = createContext<ConfirmationModalContextType | undefined>(undefined);
 

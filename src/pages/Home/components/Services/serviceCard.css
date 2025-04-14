@@ -5,18 +5,19 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%) rotate(5deg);
+    transform: translate(-50%, -50%) rotate(calc(1.25deg * var(--index)));
     display: flex;
     flex-direction: column;
     gap: 1rem;
     padding: 1rem;
-    width: min(500px, 100%);
-    height: min(600px, calc(100dvh - 10rem));
-    background-color: var(--neutral-50);
+    width: min(450px, 100%);
+    height: 550px;
+    background-color: var(--neutral-100);
+    border-radius: 35px;
     animation: showService linear both;
     animation-timeline: --services-timeline;
     animation-range: entry calc(var(--index) * var(--card-range)) exit calc((var(--index) + 1) * var(--card-range));
-    opacity: 0;
+    box-shadow: var(--box-shadow);
 }
 
 .service__card > figure {
@@ -45,30 +46,33 @@
 }
 
 @keyframes showService {
-    0% {
+    0%,
+    20% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1) rotate(calc(1.25deg * var(--index)));
+    }
+    30%,
+    100% {
         opacity: 0;
         transform: translate(-50%, -200%) scale(0.8) rotate(-90deg);
     }
-    10% {
-        opacity: 1;
-        transform: translate(-50%, -50%) scale(1) rotate(5deg);
-    }
-    90% {
-        opacity: 1;
-        transform: translate(-50%, -50%) scale(1) rotate(5deg);
-    }
-    100% {
-        opacity: 0;
-        transform: translate(-50%, 200%) scale(0.8) rotate(90deg);
-    }
+}
+
+@media screen and (width <= 768px) {
 }
 
 @media screen and (width <= 480px) {
-    .service__card > div  {
+    .service__card > div {
         justify-content: center;
     }
 
-    .service__card > div > span  {
+    .service__card > div > span {
         display: none;
+    }
+}
+
+@media screen and (height <= 600px) {
+    .service__card {
+        height: 350px;
     }
 }

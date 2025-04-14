@@ -12,7 +12,7 @@ const Services = () => {
                 <Marquee list={basics.marquee} color="var(--primary-500)" />
                 <div>
                     {services.map(({ name, image }, index) => (
-                        <ServiceCard key={index} index={index} name={name} image={image} />
+                        <ServiceCard key={index} index={services.length - 1 - index} name={name} image={image} />
                     ))}
                 </div>
             </div>

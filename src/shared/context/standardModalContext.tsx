@@ -8,6 +8,7 @@ type StandardModalContextType = {
     closeModal: () => void;
 };
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const StandardModalContext = createContext<StandardModalContextType | undefined>(undefined);
 
 export const StandardModalProvider = ({ children }: { children: ReactNode }) => {
