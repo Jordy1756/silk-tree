@@ -1,5 +1,6 @@
 .our__team {
-    padding-block: 1rem;
+    background-color: red;
+    padding: 1rem;
     display: grid;
     grid-template-columns: repeat(8, 1fr);
     grid-template-rows: repeat(3, 1fr);

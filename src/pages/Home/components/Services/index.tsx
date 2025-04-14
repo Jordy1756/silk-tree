@@ -1,9 +1,9 @@
+import { CSSProperties } from "react";
 import Marquee from "../../../../shared/components/Marquee";
 import ServiceCard from "./ServiceCard";
 import basics from "../../../../shared/data/basics.json";
 import services from "../../data/services.json";
 import "./index.css";
-import { CSSProperties } from "react";
 
 const Services = () => {
     return (

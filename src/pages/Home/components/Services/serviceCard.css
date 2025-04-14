@@ -58,9 +58,6 @@
     }
 }
 
-@media screen and (width <= 768px) {
-}
-
 @media screen and (width <= 480px) {
     .service__card > div {
         justify-content: center;

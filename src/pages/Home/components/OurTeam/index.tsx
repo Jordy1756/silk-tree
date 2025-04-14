@@ -11,7 +11,7 @@ const OurTeam = () => {
                 <p>{description}</p>
             </div>
             {team.map(({ image, name, specialty }, index) => (
-                <OurTeamCard index={index} key={index} image={image} name={name} specialty={specialty} />
+                <OurTeamCard key={index} index={index} image={image} name={name} specialty={specialty} />
             ))}
         </section>
     );
