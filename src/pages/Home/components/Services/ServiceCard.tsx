@@ -14,7 +14,7 @@ const ServiceCard = ({ index, name, image }: Props) => {
                 <img src={image} alt={`Imagen de ${name}`} />
             </figure>
             <div>
-                <h5>{name}</h5>
+                <h3>{name}</h3>
                 <span>Servicios</span>
             </div>
         </article>

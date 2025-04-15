@@ -17,13 +17,17 @@
 }
 
 .award__card > div > span {
-    font-size: var(--text-size-huge);
+    font-size: var(--text-size-xlarge);
 }
 
 .award__card > div > div {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+}
+
+.award__card > div > div > h3 {
+    font-size: var(--text-size-large);
 }
 
 .award__card > div > div > time {

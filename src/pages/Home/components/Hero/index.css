@@ -31,6 +31,7 @@
 .hero__container > div > h1 {
     text-transform: uppercase;
     line-height: 0.75;
+    font-size: var(--text-size-huge);
 }
 
 .hero__container > div > h1 > span {

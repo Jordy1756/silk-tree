@@ -9,7 +9,7 @@ const FAQItem = ({ question, answer }: Props) => {
     return (
         <details name="faqs" className="faq__item">
             <summary>
-                <h5>{question}</h5>
+                <h3>{question}</h3>
             </summary>
             <p>{answer}</p>
         </details>

@@ -11,4 +11,5 @@
 
 .faq > h2 {
     text-transform: uppercase;
+    font-size: var(--text-size-xlarge);
 }
