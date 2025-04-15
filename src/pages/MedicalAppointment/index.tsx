@@ -6,15 +6,13 @@ import "./index.css";
 
 const ScheduleAppointment = () => {
     return (
-    
-            <ConfirmationModalProvider>
-                <MedicalAppointmentsProvider>
-                    <StandardModalProvider>
-                        <MedicalAppointmentCalendar />
-                    </StandardModalProvider>
-                </MedicalAppointmentsProvider>
-            </ConfirmationModalProvider>
-     
+        <ConfirmationModalProvider>
+            <MedicalAppointmentsProvider>
+                <StandardModalProvider>
+                    <MedicalAppointmentCalendar />
+                </StandardModalProvider>
+            </MedicalAppointmentsProvider>
+        </ConfirmationModalProvider>
     );
 };
 

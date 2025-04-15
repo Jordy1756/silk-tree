@@ -1,6 +1,17 @@
-button {
+button.primary,
+button.secondary,
+button.icon {
     border-radius: var(--border-radius-out);
     text-align: center;
+}
+
+button.primary:has(svg, img),
+button.secondary:has(svg, img),
+button.icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
 }
 
 button.primary {
@@ -24,8 +35,6 @@ button.secondary {
 }
 
 button.icon {
-    display: flex;
-    gap: 0.5rem;
     border: none;
     background-color: transparent;
 }

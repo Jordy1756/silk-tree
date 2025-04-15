@@ -49,6 +49,10 @@
     color: var(--neutral-900);
 }
 
+.navbar > .navbar__links > ul > li > a {
+    font-weight: 300;
+}
+
 .navbar > .navbar__actions > div {
     position: relative;
 }

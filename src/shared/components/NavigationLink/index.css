@@ -1,6 +1,16 @@
-a {
+a.primary,
+a.secondary {
     border-radius: var(--border-radius-out);
     text-align: center;
+}
+
+a.primary:has(svg, img),
+a.secondary:has(svg, img),
+a.icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
 }
 
 a.primary {
@@ -21,4 +31,9 @@ a.secondary {
     background-color: transparent;
     color: var(--neutral-900);
     padding: 11.5px 24px;
+}
+
+a.icon {
+    border: none;
+    background-color: transparent;
 }

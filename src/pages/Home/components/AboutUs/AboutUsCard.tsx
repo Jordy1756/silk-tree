@@ -9,7 +9,7 @@ const AboutUsCard = ({ text, value }: Props) => {
     return (
         <article className="about__us-card">
             <p>{text}</p>
-            <span>{value}</span>
+            <h3>{value}</h3>
         </article>
     );
 };

@@ -25,7 +25,7 @@ const Home = () => {
         <>
             <Hero />
             <Marquee list={basics.marquee} />
-            {/* <AboutUs /> */}
+            <AboutUs />
             <Services />
             <OurTeam />
             <FAQ />
