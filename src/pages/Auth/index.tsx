@@ -18,23 +18,21 @@ const Auth = () => {
 
     return (
         <div className="auth">
-      
-                <header>
-                    <NavLink to="/#home">
-                        <img src={logo} alt="SilkTree logo" loading="lazy" decoding="async" />
-                    </NavLink>
-                    <NavLink to="/#home">
-                        <img src={logo} alt="SilkTree logo" loading="lazy" decoding="async" />
-                    </NavLink>
-                </header>
-                <main>
-                    <GoogleOAuthProvider clientId="12035325870-aj8gvhosgtlludahpbv55hr4nf0q6hgq.apps.googleusercontent.com">
-                        <Login isToggled={isToggled} handleIsToggled={handleIsToggled} />
-                        <Register isToggled={isToggled} handleIsToggled={handleIsToggled} />
-                    </GoogleOAuthProvider>
-                </main>
-                <TogglePanel isToggled={isToggled} />
-            
+            <header>
+                <NavLink to="/#home">
+                    <img src={logo} alt="SilkTree logo" loading="lazy" decoding="async" />
+                </NavLink>
+                <NavLink to="/#home">
+                    <img src={logo} alt="SilkTree logo" loading="lazy" decoding="async" />
+                </NavLink>
+            </header>
+            <main>
+                <GoogleOAuthProvider clientId="12035325870-aj8gvhosgtlludahpbv55hr4nf0q6hgq.apps.googleusercontent.com">
+                    <Login isToggled={isToggled} handleIsToggled={handleIsToggled} />
+                    <Register isToggled={isToggled} handleIsToggled={handleIsToggled} />
+                </GoogleOAuthProvider>
+            </main>
+            <TogglePanel isToggled={isToggled} />
         </div>
     );
 };

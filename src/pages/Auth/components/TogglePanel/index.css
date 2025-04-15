@@ -136,3 +136,9 @@
     display: grid;
     place-items: center;
 }
+
+@media screen and (width <= 768px) {
+    .toggle__panel {
+        display: none;
+    }
+}
