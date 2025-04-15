@@ -22,7 +22,7 @@
 
 .about__us-card > h3 {
     flex: 1;
-    font-size: var(--text-size-huge);
+    font-size: 3.5rem;
     align-self: center;
     align-content: center;
 }

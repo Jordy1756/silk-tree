@@ -37,8 +37,9 @@ const Login = ({ isToggled, handleIsToggled }: Props) => {
                         </InputBox>
                         <p className="forgot__password">Olvido su contraseña</p>
                     </div>
+
                     <Button className="primary" type="submit">
-                        Iniciar Sesion
+                        Iniciar sesión
                     </Button>
                 </Form>
                 <Separator text="O inicia sesión con" />

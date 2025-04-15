@@ -2,6 +2,7 @@ a.primary,
 a.secondary {
     border-radius: var(--border-radius-out);
     text-align: center;
+    line-height: 1.475;
 }
 
 a.primary:has(svg, img),
@@ -16,7 +17,7 @@ a.icon {
 a.primary {
     background-color: var(--primary-500);
     color: var(--neutral-50);
-    padding: 12.5px 25px;
+    padding: 12px 25px;
     border: none;
     transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
 }

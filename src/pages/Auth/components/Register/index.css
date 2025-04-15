@@ -36,6 +36,10 @@
     gap: 0.5rem;
 }
 
+.register > header > h2 {
+    font-size: var(--text-size-large);
+}
+
 .register > main {
     gap: 1rem;
 }
