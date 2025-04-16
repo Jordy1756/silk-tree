@@ -19,7 +19,7 @@ const MedicalAppointmentForm = ({ children, isNonEditable, onSubmit }: Props) =>
 
     return (
         <Form handleSubmit={handleSubmit} onSubmit={onSubmit}>
-            <InputBox name="appointmentDate" labelText="Fecha" error={errors.appointmentDate}>
+            <InputBox labelText="Fecha" error={errors.appointmentDate}>
                 <input
                     type="date"
                     readOnly={isNonEditable}
@@ -27,14 +27,14 @@ const MedicalAppointmentForm = ({ children, isNonEditable, onSubmit }: Props) =>
                 />
             </InputBox>
             <div className="input__box-container">
-                <InputBox name="initialHour" labelText="Hora de inicio" error={errors.initialHour}>
+                <InputBox labelText="Hora de inicio" error={errors.initialHour}>
                     <input
                         type="time"
                         readOnly={isNonEditable}
                         {...register("initialHour", getMedicalAppointmentFormValidation("initialHour"))}
                     />
                 </InputBox>
-                <InputBox name="finalHour" labelText="Hora de salida" error={errors.finalHour}>
+                <InputBox labelText="Hora de salida" error={errors.finalHour}>
                     <input
                         type="time"
                         readOnly={isNonEditable}
@@ -42,7 +42,7 @@ const MedicalAppointmentForm = ({ children, isNonEditable, onSubmit }: Props) =>
                     />
                 </InputBox>
             </div>
-            <InputBox name="specialty" labelText="Especialidad" error={errors.specialty}>
+            <InputBox labelText="Especialidad" error={errors.specialty}>
                 <select
                     {...register("specialty", getMedicalAppointmentFormValidation("specialty"))}
                     disabled={isNonEditable}

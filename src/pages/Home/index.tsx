@@ -1,7 +1,6 @@
 import Marquee from "../../shared/components/Marquee";
 import AboutUs from "./components/AboutUs";
 import Hero from "./components/Hero";
-import ContactUs from "./components/ContactUs";
 import FAQ from "./components/FAQ";
 import OurTeam from "./components/OurTeam";
 import Services from "./components/Services";
@@ -29,7 +28,6 @@ const Home = () => {
             <Services />
             <OurTeam />
             <FAQ />
-            {/* <ContactUs /> */}
         </>
     );
 };

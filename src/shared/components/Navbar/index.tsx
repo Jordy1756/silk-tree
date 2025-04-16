@@ -36,12 +36,12 @@ const Navbar = () => {
             </div>
             <div className="navbar__actions">
                 <NavigationLink className="primary" to={isAuthenticated ? "/schedule-appointment" : "/authorization"}>
-                    {isAuthenticated ? "Agendar" : "Comenzar"}
+                    {isAuthenticated ? "Agendar cita" : "Comenzar"}
                 </NavigationLink>
                 {isAuthenticated && (
                     <div>
                         <picture>
-                            <AvatarIcon width={20} height={20} color="var(--neutral-600)" />
+                            <AvatarIcon width={24} height={24} color="var(--neutral-600)" />
                         </picture>
                         <ul>
                             <li>

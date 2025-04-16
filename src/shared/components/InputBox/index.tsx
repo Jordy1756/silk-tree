@@ -3,7 +3,6 @@ import { ReactElement } from "react";
 import "./index.css";
 
 export type Props = {
-    name: string;
     labelText: string;
     error: FieldError | undefined;
     children: ReactElement<
@@ -11,13 +10,13 @@ export type Props = {
     >;
 };
 
-const InputBox = ({ name, labelText, error, children }: Props) => {
+const InputBox = ({ labelText, error, children }: Props) => {
     return (
         <div className="input__box">
-            <div>
+            <fieldset>
                 {children}
-                <label htmlFor={name}>{labelText}</label>
-            </div>
+                <legend>{labelText}</legend>
+            </fieldset>
             {error && <p>{error.message}</p>}
         </div>
     );

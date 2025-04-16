@@ -18,7 +18,7 @@ button.icon {
 button.primary {
     background-color: var(--primary-500);
     color: var(--neutral-50);
-    padding: 12px 25px;
+    padding: 12px 35px;
     border: none;
     transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
 }
@@ -32,7 +32,7 @@ button.secondary {
     border: 1px solid var(--neutral-900);
     background-color: transparent;
     color: var(--neutral-900);
-    padding: 11.5px 24px;
+    padding: 11.5px 34px;
 }
 
 button.icon {

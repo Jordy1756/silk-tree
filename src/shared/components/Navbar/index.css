@@ -36,8 +36,8 @@
 }
 
 .navbar > .navbar__links > a > img {
-    max-height: 40px;
-    object-fit: contain; 
+    height: 48px;
+    object-fit: contain;
 }
 
 .navbar > .navbar__links > ul {
@@ -57,10 +57,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 999999px;
-    width: 39px;
-    height: 39px;
+    padding: 11px;
+    aspect-ratio: 1;
     border: 1px solid var(--neutral-600);
+    border-radius: 999999px;
 }
 
 .navbar > .navbar__actions > div > ul {
@@ -109,7 +109,7 @@
     display: none;
 }
 
-@media screen and (width <= 839px) {
+@media screen and (width <= 914px) {
     .navbar > .navbar__links > ul,
     .navbar > .navbar__actions > a,
     .navbar > .navbar__actions > div {

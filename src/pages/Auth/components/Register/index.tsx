@@ -24,14 +24,14 @@ const Register = ({ isToggled, handleIsToggled }: Props) => {
             <main>
                 <Form onSubmit={registerUser} handleSubmit={handleSubmit}>
                     <div className="input__box-container">
-                        <InputBox name="name" labelText="Nombre" error={errors.name}>
+                        <InputBox labelText="Nombre" error={errors.name}>
                             <input
                                 placeholder=""
                                 type="text"
                                 {...register("name", getRegisterFormValidation("name"))}
                             />
                         </InputBox>
-                        <InputBox name="lastName" labelText="Apellidos" error={errors.lastName}>
+                        <InputBox labelText="Apellidos" error={errors.lastName}>
                             <input
                                 placeholder=""
                                 type="text"
@@ -39,10 +39,10 @@ const Register = ({ isToggled, handleIsToggled }: Props) => {
                             />
                         </InputBox>
                     </div>
-                    <InputBox name="email" labelText="Correo electrónico" error={errors.email}>
+                    <InputBox labelText="Correo electrónico" error={errors.email}>
                         <input placeholder="" type="email" {...register("email", getRegisterFormValidation("email"))} />
                     </InputBox>
-                    <InputBox name="password" labelText="Contraseña" error={errors.password}>
+                    <InputBox labelText="Contraseña" error={errors.password}>
                         <input
                             placeholder=""
                             type="password"
@@ -50,7 +50,7 @@ const Register = ({ isToggled, handleIsToggled }: Props) => {
                             {...register("password", getRegisterFormValidation("password"))}
                         />
                     </InputBox>
-                    <InputBox name="confirmPassword" labelText="Confirmar contraseña" error={errors.confirmPassword}>
+                    <InputBox labelText="Confirmar contraseña" error={errors.confirmPassword}>
                         <input
                             placeholder=""
                             type="password"

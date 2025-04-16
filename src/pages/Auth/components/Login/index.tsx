@@ -23,11 +23,11 @@ const Login = ({ isToggled, handleIsToggled }: Props) => {
             </header>
             <main>
                 <Form onSubmit={loginUser} handleSubmit={handleSubmit}>
-                    <InputBox name="email" labelText="Correo electrónico" error={errors.email}>
+                    <InputBox labelText="Correo electrónico" error={errors.email}>
                         <input placeholder="" type="text" {...register("email", getLoginFormValidation("email"))} />
                     </InputBox>
                     <div>
-                        <InputBox name="password" labelText="Contraseña" error={errors.password}>
+                        <InputBox labelText="Contraseña" error={errors.password}>
                             <input
                                 placeholder=""
                                 type="password"
@@ -37,7 +37,6 @@ const Login = ({ isToggled, handleIsToggled }: Props) => {
                         </InputBox>
                         <p className="forgot__password">Olvido su contraseña</p>
                     </div>
-
                     <Button className="primary" type="submit">
                         Iniciar sesión
                     </Button>

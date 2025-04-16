@@ -19,7 +19,7 @@ const Footer = () => {
                         className="primary"
                         to={isAuthenticated ? "/schedule-appointment" : "/authorization"}
                     >
-                        {isAuthenticated ? "Agendar" : "Comenzar"}
+                        {isAuthenticated ? "Agendar cita" : "Comenzar"}
                     </NavigationLink>
                 </div>
                 <nav>
