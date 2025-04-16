@@ -11,7 +11,7 @@ const ServiceCard = ({ index, name, image }: Props) => {
     return (
         <article className="service__card" style={{ "--index": index } as CSSProperties}>
             <figure>
-                <img src={image} alt={`Imagen de ${name}`} />
+                <img src={image} alt={`Imagen de ${name}`} loading="lazy" decoding="async" />
             </figure>
             <div>
                 <h3>{name}</h3>

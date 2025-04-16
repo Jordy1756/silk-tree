@@ -17,7 +17,7 @@ const Navbar = () => {
         <nav className="navbar">
             <div className="navbar__links">
                 <Link to="/#home">
-                    <img src={logo} alt="Logo de SilkTree" />
+                    <img src={logo} alt="Logo de SilkTree" loading="lazy" decoding="async" />
                 </Link>
                 <ul>
                     <li>

@@ -12,7 +12,7 @@ const Footer = () => {
             <section>
                 <div>
                     <NavLink to="/#home">
-                        <img src={logo} alt="Logo de SilkTree" />
+                        <img src={logo} alt="Logo de SilkTree" loading="lazy" decoding="async" />
                     </NavLink>
                     <blockquote>Cuidando tu salud con confianza y dedicación</blockquote>
                     <NavigationLink
