@@ -49,11 +49,16 @@
     color: var(--neutral-900);
 }
 
-.navbar > .navbar__actions > div {
+.navbar > .navbar__actions {
     position: relative;
 }
 
-.navbar > .navbar__actions > div > picture {
+.navbar > .navbar__actions > div {
+    display: flex;
+    gap: 1rem;
+}
+
+.navbar > .navbar__actions > div > button {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -61,36 +66,50 @@
     aspect-ratio: 1;
     border: 1px solid var(--neutral-600);
     border-radius: 999999px;
+    background-color: transparent;
 }
 
-.navbar > .navbar__actions > div > ul {
+.navbar > .navbar__actions > ul::before {
     content: "";
     position: absolute;
-    top: calc(100% + 1rem);
+    bottom: 100%;
+    right: calc(0.5rem + 11px);
+    width: 25px;
+    height: 20px;
+    background-color: var(--neutral-50);
+    box-shadow: var(--box-shadow);
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+}
+
+.navbar > .navbar__actions > ul {
+    content: "";
+    position: absolute;
+    top: calc(100% + 0.5rem);
     right: 0;
     display: flex;
     flex-direction: column;
-    background-color: var(--neutral-50);
-    width: 200px;
     padding-inline: 1rem;
+    background-color: var(--neutral-50);
     border-radius: var(--border-radius-out);
     box-shadow: var(--box-shadow);
-    max-height: 0;
-    padding: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease-in-out, padding-block 0.3s ease-in-out;
+    opacity: 0;
+    pointer-events: none;
+    transition: max-height 0.3s ease-in-out, padding-block 0.3s ease-in-out, opacity 0.3s ease-in-out;
 }
 
-.navbar > .navbar__actions > div:hover > ul {
+.navbar > .navbar__actions.open > ul {
+    overflow: visible;
     max-height: 250px;
     padding-block: 0.5rem;
+    opacity: 1;
+    pointer-events: visible;
 }
 
-.navbar > .navbar__actions > div > ul > li:not(:last-child) {
+.navbar > .navbar__actions > ul > li:not(:last-child) {
     border-bottom: 1px solid var(--neutral-200);
 }
 
-.navbar > .navbar__actions > div > ul > li > button {
+.navbar > .navbar__actions > ul > li > button {
     padding: 0.5rem;
     width: 100%;
     display: flex;
@@ -101,16 +120,12 @@
     transition: background-color 0.3s ease-in-out, opacity 0.3s ease-in-out;
 }
 
-.navbar > .navbar__actions > div > ul > li > button:hover {
+.navbar > .navbar__actions > ul > li > button:hover {
     opacity: 0.7;
 }
 
-.navbar > .navbar__actions > button.icon {
-    display: none;
-}
-
 @media screen and (width <= 914px) {
-    .navbar > .navbar__links > ul,
+    /* .navbar > .navbar__links > ul,
     .navbar > .navbar__actions > a,
     .navbar > .navbar__actions > div {
         display: none;
@@ -122,5 +137,5 @@
 
     .navbar > .navbar__actions > button.icon {
         display: flex;
-    }
+    } */
 }

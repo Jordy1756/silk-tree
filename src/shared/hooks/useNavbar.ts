@@ -2,16 +2,23 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { logoutUserService } from "../services/logoutUserService";
 import { ApiError } from "../utils/apiError";
 import { useToast } from "./useToast";
+import { useState } from "react";
+import { useAuthStatus } from "./useAuthStatus";
 
-export const useLogoutUser = (handleIsAuthenticated: (isAuthenticated: boolean) => void) => {
+export const useNavbar = () => {
     const { addToast } = useToast();
+    const { handleIsAuthenticated } = useAuthStatus();
     const location = useLocation();
     const navigate = useNavigate();
+    const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
+
+    const handleUserMenuToggle = () => setIsUserMenuOpen((prev) => !prev);
 
     const logoutUser = async () => {
         try {
             await logoutUserService();
             handleIsAuthenticated(false);
+            handleUserMenuToggle();
             addToast({ title: "Sesión cerrada", message: "Has cerrado sesión exitosamente", type: "success" });
 
             if (location.pathname !== "/") navigate("/#home", { replace: true });
@@ -21,5 +28,5 @@ export const useLogoutUser = (handleIsAuthenticated: (isAuthenticated: boolean) 
         }
     };
 
-    return { logoutUser };
+    return { isUserMenuOpen, handleUserMenuToggle, logoutUser };
 };

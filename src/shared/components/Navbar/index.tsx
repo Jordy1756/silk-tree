@@ -1,17 +1,16 @@
 import { Link } from "react-router-dom";
 import { useAuthStatus } from "../../hooks/useAuthStatus";
-import { useLogoutUser } from "../../hooks/useLogoutUser";
+import { useNavbar } from "../../hooks/useNavbar";
 import logo from "../../../assets/images/company/logo.webp";
 import NavigationLink from "../NavigationLink";
 import AvatarIcon from "../../../assets/icons/AvatarIcon";
 import LogoutIcon from "../../../assets/icons/LogoutIcon";
-import Button from "../Button";
 import MenuIcon from "../../../assets/icons/MenuIcon";
 import "./index.css";
 
 const Navbar = () => {
-    const { isAuthenticated, handleIsAuthenticated } = useAuthStatus();
-    const { logoutUser } = useLogoutUser(handleIsAuthenticated);
+    const { isAuthenticated } = useAuthStatus();
+    const { isUserMenuOpen, handleUserMenuToggle, logoutUser } = useNavbar();
 
     return (
         <nav className="navbar">
@@ -34,28 +33,28 @@ const Navbar = () => {
                     </li>
                 </ul>
             </div>
-            <div className="navbar__actions">
-                <NavigationLink className="primary" to={isAuthenticated ? "/schedule-appointment" : "/authorization"}>
-                    {isAuthenticated ? "Agendar cita" : "Comenzar"}
-                </NavigationLink>
-                {isAuthenticated && (
-                    <div>
-                        <picture>
+            <div className={`navbar__actions ${isUserMenuOpen ? "open" : ""}`}>
+                <div>
+                    <NavigationLink
+                        className="primary"
+                        to={isAuthenticated ? "/schedule-appointment" : "/authorization"}
+                    >
+                        {isAuthenticated ? "Agendar cita" : "Comenzar"}
+                    </NavigationLink>
+                    {isAuthenticated && (
+                        <button onClick={handleUserMenuToggle}>
                             <AvatarIcon width={24} height={24} color="var(--neutral-600)" />
-                        </picture>
-                        <ul>
-                            <li>
-                                <button onClick={() => logoutUser()}>
-                                    <LogoutIcon width={24} height={24} color="var(--error-500)" />
-                                    Cerrar sesion
-                                </button>
-                            </li>
-                        </ul>
-                    </div>
-                )}
-                <Button type="button" className="icon">
-                    <MenuIcon width={40} height={40} color="var(--neutral-600)" />
-                </Button>
+                        </button>
+                    )}
+                </div>
+                <ul>
+                    <li>
+                        <button onClick={() => logoutUser()}>
+                            <LogoutIcon width={24} height={24} color="var(--error-500)" />
+                            Cerrar sesion
+                        </button>
+                    </li>
+                </ul>
             </div>
         </nav>
     );
