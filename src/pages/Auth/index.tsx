@@ -1,4 +1,4 @@
-import logo from "../../assets/images/company/logo.png";
+import logo from "../../assets/images/company/logo.webp";
 import Register from "./components/Register";
 import Login from "./components/Login";
 import TogglePanel from "./components/TogglePanel";

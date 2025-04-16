@@ -1,13 +1,13 @@
 import { Link } from "react-router-dom";
 import { useAuthStatus } from "../../hooks/useAuthStatus";
 import { useLogoutUser } from "../../hooks/useLogoutUser";
-import logo from "../../../assets/images/company/logo.png";
+import logo from "../../../assets/images/company/logo.webp";
 import NavigationLink from "../NavigationLink";
 import AvatarIcon from "../../../assets/icons/AvatarIcon";
 import LogoutIcon from "../../../assets/icons/LogoutIcon";
-import "./index.css";
 import Button from "../Button";
 import MenuIcon from "../../../assets/icons/MenuIcon";
+import "./index.css";
 
 const Navbar = () => {
     const { isAuthenticated, handleIsAuthenticated } = useAuthStatus();

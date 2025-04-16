@@ -1,4 +1,4 @@
-import logo from "../../../assets/images/company/logo.png";
+import logo from "../../../assets/images/company/logo.webp";
 import { NavLink } from "react-router-dom";
 import NavigationLink from "../NavigationLink";
 import { useAuthStatus } from "../../hooks/useAuthStatus";

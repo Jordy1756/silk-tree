@@ -45,5 +45,5 @@
     margin-left: 0.5rem;
     margin-top: 0.25rem;
     font-size: 0.875rem;
-    color: red;
+    color: var(--error-500);
 }

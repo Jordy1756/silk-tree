@@ -9,6 +9,7 @@
     scale: 0;
     transition: scale 0.2s ease-in-out, display 0.3s ease-in allow-discrete;
     width: min(90%, 500px);
+    background-color: var(--neutral-50);
 }
 
 .standard__modal[open] {
