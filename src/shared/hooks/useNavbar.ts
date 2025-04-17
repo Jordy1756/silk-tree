@@ -11,8 +11,10 @@ export const useNavbar = () => {
     const location = useLocation();
     const navigate = useNavigate();
     const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     const handleUserMenuToggle = () => setIsUserMenuOpen((prev) => !prev);
+    const handleMenuToggle = () => setIsMenuOpen((prev) => !prev);
 
     const logoutUser = async () => {
         try {
@@ -28,5 +30,5 @@ export const useNavbar = () => {
         }
     };
 
-    return { isUserMenuOpen, handleUserMenuToggle, logoutUser };
+    return { isUserMenuOpen, isMenuOpen, handleUserMenuToggle, handleMenuToggle, logoutUser };
 };

@@ -5,19 +5,27 @@ import logo from "../../../assets/images/company/logo.webp";
 import NavigationLink from "../NavigationLink";
 import AvatarIcon from "../../../assets/icons/AvatarIcon";
 import LogoutIcon from "../../../assets/icons/LogoutIcon";
-import MenuIcon from "../../../assets/icons/MenuIcon";
 import "./index.css";
 
 const Navbar = () => {
     const { isAuthenticated } = useAuthStatus();
-    const { isUserMenuOpen, handleUserMenuToggle, logoutUser } = useNavbar();
+    const { isUserMenuOpen, isMenuOpen, handleUserMenuToggle, handleMenuToggle, logoutUser } = useNavbar();
 
     return (
-        <nav className="navbar">
+        <nav className={`navbar ${isMenuOpen ? "open" : ""}`}>
             <div className="navbar__links">
-                <Link to="/#home">
-                    <img src={logo} alt="Logo de SilkTree" loading="lazy" decoding="async" />
-                </Link>
+                <div>
+                    <Link to="/#home">
+                        <img src={logo} alt="Logo de SilkTree" loading="lazy" decoding="async" />
+                    </Link>
+                    <button onClick={handleMenuToggle}>
+                        <div>
+                            <span />
+                            <span />
+                        </div>
+                        Menu
+                    </button>
+                </div>
                 <ul>
                     <li>
                         <Link to="/#about-us">Sobre nosotros</Link>
@@ -26,10 +34,10 @@ const Navbar = () => {
                         <Link to="/#services">Servicios</Link>
                     </li>
                     <li>
-                        <Link to="/#our-team">Medicos</Link>
+                        <Link to="/#our-team">Médicos</Link>
                     </li>
                     <li>
-                        <Link to="/#contact-us">Contactanos</Link>
+                        <Link to="/#contact-us">Contáctanos</Link>
                     </li>
                 </ul>
             </div>
@@ -47,14 +55,15 @@ const Navbar = () => {
                         </button>
                     )}
                 </div>
-                <ul>
-                    <li>
-                        <button onClick={() => logoutUser()}>
-                            <LogoutIcon width={24} height={24} color="var(--error-500)" />
-                            Cerrar sesion
-                        </button>
-                    </li>
-                </ul>
+                {isAuthenticated && (
+                    <ul>
+                        <li>
+                            <button onClick={logoutUser}>
+                                <LogoutIcon width={24} height={24} color="var(--error-500)" /> Cerrar sesión
+                            </button>
+                        </li>
+                    </ul>
+                )}
             </div>
         </nav>
     );
