@@ -34,15 +34,11 @@ const Footer = () => {
                         </li>
                         <li>
                             <span>03</span>
-                            <a href="/#">Medicos</a>
+                            <a href="/#our-team">Médicos</a>
                         </li>
                         <li>
                             <span>04</span>
                             <a href="/#FAQs">FAQ</a>
-                        </li>
-                        <li>
-                            <span>05</span>
-                            <a href="/#contact-us">Contactanos</a>
                         </li>
                     </ul>
                 </nav>

@@ -36,9 +36,6 @@ const Navbar = () => {
                     <li>
                         <Link to="/#our-team">Médicos</Link>
                     </li>
-                    <li>
-                        <Link to="/#contact-us">Contáctanos</Link>
-                    </li>
                 </ul>
             </div>
             <div className={`navbar__actions ${isUserMenuOpen ? "open" : ""}`}>
@@ -49,11 +46,10 @@ const Navbar = () => {
                     >
                         {isAuthenticated ? "Agendar cita" : "Comenzar"}
                     </NavigationLink>
-                    {isAuthenticated && (
-                        <button onClick={handleUserMenuToggle}>
-                            <AvatarIcon width={24} height={24} color="var(--neutral-600)" />
-                        </button>
-                    )}
+
+                    <button onClick={handleUserMenuToggle}>
+                        <AvatarIcon width={24} height={24} color="var(--neutral-900)" />
+                    </button>
                 </div>
                 {isAuthenticated && (
                     <ul>
