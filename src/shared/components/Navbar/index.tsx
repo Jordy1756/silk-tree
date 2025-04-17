@@ -12,8 +12,8 @@ const Navbar = () => {
     const { isUserMenuOpen, isMenuOpen, handleUserMenuToggle, handleMenuToggle, logoutUser } = useNavbar();
 
     return (
-        <nav className={`navbar ${isMenuOpen ? "open" : ""}`}>
-            <div className="navbar__links">
+        <header className={`header ${isMenuOpen ? "with__navbar-open" : ""}`}>
+            <nav>
                 <div>
                     <Link to="/#home">
                         <img src={logo} alt="Logo de SilkTree" loading="lazy" decoding="async" />
@@ -23,22 +23,29 @@ const Navbar = () => {
                             <span />
                             <span />
                         </div>
-                        Menu
+                        <span>Menu</span>
                     </button>
                 </div>
                 <ul>
                     <li>
+                        <span>01</span>
+                        <Link to="/#home">Home</Link>
+                    </li>
+                    <li>
+                        <span>02</span>
                         <Link to="/#about-us">Sobre nosotros</Link>
                     </li>
                     <li>
+                        <span>03</span>
                         <Link to="/#services">Servicios</Link>
                     </li>
                     <li>
+                        <span>04</span>
                         <Link to="/#our-team">Médicos</Link>
                     </li>
                 </ul>
-            </div>
-            <div className={`navbar__actions ${isUserMenuOpen ? "open" : ""}`}>
+            </nav>
+            <div className={`${isUserMenuOpen ? "user__menu-open" : ""}`}>
                 <div>
                     <NavigationLink
                         className="primary"
@@ -46,10 +53,11 @@ const Navbar = () => {
                     >
                         {isAuthenticated ? "Agendar cita" : "Comenzar"}
                     </NavigationLink>
-
-                    <button onClick={handleUserMenuToggle}>
-                        <AvatarIcon width={24} height={24} color="var(--neutral-900)" />
-                    </button>
+                    {isAuthenticated && (
+                        <button onClick={handleUserMenuToggle}>
+                            <AvatarIcon width={24} height={24} color="var(--neutral-900)" />
+                        </button>
+                    )}
                 </div>
                 {isAuthenticated && (
                     <ul>
@@ -61,7 +69,7 @@ const Navbar = () => {
                     </ul>
                 )}
             </div>
-        </nav>
+        </header>
     );
 };
 

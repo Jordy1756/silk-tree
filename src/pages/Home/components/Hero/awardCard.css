@@ -1,10 +1,10 @@
 .award__card {
-    padding: 1rem;
+    padding: 2.5rem;
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
     gap: 1rem;
-    border-radius: var(--border-radius-out) var(--border-radius-out) 0 0;
+    border-radius: 25px 25px 0 0;
     background-color: var(--glass-color-light);
     backdrop-filter: var(--blur-effect-light);
     box-shadow: var(--box-shadow);

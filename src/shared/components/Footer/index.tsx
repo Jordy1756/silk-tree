@@ -1,5 +1,5 @@
 import logo from "../../../assets/images/company/logo.webp";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import NavigationLink from "../NavigationLink";
 import { useAuthStatus } from "../../hooks/useAuthStatus";
 import "./index.css";
@@ -11,9 +11,9 @@ const Footer = () => {
         <footer className="footer">
             <section>
                 <div>
-                    <NavLink to="/#home">
+                    <Link to="/#home">
                         <img src={logo} alt="Logo de SilkTree" loading="lazy" decoding="async" />
-                    </NavLink>
+                    </Link>
                     <blockquote>Cuidando tu salud con confianza y dedicación</blockquote>
                     <NavigationLink
                         className="primary"
@@ -26,19 +26,19 @@ const Footer = () => {
                     <ul>
                         <li>
                             <span>01</span>
-                            <a href="/#about-us">Sobre nosotros</a>
+                            <Link to="/#about-us">Sobre nosotros</Link>
                         </li>
                         <li>
                             <span>02</span>
-                            <a href="/#services">Servicios</a>
+                            <Link to="/#services">Servicios</Link>
                         </li>
                         <li>
                             <span>03</span>
-                            <a href="/#our-team">Médicos</a>
+                            <Link to="/#our-team">Médicos</Link>
                         </li>
                         <li>
                             <span>04</span>
-                            <a href="/#FAQs">FAQ</a>
+                            <Link to="/#FAQs">FAQ</Link>
                         </li>
                     </ul>
                 </nav>
@@ -48,10 +48,10 @@ const Footer = () => {
                 <nav>
                     <ul>
                         <li>
-                            <NavLink to="/#">Términos y condiciones</NavLink>
+                            <Link to="/#">Términos y condiciones</Link>
                         </li>
                         <li>
-                            <NavLink to="/#">Política de privacidad</NavLink>
+                            <Link to="/#">Política de privacidad</Link>
                         </li>
                     </ul>
                 </nav>
