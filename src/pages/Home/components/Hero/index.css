@@ -17,7 +17,7 @@
     align-items: start;
     justify-content: center;
     gap: 1rem;
-    margin-top: calc(40px + 2.5rem);
+    margin-top: calc(40px + 3rem);
     width: min(var(--max-width), 100%);
 }
 

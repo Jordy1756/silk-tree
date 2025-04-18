@@ -13,7 +13,7 @@ export const useNavbar = () => {
     const location = useLocation();
     const [isUserMenuOpen, setIsUserMenuOpen] = useState<boolean>(false);
     const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
-    
+
     const userMenuRef = useRef<HTMLUListElement | null>(null);
     const userButtonRef = useRef<HTMLButtonElement | null>(null);
 
@@ -38,17 +38,14 @@ export const useNavbar = () => {
     );
 
     useEffect(() => {
-        if (isUserMenuOpen) {
-            document.addEventListener("mousedown", handleUserClickOutside);
+        if (!isUserMenuOpen) return;
 
-            return () => {
-                document.removeEventListener("mousedown", handleUserClickOutside);
-            };
-        }
+        document.addEventListener("mousedown", handleUserClickOutside);
+
+        return () => document.removeEventListener("mousedown", handleUserClickOutside);
     }, [isUserMenuOpen, handleUserClickOutside]);
 
     const logoutUser = async () => {
-        // Sin cambios
         try {
             await logoutUserService();
             handleIsAuthenticated(false);
@@ -65,10 +62,10 @@ export const useNavbar = () => {
     return {
         isUserMenuOpen,
         isMenuOpen,
+        userMenuRef,
+        userButtonRef,
         handleUserMenuToggle,
         handleMenuToggle,
         logoutUser,
-        userMenuRef,
-        userButtonRef,
     };
 };

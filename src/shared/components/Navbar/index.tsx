@@ -12,11 +12,11 @@ const Navbar = () => {
     const {
         isUserMenuOpen,
         isMenuOpen,
+        userMenuRef,
+        userButtonRef,
         handleUserMenuToggle,
         handleMenuToggle,
         logoutUser,
-        userMenuRef,
-        userButtonRef,
     } = useNavbar();
     const { socialNetworks, navbarNavigation } = basics;
 
@@ -80,7 +80,7 @@ const Navbar = () => {
                     </ul>
                 </aside>
             </div>
-            <aside className="prueba">
+            <aside>
                 <span />
                 <p>Menu</p>
             </aside>
