@@ -2,10 +2,12 @@ import logo from "../../../assets/images/company/logo.webp";
 import { Link } from "react-router-dom";
 import NavigationLink from "../NavigationLink";
 import { useAuthStatus } from "../../hooks/useAuthStatus";
+import basics from "../../data/basics.json";
 import "./index.css";
 
 const Footer = () => {
     const { isAuthenticated } = useAuthStatus();
+    const { footerNavigation } = basics;
 
     return (
         <footer className="footer">
@@ -24,22 +26,12 @@ const Footer = () => {
                 </div>
                 <nav>
                     <ul>
-                        <li>
-                            <span>01</span>
-                            <Link to="/#about-us">Sobre nosotros</Link>
-                        </li>
-                        <li>
-                            <span>02</span>
-                            <Link to="/#services">Servicios</Link>
-                        </li>
-                        <li>
-                            <span>03</span>
-                            <Link to="/#our-team">Médicos</Link>
-                        </li>
-                        <li>
-                            <span>04</span>
-                            <Link to="/#FAQs">FAQ</Link>
-                        </li>
+                        {footerNavigation.map(({ label, path }, index) => (
+                            <li key={index}>
+                                <span>{(index + 1 + "").padStart(2, "0")}</span>
+                                <Link to={path}>{label}</Link>
+                            </li>
+                        ))}
                     </ul>
                 </nav>
             </section>

@@ -15,5 +15,41 @@
             "name": "Portafolio",
             "url": "https://portfolio-url.com"
         }
+    ],
+    "navbarNavigation": [
+        {
+            "label": "Home",
+            "path": "/#home"
+        },
+        {
+            "label": "Sobre nosotros",
+            "path": "/#about-us"
+        },
+        {
+            "label": "Servicios",
+            "path": "/#services"
+        },
+        {
+            "label": "Médicos",
+            "path": "/#our-team"
+        }
+    ],
+    "footerNavigation": [
+        {
+            "label": "Sobre nosotros",
+            "path": "/#about-us"
+        },
+        {
+            "label": "Servicios",
+            "path": "/#services"
+        },
+        {
+            "label": "Médicos",
+            "path": "/#our-team"
+        },
+        {
+            "label": "FAQ",
+            "path": "/#FAQs"
+        }
     ]
 }

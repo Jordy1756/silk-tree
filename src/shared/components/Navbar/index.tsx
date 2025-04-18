@@ -17,19 +17,17 @@ const Navbar = () => {
         logoutUser,
         userMenuRef,
         userButtonRef,
-        mainMenuRef,
-        mainMenuButtonRef,
     } = useNavbar();
-    const { socialNetworks } = basics;
+    const { socialNetworks, navbarNavigation } = basics;
 
     return (
-        <header ref={mainMenuRef} className={`header ${isMenuOpen ? "with__navbar-open" : ""}`}>
+        <header className={`header ${isMenuOpen ? "with__navbar-open" : ""}`}>
             <nav>
                 <div>
                     <Link to="/#home">
                         <img src={logo} alt="Logo de SilkTree" loading="lazy" decoding="async" />
                     </Link>
-                    <button ref={mainMenuButtonRef} onClick={handleMenuToggle}>
+                    <button onClick={handleMenuToggle}>
                         <div>
                             <span />
                             <span />
@@ -38,27 +36,19 @@ const Navbar = () => {
                     </button>
                 </div>
                 <ul>
-                    <li>
-                        <span>01</span>
-                        <Link to="/#home">Home</Link>
-                    </li>
-                    <li>
-                        <span>02</span>
-                        <Link to="/#about-us">Sobre nosotros</Link>
-                    </li>
-                    <li>
-                        <span>03</span>
-                        <Link to="/#services">Servicios</Link>
-                    </li>
-                    <li>
-                        <span>04</span>
-                        <Link to="/#our-team">Médicos</Link>
-                    </li>
+                    {navbarNavigation.map(({ label, path }, index) => (
+                        <li key={index}>
+                            <span>{(index + 1 + "").padStart(2, "0")}</span>
+                            <Link onClick={handleMenuToggle} to={path}>
+                                {label}
+                            </Link>
+                        </li>
+                    ))}
                 </ul>
             </nav>
             <div>
                 <div>
-                    <Link to={isAuthenticated ? "/schedule-appointment" : "/authorization"}>
+                    <Link onClick={handleMenuToggle} to={isAuthenticated ? "/schedule-appointment" : "/authorization"}>
                         {isAuthenticated ? "Agendar cita" : "Comenzar"}
                     </Link>
                     {isAuthenticated && (
