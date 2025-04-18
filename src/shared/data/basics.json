@@ -1,5 +1,19 @@
 {
     "name": ["Silk", "Tree"],
     "summary": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni aut ab, corporis reiciendis labore rem nihil necessitatibus consectetur expedita nostrum, possimus sint nisi, a rerum sapiente suscipit sequi omnis porro!",
-    "marquee": ["Nuestros servicios", "Equipo de profesionales", "Tecnología de punta", "Ambiente seguro"]
+    "marquee": ["Nuestros servicios", "Equipo de profesionales", "Tecnología de punta", "Ambiente seguro"],
+    "socialNetworks": [
+        {
+            "name": "Github",
+            "url": "https://github.com/Jordy1756"
+        },
+        {
+            "name": "Linkedin",
+            "url": "https://www.linkedin.com/in/yordicastro/"
+        },
+        {
+            "name": "Portafolio",
+            "url": "https://portfolio-url.com"
+        }
+    ]
 }

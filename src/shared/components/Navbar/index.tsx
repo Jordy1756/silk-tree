@@ -2,14 +2,15 @@ import { Link } from "react-router-dom";
 import { useAuthStatus } from "../../hooks/useAuthStatus";
 import { useNavbar } from "../../hooks/useNavbar";
 import logo from "../../../assets/images/company/logo.webp";
-import NavigationLink from "../NavigationLink";
 import AvatarIcon from "../../../assets/icons/AvatarIcon";
 import LogoutIcon from "../../../assets/icons/LogoutIcon";
+import basics from "../../data/basics.json";
 import "./index.css";
 
 const Navbar = () => {
     const { isAuthenticated } = useAuthStatus();
     const { isUserMenuOpen, isMenuOpen, handleUserMenuToggle, handleMenuToggle, logoutUser } = useNavbar();
+    const { socialNetworks } = basics;
 
     return (
         <header className={`header ${isMenuOpen ? "with__navbar-open" : ""}`}>
@@ -47,27 +48,37 @@ const Navbar = () => {
             </nav>
             <div className={`${isUserMenuOpen ? "user__menu-open" : ""}`}>
                 <div>
-                    <NavigationLink
-                        className="primary"
-                        to={isAuthenticated ? "/schedule-appointment" : "/authorization"}
-                    >
+                    <Link to={isAuthenticated ? "/schedule-appointment" : "/authorization"}>
                         {isAuthenticated ? "Agendar cita" : "Comenzar"}
-                    </NavigationLink>
+                    </Link>
                     {isAuthenticated && (
-                        <button onClick={handleUserMenuToggle}>
-                            <AvatarIcon width={24} height={24} color="var(--neutral-900)" />
-                        </button>
+                        <>
+                            <button onClick={handleUserMenuToggle}>
+                                <AvatarIcon width={24} height={24} color="var(--neutral-900)" />
+                            </button>
+                            <ul>
+                                <li>
+                                    <button onClick={logoutUser}>
+                                        <LogoutIcon width={24} height={24} color="var(--error-500)" />
+                                        Cerrar sesión
+                                    </button>
+                                </li>
+                            </ul>
+                        </>
                     )}
                 </div>
-                {isAuthenticated && (
+                <span />
+                <aside>
                     <ul>
-                        <li>
-                            <button onClick={logoutUser}>
-                                <LogoutIcon width={24} height={24} color="var(--error-500)" /> Cerrar sesión
-                            </button>
-                        </li>
+                        {socialNetworks.map(({ name, url }, index) => (
+                            <li key={index}>
+                                <a href={url} target="_blank" rel="noopener noreferrer">
+                                    {name}
+                                </a>
+                            </li>
+                        ))}
                     </ul>
-                )}
+                </aside>
             </div>
         </header>
     );
