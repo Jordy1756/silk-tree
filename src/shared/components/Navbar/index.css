@@ -13,23 +13,14 @@
 .header > nav {
     display: flex;
     gap: 2rem;
-}
-
-.header > nav {
     transition: width 0.5s ease-in-out;
 }
 
 .header > nav > div {
     display: flex;
-    align-items: center;
-    gap: 1rem;
-}
-
-.header > nav > div {
-    width: 100%;
-    display: flex;
     align-items: stretch;
     gap: 2.5rem;
+    width: 100%;
 }
 
 .header > nav > div > a {
@@ -245,19 +236,19 @@
 /* NAVBAR OPEN */
 
 .header.with__navbar-open {
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    min-height: 100dvh;
+    height: 100dvh;
+    max-height: 100dvh;
     flex-direction: column;
     align-items: flex-start;
-    transform: translateX(0);
     background-color: var(--neutral-50);
     padding: 2.5rem;
     animation: showMenu 0.5s ease-in-out backwards;
-    /* overflow: auto, scroll; */
-    /* overflow-y: auto;
-    overflow-x: hidden; */
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .header.with__navbar-open > nav {
@@ -367,6 +358,17 @@
 
     .header > div {
         flex-direction: column;
+    }
+}
+
+
+@media screen and (width <= 480px) {
+    .header {
+        gap: 2rem;
+    }
+
+    .header > nav > div {
+        gap: 1.5rem;
     }
 }
 
