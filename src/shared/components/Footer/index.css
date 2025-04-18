@@ -78,6 +78,12 @@
     gap: 1rem;
 }
 
+@media screen and (width <= 1542px) {
+    .footer {
+        padding: 1rem;
+    }
+}
+
 @media screen and (width <= 584px) {
     .footer {
         gap: 3rem;

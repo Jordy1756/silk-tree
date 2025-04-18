@@ -998,6 +998,12 @@ button.rbc-input::-moz-focus-inner {
     cursor: ew-resize;
 }
 
+@media screen and (width <= 1542px) {
+    .appointment__calendar {
+        padding: 1rem;
+    }
+}
+
 @media (max-width: 767px) {
     .rbc-toolbar {
         -webkit-box-orient: vertical;

@@ -31,6 +31,10 @@
 }
 
 @media screen and (width <= 600px) {
+    .services > div {
+        padding: 1rem;
+    }
+    
     .services > div > .marquee {
         display: none;
     }

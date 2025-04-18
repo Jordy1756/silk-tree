@@ -20,6 +20,12 @@
     font-size: var(--text-size-large);
 }
 
+@media screen and (width <= 1542px) {
+    .our__team {
+        padding: 1rem;
+    }
+}
+
 @media screen and (width >= 1024px) {
     .our__team {
         grid-template-columns: repeat(8, 1fr);

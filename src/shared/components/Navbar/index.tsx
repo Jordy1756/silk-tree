@@ -9,17 +9,27 @@ import "./index.css";
 
 const Navbar = () => {
     const { isAuthenticated } = useAuthStatus();
-    const { isUserMenuOpen, isMenuOpen, handleUserMenuToggle, handleMenuToggle, logoutUser } = useNavbar();
+    const {
+        isUserMenuOpen,
+        isMenuOpen,
+        handleUserMenuToggle,
+        handleMenuToggle,
+        logoutUser,
+        userMenuRef,
+        userButtonRef,
+        mainMenuRef,
+        mainMenuButtonRef,
+    } = useNavbar();
     const { socialNetworks } = basics;
 
     return (
-        <header className={`header ${isMenuOpen ? "with__navbar-open" : ""}`}>
+        <header ref={mainMenuRef} className={`header ${isMenuOpen ? "with__navbar-open" : ""}`}>
             <nav>
                 <div>
                     <Link to="/#home">
                         <img src={logo} alt="Logo de SilkTree" loading="lazy" decoding="async" />
                     </Link>
-                    <button onClick={handleMenuToggle}>
+                    <button ref={mainMenuButtonRef} onClick={handleMenuToggle}>
                         <div>
                             <span />
                             <span />
@@ -46,17 +56,17 @@ const Navbar = () => {
                     </li>
                 </ul>
             </nav>
-            <div className={`${isUserMenuOpen ? "user__menu-open" : ""}`}>
+            <div>
                 <div>
                     <Link to={isAuthenticated ? "/schedule-appointment" : "/authorization"}>
                         {isAuthenticated ? "Agendar cita" : "Comenzar"}
                     </Link>
                     {isAuthenticated && (
                         <>
-                            <button onClick={handleUserMenuToggle}>
+                            <button ref={userButtonRef} onClick={handleUserMenuToggle}>
                                 <AvatarIcon width={24} height={24} color="var(--neutral-900)" />
                             </button>
-                            <ul>
+                            <ul ref={userMenuRef} className={`${isUserMenuOpen ? "user__menu-open" : ""}`}>
                                 <li>
                                     <button onClick={logoutUser}>
                                         <LogoutIcon width={24} height={24} color="var(--error-500)" />

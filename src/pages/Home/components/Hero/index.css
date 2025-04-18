@@ -49,3 +49,9 @@
     transform: scale(1.5) translateX(15%) rotate(-15deg);
     z-index: -1;
 }
+
+@media screen and (width <= 1542px) {
+    .hero__container {
+        padding: 1rem 1rem 0;
+    }
+}

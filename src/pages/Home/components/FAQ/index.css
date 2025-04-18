@@ -13,3 +13,9 @@
     text-transform: uppercase;
     font-size: var(--text-size-xlarge);
 }
+
+@media screen and (width <= 1542px) {
+    .faq {
+        padding: 1rem;
+    }
+}
