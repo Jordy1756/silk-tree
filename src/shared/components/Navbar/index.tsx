@@ -80,6 +80,10 @@ const Navbar = () => {
                     </ul>
                 </aside>
             </div>
+            <aside className="prueba">
+                <span />
+                <p>Menu</p>
+            </aside>
         </header>
     );
 };

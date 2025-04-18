@@ -87,6 +87,7 @@
     justify-content: center;
     gap: 2rem;
     width: min(1100px, 100%);
+    padding-inline: 3rem;
 }
 
 .header > nav > ul > li {
@@ -189,6 +190,29 @@
     gap: 1rem;
 }
 
+.header > div > aside > ul > li {
+    padding: 2px 0;
+    border-bottom: 1px solid var(--neutral-900);
+}
+
+.header > aside {
+    position: absolute;
+    top: 2.5rem;
+    left: 0;
+    transform: rotate(-90deg) translateY(-454px);
+    transform-origin: right top;
+    display: none;
+    align-items: center;
+    gap: 1rem;
+    text-transform: uppercase;
+}
+
+.header > aside > span {
+    height: 1px;
+    width: 435px;
+    background-color: var(--neutral-900);
+}
+
 /* NAVBAR OPEN */
 
 .header.with__navbar-open {
@@ -254,6 +278,8 @@
 
 .header.with__navbar-open > div > div > a {
     display: flex;
+    padding: 2px 0;
+    border-bottom: 1px solid var(--neutral-900);
 }
 
 .header.with__navbar-open > div > div > button {
@@ -279,6 +305,7 @@
     width: fit-content;
     color: var(--neutral-500);
     pointer-events: visible;
+    padding: 3px 0;
 }
 
 .header.with__navbar-open > div > div > ul > li > button > svg {
@@ -294,5 +321,9 @@
 }
 
 .header.with__navbar-open > div > aside > ul {
+    display: flex;
+}
+
+.header.with__navbar-open > aside {
     display: flex;
 }

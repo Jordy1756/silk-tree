@@ -3,7 +3,7 @@
     view-timeline-name: --about-us-horizontal-scroll;
     view-timeline-axis: block;
     position: relative;
-    padding-inline: 1rem;
+    padding-inline: 2.5rem;
 }
 
 .about__us > .pin__wrap-sticky::before {

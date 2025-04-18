@@ -1,5 +1,5 @@
 .our__team {
-    padding: 1rem;
+    padding: 1rem 2.5rem;
     display: grid;
     grid-auto-flow: row;
     gap: 1rem;

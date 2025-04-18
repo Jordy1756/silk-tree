@@ -1,6 +1,6 @@
 .appointment__calendar {
-    margin-top: calc(46px + 5rem);
-    padding: 1rem;
+    margin-top: calc(40px + 5rem);
+    padding: 1rem 2.5rem;
 }
 
 .rbc-btn {

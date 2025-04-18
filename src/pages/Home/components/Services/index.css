@@ -13,7 +13,7 @@
     height: 100dvh;
     overflow: hidden;
     display: flex;
-    padding: 1rem;
+    padding-block: 1rem;
 }
 
 .services > div > .marquee {
