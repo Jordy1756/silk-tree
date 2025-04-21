@@ -1,10 +1,10 @@
 .services {
     --total-container-height: calc(100dvh * var(--total-cards));
 
-    position: relative;
-    min-height: var(--total-container-height);
-    view-timeline-name: --services-timeline;
+    height: var(--total-container-height);
+    view-timeline-name: --service-timeline;
     view-timeline-axis: block;
+    position: relative;
 }
 
 .services > div {

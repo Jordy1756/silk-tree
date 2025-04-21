@@ -9,7 +9,7 @@ type Props = {
 
 const ServiceCard = ({ index, name, image }: Props) => {
     return (
-        <article className="service__card" style={{ "--index": index } as CSSProperties}>
+        <article className="service__card" style={{ "--index": window.innerWidth > 480 ? index : 0 } as CSSProperties}>
             <figure>
                 <img src={image} alt={`Imagen de ${name}`} loading="lazy" decoding="async" />
             </figure>

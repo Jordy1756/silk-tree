@@ -63,7 +63,7 @@
     text-transform: uppercase;
 }
 
-.about__us > .pin__wrap-sticky > main {
+.about__us > .pin__wrap-sticky > .pin__wrap {
     display: flex;
     align-items: start;
     justify-content: center;
@@ -71,7 +71,6 @@
     height: 80%;
     width: 500vmax;
     will-change: transform;
-    /* transform: translateX(100dvw); */
     animation: moveToLeft linear forwards;
     animation-timeline: --about-us-horizontal-scroll;
     animation-range: entry 100% contain 100%;

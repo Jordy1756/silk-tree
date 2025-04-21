@@ -1,7 +1,4 @@
 .service__card {
-    --min-height: min(600px, calc(100dvh - 10rem));
-    --card-range: calc(var(--total-container-height) / var(--total-cards));
-
     position: absolute;
     top: 50%;
     left: 50%;
@@ -45,19 +42,44 @@
     border-radius: 25px;
 }
 
-@media screen and (width > 480px) {
-    .service__card {
-        animation: showService linear both;
-        animation-timeline: --services-timeline;
-        animation-range: entry calc(var(--index) * var(--card-range)) exit calc((var(--index) + 1) * var(--card-range));
-    }
+.service__card:nth-child(1) {
+    animation: showService linear both;
+    animation-timeline: --service-timeline;
+    animation-range: entry 500% exit 600%;
+}
+
+.service__card:nth-child(2) {
+    animation: showService linear both;
+    animation-timeline: --service-timeline;
+    animation-range: entry 400% exit 500%;
+}
+
+.service__card:nth-child(3) {
+    animation: showService linear both;
+    animation-timeline: --service-timeline;
+    animation-range: entry 300% exit 400%;
+}
+
+.service__card:nth-child(4) {
+    animation: showService linear both;
+    animation-timeline: --service-timeline;
+    animation-range: entry 200% exit 300%;
+}
+
+.service__card:nth-child(5) {
+    animation: showService linear both;
+    animation-timeline: --service-timeline;
+    animation-range: entry 100% exit 200%;
+}
+
+.service__card:nth-child(6) {
+    animation: showService linear both;
+    animation-timeline: --service-timeline;
+    animation-range: entry 0% exit 100%;
 }
 
 @media screen and (width <= 480px) {
     .service__card {
-        animation: showServicePhone linear both;
-        animation-timeline: --services-timeline;
-        animation-range: entry calc(var(--index) * var(--card-range)) exit calc((var(--index) + 1) * var(--card-range));
         background-color: var(--neutral-50);
         box-shadow: none;
         padding: 0.5rem;
@@ -76,19 +98,6 @@
     20% {
         opacity: 1;
         transform: translate(-50%, -50%) scale(1) rotate(calc(1.25deg * var(--index)));
-    }
-    30%,
-    100% {
-        opacity: 0;
-        transform: translate(-50%, -200%) scale(0.8) rotate(-90deg);
-    }
-}
-
-@keyframes showServicePhone {
-    0%,
-    20% {
-        opacity: 1;
-        transform: translate(-50%, -50%) scale(1);
     }
     30%,
     100% {
