@@ -1,4 +1,3 @@
-import logo from "../../../assets/images/company/logo.webp";
 import { Link } from "react-router-dom";
 import NavigationLink from "../NavigationLink";
 import { useAuthStatus } from "../../hooks/useAuthStatus";
@@ -7,7 +6,7 @@ import "./index.css";
 
 const Footer = () => {
     const { isAuthenticated } = useAuthStatus();
-    const { footerNavigation } = basics;
+    const { logo, slogan, footerNavigation } = basics;
 
     return (
         <footer className="footer">
@@ -16,7 +15,7 @@ const Footer = () => {
                     <Link to="/#home">
                         <img src={logo} alt="Logo de SilkTree" loading="lazy" decoding="async" />
                     </Link>
-                    <blockquote>Cuidando tu salud con confianza y dedicación</blockquote>
+                    <blockquote>{slogan}</blockquote>
                     <NavigationLink
                         className="primary"
                         to={isAuthenticated ? "/schedule-appointment" : "/authorization"}

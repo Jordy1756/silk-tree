@@ -1,5 +1,7 @@
 {
     "name": ["Silk", "Tree"],
+    "logo": "/logo.webp",
+    "slogan": "Cuidando tu salud con confianza y dedicación",
     "summary": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni aut ab, corporis reiciendis labore rem nihil necessitatibus consectetur expedita nostrum, possimus sint nisi, a rerum sapiente suscipit sequi omnis porro!",
     "marquee": ["Nuestros servicios", "Equipo de profesionales", "Tecnología de punta", "Ambiente seguro"],
     "socialNetworks": [

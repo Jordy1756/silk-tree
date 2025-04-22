@@ -44,17 +44,21 @@
         flex-direction: column-reverse;
     }
 
-    .our__team-card > div {
-        height: auto;
-    }
-
     .our__team-card:nth-last-child(-n + 3) > div {
         align-content: end;
     }
 }
 
-@media screen and (width <= 590px) {
+@media screen and (width <= 480px) {
+    .our__team-card {
+        gap: 1rem;
+    }
+
     .our__team-card > div {
-        height: 70px;
+        height: auto;
+    }
+
+    .our__team-card:nth-last-child(-n + 3) {
+        flex-direction: column;
     }
 }

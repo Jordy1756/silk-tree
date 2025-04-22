@@ -61,6 +61,7 @@
 html {
     scroll-behavior: smooth;
     scrollbar-width: thin;
+    scroll-padding-top: calc(40px + 3.5rem);
 }
 
 body {
@@ -101,4 +102,10 @@ blockquote {
 
 .root > .main__content {
     padding-inline: 1rem;
+}
+
+@media screen and (width <= 1542px) {
+    html {
+        scroll-padding-top: calc(40px + 1rem);
+    }
 }

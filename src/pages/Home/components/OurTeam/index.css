@@ -61,13 +61,20 @@
     }
 }
 
-@media screen and (width <= 590px) {
+@media screen and (width <= 480px) {
     .our__team {
-        grid-template-rows:
-            clamp(100px, 30vw, 200px) 70px
-            clamp(100px, 30vw, 200px) 70px
-            clamp(100px, 30vw, 200px) 70px
-            150px
-            clamp(100px, 30vw, 200px) 70px;
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(5, 1fr) 200px repeat(4, 1fr);
+        grid-template-areas:
+            "doctor1"
+            "doctor2"
+            "doctor3"
+            "doctor4"
+            "doctor5"
+            "text"
+            "doctor6"
+            "doctor7"
+            "doctor8"
+            "doctor9";
     }
 }

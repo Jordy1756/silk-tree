@@ -1,4 +1,3 @@
-import logo from "../../assets/images/company/logo.webp";
 import Register from "./components/Register";
 import Login from "./components/Login";
 import TogglePanel from "./components/TogglePanel";
@@ -6,9 +5,11 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { useAuthStatus } from "../../shared/hooks/useAuthStatus";
+import basics from "../../shared/data/basics.json";
 import "./index.css";
 
 const Auth = () => {
+    const { logo } = basics;
     const [isToggled, setIsToggled] = useState(true);
     const handleIsToggled = () => setIsToggled(!isToggled);
     const navigate = useNavigate();

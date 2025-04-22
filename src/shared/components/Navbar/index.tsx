@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { useAuthStatus } from "../../hooks/useAuthStatus";
 import { useNavbar } from "../../hooks/useNavbar";
-import logo from "../../../assets/images/company/logo.webp";
 import AvatarIcon from "../../../assets/icons/AvatarIcon";
 import LogoutIcon from "../../../assets/icons/LogoutIcon";
 import basics from "../../data/basics.json";
@@ -18,7 +17,7 @@ const Navbar = () => {
         handleMenuToggle,
         logoutUser,
     } = useNavbar();
-    const { socialNetworks, navbarNavigation } = basics;
+    const { logo, socialNetworks, navbarNavigation } = basics;
 
     return (
         <header className={`header ${isMenuOpen ? "with__navbar-open" : ""}`}>

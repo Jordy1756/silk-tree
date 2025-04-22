@@ -12,7 +12,7 @@ type Props = {
 
 const StandardModal = ({ dialogRef, title, children, closeModal }: Props) => {
     return (
-        <dialog ref={dialogRef} className="standard__modal" closedBy="any">
+        <dialog ref={dialogRef} className="standard__modal">
             <header>
                 <h5>{title}</h5>
                 <Button type="button" className="icon" onClick={() => closeModal()}>
