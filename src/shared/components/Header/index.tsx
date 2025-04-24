@@ -6,7 +6,7 @@ import LogoutIcon from "../../../assets/icons/LogoutIcon";
 import basics from "../../data/basics.json";
 import "./index.css";
 
-const Navbar = () => {
+const Header = () => {
     const { isAuthenticated } = useAuthStatus();
     const {
         isUserMenuOpen,
@@ -87,4 +87,4 @@ const Navbar = () => {
     );
 };
 
-export default Navbar;
+export default Header;
